@@ -1,7 +1,9 @@
 #pragma once
 #include "AbstractScene.h"
 
-class InventorySystemScene : AbstractScene {
+/// @brief [Unknown Level] プレイヤーのインベントリの処理
+class InventorySystemScene : public AbstractScene {
+public:
 	InventorySystemScene(void);
 	~InventorySystemScene(void) override = default;
 
@@ -9,5 +11,8 @@ class InventorySystemScene : AbstractScene {
 	void Update(void) override;
 	void Draw(void) override;
 	void Release(void) override;
+
+private:
+
 };
 

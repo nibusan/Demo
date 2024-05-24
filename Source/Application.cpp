@@ -1,5 +1,6 @@
 #include <DxLib.h>
 #include "Application.h"
+#include "Managers/SceneManager.h"
 
 bool Application::Init(void) {
 	// ウィンドウを初期化
@@ -18,29 +19,31 @@ bool Application::Init(void) {
 	if (DxLib_Init() == -1) {
 		return false;
 	}
+
+	SceneManager::GetInstance().Init();
 }
 
 void Application::Run(void) {
 	//ゲームループ開始
 	while (ProcessMessage() == 0 && !isShutdown_) {
 		
-
 		//各クラスの情報を更新
+		SceneManager::GetInstance().Update();
 		
-
-		//描画処理
-		//SceneManager::GetInstance().Draw();
-
-		SetDrawScreen(DX_SCREEN_BACK);	// 描画する画面を裏の画面に設定
-		ClearDrawScreen();				// 描画する画面の内容を消去
+		// 描画するスクリーンの設定 & そのスクリーンをクリア
+		SetDrawScreen(DX_SCREEN_BACK);	
+		ClearDrawScreen();
 		
+		// シーンの描画
+		SceneManager::GetInstance().Draw();
 
-		ScreenFlip(); // 裏の画面を表の画面に瞬間コピー
-
+		// 裏の画面を表の画面にコピー
+		ScreenFlip();
 	}
 }
 
 void Application::Release(void) {
+	SceneManager::GetInstance().Release();
 	DxLib_End();
 }
 
