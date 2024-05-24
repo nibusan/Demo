@@ -27,10 +27,16 @@
     <ClCompile Include="Source\Scenes\AbstractScene.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Scenes\InventorySystemScene.cpp">
+    <ClCompile Include="Source\Scenes\InventorySystemScene\InventorySystemScene.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Source\UIs\UICanvas.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scenes\InventorySystemScene\Menu\Inventory.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scenes\InventorySystemScene\Item\Item.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,13 +53,19 @@
     <ClInclude Include="Source\Scenes\AbstractScene.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Scenes\InventorySystemScene.h">
+    <ClInclude Include="Source\Scenes\InventorySystemScene\InventorySystemScene.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Source\Scenes\SceneType.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Source\UIs\UICanvas.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scenes\InventorySystemScene\Menu\Inventory.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scenes\InventorySystemScene\Item\Item.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

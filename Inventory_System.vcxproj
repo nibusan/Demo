@@ -147,7 +147,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Scenes\InventorySystemScene.cpp" />
+    <ClCompile Include="Source\Scenes\InventorySystemScene\Item\Item.cpp" />
+    <ClCompile Include="Source\Scenes\InventorySystemScene\Menu\Inventory.cpp" />
+    <ClCompile Include="Source\Scenes\InventorySystemScene\InventorySystemScene.cpp" />
     <ClCompile Include="Source\Scenes\AbstractScene.cpp" />
     <ClCompile Include="Source\Managers\SceneManager.cpp" />
     <ClCompile Include="Source\Application.cpp" />
@@ -155,7 +157,9 @@
     <ClCompile Include="Source\UIs\UICanvas.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Scenes\InventorySystemScene.h" />
+    <ClInclude Include="Source\Scenes\InventorySystemScene\Item\Item.h" />
+    <ClInclude Include="Source\Scenes\InventorySystemScene\Menu\Inventory.h" />
+    <ClInclude Include="Source\Scenes\InventorySystemScene\InventorySystemScene.h" />
     <ClInclude Include="Source\Scenes\AbstractScene.h" />
     <ClInclude Include="Source\Managers\SceneManager.h" />
     <ClInclude Include="Source\Application.h" />

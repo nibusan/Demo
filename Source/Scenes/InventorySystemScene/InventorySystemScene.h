@@ -1,5 +1,8 @@
 #pragma once
-#include "AbstractScene.h"
+#include <memory>
+#include "../AbstractScene.h"
+
+class Inventory;
 
 /// @brief [Unknown Level] プレイヤーのインベントリの処理
 class InventorySystemScene : public AbstractScene {
@@ -13,6 +16,7 @@ public:
 	void Release(void) override;
 
 private:
+	std::unique_ptr<Inventory> inventory_;
 
 };
 

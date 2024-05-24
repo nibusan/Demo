@@ -2,7 +2,7 @@
 #include <DxLib.h>
 #include "SceneManager.h"
 #include "../Scenes/AbstractScene.h"
-#include "../Scenes/InventorySystemScene.h"
+#include "../Scenes/InventorySystemScene/InventorySystemScene.h"
 
 void SceneManager::ChangeScene(SCENE_TYPE type) {
 	if (currentScene_ != nullptr) {
