@@ -2,7 +2,9 @@
 #include <memory>
 #include "../AbstractScene.h"
 
+template <typename T>
 class Inventory;
+class Item;
 
 /// @brief [Unknown Level] プレイヤーのインベントリの処理
 class InventorySystemScene : public AbstractScene {
@@ -16,7 +18,7 @@ public:
 	void Release(void) override;
 
 private:
-	std::unique_ptr<Inventory> inventory_;
+	std::unique_ptr<Inventory<Item>> inventory_;
 
 };
 

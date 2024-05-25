@@ -9,7 +9,7 @@ InventorySystemScene::InventorySystemScene(void) {
 }
 
 void InventorySystemScene::Init(void) {
-	inventory_ = std::make_unique<Inventory>();
+	inventory_ = std::make_unique<Inventory<Item>>();
 	inventory_->Init();
 
 	// アイテムをセット
@@ -32,7 +32,7 @@ void InventorySystemScene::Update(void) {
 
 void InventorySystemScene::Draw(void) {
 	// インベントリの中身を描画
-	for (int i = 0; i < Inventory::MAX_ITEM_SLOT_COUNT; i++) {
+	for (int i = 0; i < Inventory<Item>::MAX_ITEM_SLOT_COUNT; i++) {
 		auto item = inventory_->GetItem(i);
 		auto itemID = item.lock()->GetID();
 		auto itemCount = item.lock()->GetCount();

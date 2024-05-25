@@ -147,6 +147,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Common\Handle\Font\Font.cpp" />
+    <ClCompile Include="Source\Common\Handle\Graphic\Graphic.cpp" />
+    <ClCompile Include="Source\Common\Handle\HandleBase.cpp" />
+    <ClCompile Include="Source\Common\Handle\Model\Model.cpp" />
+    <ClCompile Include="Source\Common\Handle\PixelShader\PixelShader.cpp" />
+    <ClCompile Include="Source\Common\Handle\Sound\Sound.cpp" />
+    <ClCompile Include="Source\Common\Handle\VertexShader\VertexShader.cpp" />
+    <ClCompile Include="Source\Scenes\InventorySystemScene\Menu\InventoryRenderer.cpp" />
     <ClCompile Include="Source\Scenes\InventorySystemScene\Item\Item.cpp" />
     <ClCompile Include="Source\Scenes\InventorySystemScene\Menu\Inventory.cpp" />
     <ClCompile Include="Source\Scenes\InventorySystemScene\InventorySystemScene.cpp" />
@@ -157,6 +165,15 @@
     <ClCompile Include="Source\UIs\UICanvas.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Common\Handle\Font\Font.h" />
+    <ClInclude Include="Source\Common\Handle\Graphic\Graphic.h" />
+    <ClInclude Include="Source\Common\Handle\HandleBase.h" />
+    <ClInclude Include="Source\Common\Handle\Model\Model.h" />
+    <ClInclude Include="Source\Common\Handle\PixelShader\PixelShader.h" />
+    <ClInclude Include="Source\Common\Handle\Sound\Sound.h" />
+    <ClInclude Include="Source\Common\Handle\VertexShader\VertexShader.h" />
+    <ClInclude Include="Source\Common\Vector2.h" />
+    <ClInclude Include="Source\Scenes\InventorySystemScene\Menu\InventoryRenderer.h" />
     <ClInclude Include="Source\Scenes\InventorySystemScene\Item\Item.h" />
     <ClInclude Include="Source\Scenes\InventorySystemScene\Menu\Inventory.h" />
     <ClInclude Include="Source\Scenes\InventorySystemScene\InventorySystemScene.h" />
