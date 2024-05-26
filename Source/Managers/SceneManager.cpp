@@ -3,8 +3,9 @@
 #include "SceneManager.h"
 #include "../Scenes/AbstractScene.h"
 #include "../Scenes/InventorySystemScene/InventorySystemScene.h"
+#include "../Scenes/UISystemScene/UISystemScene.h"
 
-void SceneManager::ChangeScene(SCENE_TYPE type) {
+void SceneManager::ChangeScene(Scene::TYPE type) {
 	if (currentScene_ != nullptr) {
 		// 既にシーンがセットされている場合はそのシーンを解放する
 		currentScene_->Release();
@@ -13,12 +14,17 @@ void SceneManager::ChangeScene(SCENE_TYPE type) {
 
 	// シーンの生成
 	switch (type) {
-	case SCENE_TYPE::INVENTORY_SYSTEM: {
+	case Scene::TYPE::INVENTORY_SYSTEM: {
 		currentScene_ = std::make_unique<InventorySystemScene>();
-	}
 		break;
+	}
+	
+	case Scene::TYPE::UI_SYSTEM: {
+		currentScene_ = std::make_unique<UISystemScene>();
+		break;
+	}
 
-	case SCENE_TYPE::NONE:
+	case Scene::TYPE::NONE:
 	default:
 		break;
 	}
@@ -27,7 +33,7 @@ void SceneManager::ChangeScene(SCENE_TYPE type) {
 
 void SceneManager::Init(void) {
 	// 最初のシーンを設定
-	currentScene_ = std::make_unique<InventorySystemScene>();
+	currentScene_ = std::make_unique<UISystemScene>();
 	currentScene_->Init();
 }
 

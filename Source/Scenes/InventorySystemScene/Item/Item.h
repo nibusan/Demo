@@ -1,5 +1,7 @@
 #pragma once
+#include <memory>
 
+/// @brief インベントリに格納するためのテスト用クラス
 class Item {
 public:
 	Item(void);
@@ -26,6 +28,11 @@ public:
 	/// @return アイテムの個数
 	int GetCount(void) const;
 
+	/// @brief 二つのアイテムが同じかどうかを判定する
+	/// @param item1 一つ目のアイテム
+	/// @param item2 二つ目のアイテム
+	/// @return 同じかどうか
+	static bool Equal(const std::shared_ptr<Item>& item1, const std::shared_ptr<Item>& item2);
 private:
 	// アイテムID
 	int id_;

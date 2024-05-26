@@ -15,26 +15,12 @@ PixelShader::PixelShader(const std::filesystem::path& path) {
 PixelShader::PixelShader(int handle) {
 	handle_ = handle;
 
-	std::string className = std::string(typeid(this).name());
-	className = className.substr(0, className.find("*"));
-	SceneManager::GetInstance().CreateDebugText(
-		className,
-		className + "のコンストラクタが呼ばれた\n"
-	);
-
 }
 
 PixelShader::~PixelShader(void) {
 	if (IsAutoDeleteHandle()) {
 		DeleteShader(handle_);
 	}
-
-	std::string className = std::string(typeid(this).name());
-	className = className.substr(0, className.find("*"));
-	SceneManager::GetInstance().CreateDebugText(
-		className,
-		className + "のデストラクタが呼ばれた\n"
-	);
 }
 
 void PixelShader::Begin(void) {

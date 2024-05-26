@@ -15,9 +15,9 @@ private:
 
 protected:
 	// このシーンの種類
-	SCENE_TYPE type_;
+	Scene::TYPE type_;
 
 	/// @brief このシーンの種類を返す
 	/// @return シーンの種類
-	SCENE_TYPE GetType(void);
+	Scene::TYPE GetType(void) const;
 };

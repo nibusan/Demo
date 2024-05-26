@@ -6,17 +6,12 @@
 #include "../../Vector2.h"
 #include "../HandleBase.h"
 
-class VertexShader : public HandleBase
-{
-
+class VertexShader : public HandleBase {
 public:
-	VertexShader(void);
+	VertexShader(void) = default;
 	VertexShader(const std::filesystem::path& path);
 	VertexShader(int handle);
 	~VertexShader(void);
-
-	void SetUseShader(void);
-
 private:
 	
 };

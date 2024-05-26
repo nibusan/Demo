@@ -31,3 +31,8 @@ void Item::SetCount(int count) {
 int Item::GetCount(void) const {
 	return count_;
 }
+
+bool Item::Equal(const std::shared_ptr<Item>& item1, const std::shared_ptr<Item>& item2) {
+	// ƒAƒCƒeƒ€‚ÌID‚ðŒ©‚Ä“¯‚¶‚©‚Ç‚¤‚©‚ð”»’è‚·‚é
+    return item1->GetID() == item2->GetID();
+}

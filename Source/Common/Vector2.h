@@ -34,7 +34,6 @@ struct Vector2 {
 	};
 
 	Vector2 operator/(const float div) const {
-		//assert(div != 0.0f);
 		if(div == 0.0f) {
 			return { x, y };
 		}
@@ -42,8 +41,6 @@ struct Vector2 {
 	};
 
 	Vector2 operator/(const Vector2& div) const {
-		//assert(div.x != 0.0f);
-		//assert(div.y != 0.0f);
 		if (div.x == 0.0f || div.y == 0.0f) {
 			return div;
 		}

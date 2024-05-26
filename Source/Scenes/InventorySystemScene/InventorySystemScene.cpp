@@ -2,14 +2,15 @@
 #include "InventorySystemScene.h"
 #include "../SceneType.h"
 #include "Menu/Inventory.h"
+#include "Item/Item.h"
 
 InventorySystemScene::InventorySystemScene(void) {
 	// このシーンの種類をセット
-	type_ = SCENE_TYPE::INVENTORY_SYSTEM;
+	type_ = Scene::TYPE::INVENTORY_SYSTEM;
 }
 
 void InventorySystemScene::Init(void) {
-	inventory_ = std::make_unique<Inventory<Item>>();
+	inventory_ = std::make_unique<Inventory<Item>>(&Item::Equal);
 	inventory_->Init();
 
 	// アイテムをセット
@@ -27,6 +28,12 @@ void InventorySystemScene::Init(void) {
 void InventorySystemScene::Update(void) {
 	if (CheckHitKey(KEY_INPUT_SPACE)) {
 		inventory_->AddItem(std::make_shared<Item>(0, 100));
+	}
+	if (CheckHitKey(KEY_INPUT_A)) {
+		inventory_->AddItem(std::make_shared<Item>(98, 100));
+	}
+	if (CheckHitKey(KEY_INPUT_S)) {
+		inventory_->AddItem(std::make_shared<Item>(34, 100));
 	}
 }
 

@@ -1,9 +1,11 @@
 #pragma once
 
+class Inventory;
+
 /// @brief インベントリを描画するためのクラス
 class InventoryRenderer {
 public:
-	InventoryRenderer
+	//InventoryRenderer(Inventory inventory);
 
 private:
 

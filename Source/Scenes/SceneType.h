@@ -1,7 +1,10 @@
 #pragma once
 
-// シーンの種類
-enum class SCENE_TYPE {
-	NONE,
-	INVENTORY_SYSTEM
-};
+namespace Scene {
+	// シーンの種類
+	enum class TYPE {
+		NONE,
+		INVENTORY_SYSTEM,
+		UI_SYSTEM
+	};
+}

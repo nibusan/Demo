@@ -21,6 +21,8 @@ bool Application::Init(void) {
 	}
 
 	SceneManager::GetInstance().Init();
+	
+	return true;
 }
 
 void Application::Run(void) {

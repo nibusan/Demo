@@ -21,5 +21,5 @@ private:
 
 	/// @brief シーンを切り替える
 	/// @param シーンの種類
-	void ChangeScene(SCENE_TYPE type);
+	void ChangeScene(Scene::TYPE type);
 };

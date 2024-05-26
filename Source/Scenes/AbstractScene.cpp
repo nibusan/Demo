@@ -1,7 +1,8 @@
 #include "AbstractScene.h"
 
-AbstractScene::AbstractScene(void) : type_(SCENE_TYPE::NONE) {}
+AbstractScene::AbstractScene(void) : 
+type_(Scene::TYPE::NONE) {}
 
-SCENE_TYPE AbstractScene::GetType(void) {
+Scene::TYPE AbstractScene::GetType(void) const {
 	return type_;
 }

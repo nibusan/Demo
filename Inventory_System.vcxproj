@@ -147,6 +147,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Scenes\UISystemScene\GameObject\GameObject2D.cpp" />
+    <ClCompile Include="Source\Scenes\UISystemScene\GameObject\GameObject.cpp" />
+    <ClCompile Include="Source\Scenes\UISystemScene\GameObject\UI\AbstractUI.cpp" />
     <ClCompile Include="Source\Common\Handle\Font\Font.cpp" />
     <ClCompile Include="Source\Common\Handle\Graphic\Graphic.cpp" />
     <ClCompile Include="Source\Common\Handle\HandleBase.cpp" />
@@ -156,15 +159,18 @@
     <ClCompile Include="Source\Common\Handle\VertexShader\VertexShader.cpp" />
     <ClCompile Include="Source\Scenes\InventorySystemScene\Menu\InventoryRenderer.cpp" />
     <ClCompile Include="Source\Scenes\InventorySystemScene\Item\Item.cpp" />
-    <ClCompile Include="Source\Scenes\InventorySystemScene\Menu\Inventory.cpp" />
     <ClCompile Include="Source\Scenes\InventorySystemScene\InventorySystemScene.cpp" />
     <ClCompile Include="Source\Scenes\AbstractScene.cpp" />
     <ClCompile Include="Source\Managers\SceneManager.cpp" />
     <ClCompile Include="Source\Application.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\UIs\UICanvas.cpp" />
+    <ClCompile Include="Source\Scenes\UISystemScene\UISystemScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Scenes\UISystemScene\GameObject\GameObject2D.h" />
+    <ClInclude Include="Source\Scenes\UISystemScene\GameObject\GameObject.h" />
+    <ClInclude Include="Source\Scenes\UISystemScene\GameObject\UI\AbstractUI.h" />
     <ClInclude Include="Source\Common\Handle\Font\Font.h" />
     <ClInclude Include="Source\Common\Handle\Graphic\Graphic.h" />
     <ClInclude Include="Source\Common\Handle\HandleBase.h" />
@@ -183,6 +189,8 @@
     <ClInclude Include="Source\Common\StaticSingleton.h" />
     <ClInclude Include="Source\Scenes\SceneType.h" />
     <ClInclude Include="Source\UIs\UICanvas.h" />
+    <ClInclude Include="Source\Scenes\UISystemScene\UISystemScene.h" />
+    <ClInclude Include="Source\Scenes\UISystemScene\GameObject\Transform.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
