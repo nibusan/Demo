@@ -2,6 +2,7 @@
 #include "InventorySystemScene.h"
 #include "../SceneType.h"
 #include "Menu/Inventory.h"
+#include "Menu/InventoryRenderer.h"
 #include "Item/Item.h"
 
 InventorySystemScene::InventorySystemScene(void) {
@@ -10,8 +11,10 @@ InventorySystemScene::InventorySystemScene(void) {
 }
 
 void InventorySystemScene::Init(void) {
-	inventory_ = std::make_unique<Inventory<Item>>(&Item::Equal);
+	inventory_ = std::make_shared<Inventory<Item>>(&Item::Equal);
 	inventory_->Init();
+
+	inventoryRenderer_ = std::make_unique<InventoryRenderer<std::shared_ptr<Inventory<Item>>>>(inventory_);
 
 	// アイテムをセット
 	inventory_->AddItem(std::make_shared<Item>(0, 100));
@@ -39,14 +42,7 @@ void InventorySystemScene::Update(void) {
 
 void InventorySystemScene::Draw(void) {
 	// インベントリの中身を描画
-	for (int i = 0; i < Inventory<Item>::MAX_ITEM_SLOT_COUNT; i++) {
-		auto item = inventory_->GetItem(i);
-		auto itemID = item.lock()->GetID();
-		auto itemCount = item.lock()->GetCount();
-		
-		DrawFormatString(200 + (i * 32), 500, 0xFFFFFF, "%d", itemID);
-		DrawFormatString(200 + (i * 32), 516, 0xFFFFFF, "%d", itemCount);
-	}
+	inventoryRenderer_->Render();
 }
 
 void InventorySystemScene::Release(void) {

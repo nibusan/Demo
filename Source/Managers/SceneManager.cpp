@@ -33,7 +33,7 @@ void SceneManager::ChangeScene(Scene::TYPE type) {
 
 void SceneManager::Init(void) {
 	// Å‰‚ÌƒV[ƒ“‚ğİ’è
-	currentScene_ = std::make_unique<UISystemScene>();
+	currentScene_ = std::make_unique<InventorySystemScene>();
 	currentScene_->Init();
 }
 

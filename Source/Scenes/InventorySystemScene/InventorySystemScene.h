@@ -4,6 +4,8 @@
 
 template <typename T>
 class Inventory;
+template <typename T>
+class InventoryRenderer;
 class Item;
 
 /// @brief [Unknown Level] プレイヤーのインベントリの処理
@@ -18,7 +20,8 @@ public:
 	void Release(void) override;
 
 private:
-	std::unique_ptr<Inventory<Item>> inventory_;
+	std::shared_ptr<Inventory<Item>> inventory_;
+	std::unique_ptr<InventoryRenderer<std::shared_ptr<Inventory<Item>>>> inventoryRenderer_;
 
 };
 

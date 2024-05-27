@@ -5,6 +5,7 @@ namespace Scene {
 	enum class TYPE {
 		NONE,
 		INVENTORY_SYSTEM,
-		UI_SYSTEM
+		UI_SYSTEM,
+		ANIMATION_SYSTEM
 	};
 }
