@@ -17,16 +17,17 @@ public:
 	~Application(void) = default;
 	THIS_CLASS_IS_STATIC_SINGLETON(Application);
 
-	// 初期化処理
+	/// @brief 初期化処理
+	/// @return 初期化が成功したか
 	bool Init(void);
 
-	// アプリケーションの実行
+	/// @brief アプリケーションの実行 
 	void Run(void);
 
-	// 解放処理
+	/// @brief 解放処理
 	void Release(void);
 
-	// シャットダウンする
+	/// @brief シャットダウンする 
 	void Shutdown(void);
 private:
 	bool isShutdown_;

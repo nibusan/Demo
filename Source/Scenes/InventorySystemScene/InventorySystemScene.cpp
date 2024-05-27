@@ -14,7 +14,7 @@ void InventorySystemScene::Init(void) {
 	inventory_ = std::make_shared<Inventory<Item>>(&Item::Equal);
 	inventory_->Init();
 
-	inventoryRenderer_ = std::make_unique<InventoryRenderer<std::shared_ptr<Inventory<Item>>>>(inventory_);
+	inventoryRenderer_ = std::make_unique<InventoryRenderer>(inventory_);
 
 	// アイテムをセット
 	inventory_->AddItem(std::make_shared<Item>(0, 100));

@@ -4,7 +4,6 @@
 
 template <typename T>
 class Inventory;
-template <typename T>
 class InventoryRenderer;
 class Item;
 
@@ -21,7 +20,6 @@ public:
 
 private:
 	std::shared_ptr<Inventory<Item>> inventory_;
-	std::unique_ptr<InventoryRenderer<std::shared_ptr<Inventory<Item>>>> inventoryRenderer_;
+	std::unique_ptr<InventoryRenderer> inventoryRenderer_;
 
 };
-
