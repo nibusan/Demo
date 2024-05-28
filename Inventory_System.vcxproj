@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Managers\JsonReader.cpp" />
     <ClCompile Include="Source\Scenes\UISystemScene\UILayer\AbstractUILayer.cpp" />
     <ClCompile Include="Source\Scenes\UISystemScene\Canvas\Canvas.cpp" />
     <ClCompile Include="Source\Scenes\UISystemScene\UI\AbstractUI.cpp" />
@@ -178,6 +179,9 @@
     <ClCompile Include="Source\Scenes\UISystemScene\UILayer\UILayer_MainMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Managers\JsonReader.h" />
+    <ClInclude Include="Source\Library\nlohmann-json\json.hpp" />
+    <ClInclude Include="Source\Library\nlohmann-json\json_fwd.hpp" />
     <ClInclude Include="Source\Scenes\UISystemScene\UILayer\AbstractUILayer.h" />
     <ClInclude Include="Source\Scenes\UISystemScene\Canvas\Canvas.h" />
     <ClInclude Include="Source\Scenes\UISystemScene\UI\AbstractUI.h" />
