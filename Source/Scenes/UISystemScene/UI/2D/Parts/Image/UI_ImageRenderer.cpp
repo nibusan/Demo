@@ -1,7 +1,7 @@
 #include <DxLib.h>
 #include "UI_ImageRenderer.h"
 #include "UI_Image.h"
-#include "../../../../../Common/Handle/Graphic/Graphic.h"
+#include "../../../../../../Common/Handle/Graphic/Graphic.h"
 
 UI_ImageRenderer::UI_ImageRenderer(std::shared_ptr<UI_Image> uiImage) : uiImage_(uiImage) {}
 

@@ -18,3 +18,5 @@ void AbstractUI::Release_GameObject(void) {
 void AbstractUI::SetHighlighted(bool flag) {
 	isHighlighted_ = flag;
 }
+
+void AbstractUI::HighlightUpdate(void) {}

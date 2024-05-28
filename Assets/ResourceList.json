@@ -1,0 +1,12 @@
+{
+    "BasePath": "Assets/",
+    "ResourceList": [
+        {
+            "Image": [
+                {
+                    "Path": "Scene/"
+                }
+            ]
+        }
+    ]
+}

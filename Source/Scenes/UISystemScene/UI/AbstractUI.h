@@ -26,5 +26,8 @@ protected:
 	virtual void Init_UI(void) = 0;
 	virtual void Update_UI(void) = 0;
 	virtual void Release_UI(void) = 0;
+
+	/// @brief ‹­’²•\¦‚³‚ê‚Ä‚é‚ÌXVˆ— 
+	virtual void HighlightUpdate(void);
 };
 

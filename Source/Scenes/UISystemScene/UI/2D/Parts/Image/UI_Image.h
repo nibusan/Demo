@@ -1,7 +1,7 @@
 #pragma once
 #include <memory>
 #include <string>
-#include "../../AbstractUI.h"
+#include "../../../AbstractUI.h"
 
 class Graphic;
 class UI_Image : public AbstractUI {
@@ -22,5 +22,7 @@ private:
 	// •`‰æ‚·‚é‰æ‘œ
 	std::shared_ptr<Graphic> image_;
 
+	/// @brief ‹­’²•\¦‚³‚ê‚Ä‚é‚ÌXVˆ— 
+	void HighlightUpdate(void) override;
 };
 

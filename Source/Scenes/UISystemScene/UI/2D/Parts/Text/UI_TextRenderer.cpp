@@ -1,7 +1,7 @@
 #include <DxLib.h>
 #include "UI_TextRenderer.h"
 #include "UI_Text.h"
-#include "../../../../../GameObject/Transform.h"
+#include "../../../../../../GameObject/Transform.h"
 
 UI_TextRenderer::UI_TextRenderer(std::shared_ptr<UI_Text> uiText) : uiText_(uiText) {}
 

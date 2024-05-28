@@ -30,7 +30,8 @@ bool Application::Init(void) {
 void Application::Run(void) {
 	//ゲームループ開始
 	while (ProcessMessage() == 0 && !isShutdown_) {
-		
+		if (CheckHitKey(KEY_INPUT_ESCAPE))return;
+
 		//各クラスの情報を更新
 		InputManager::GetInstance().Update();
 		SceneManager::GetInstance().Update();

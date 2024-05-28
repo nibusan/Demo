@@ -27,6 +27,10 @@ public:
 		const Vector2<float>& scl,
 		const Vector2<float>& localScl
 	);
+
+	/// @brief このゲームオブジェクトの現在の座標(親の座標も計算済み)を返す
+	/// @return 座標
+	Vector2<float> GetWorldPos(void);
 protected:
 	// ゲームオブジェクトの基礎データ
 	Transform<Vector2<float>> transform_;
