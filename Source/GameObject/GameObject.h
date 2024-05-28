@@ -12,7 +12,6 @@ public:
  
 	void Init(void);
 	void Update(void);
-	void Draw(void);
 	void Release(void);
 
 	/// @brief このゲームオブジェクトがアクティブかを返す
@@ -52,6 +51,5 @@ protected:
 	// 派生クラスで定義する関数
 	virtual void Init_GameObject(void) = 0;
 	virtual void Update_GameObject(void) = 0;
-	virtual void Draw_GameObject(void) = 0;
 	virtual void Release_GameObject(void) = 0;
 };

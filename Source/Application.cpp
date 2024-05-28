@@ -1,6 +1,7 @@
 #include <DxLib.h>
 #include "Application.h"
 #include "Managers/SceneManager.h"
+#include "Managers/InputManager.h"
 
 bool Application::Init(void) {
 	// ウィンドウを初期化
@@ -20,6 +21,7 @@ bool Application::Init(void) {
 		return false;
 	}
 
+	InputManager::GetInstance().Init();
 	SceneManager::GetInstance().Init();
 	
 	return true;
@@ -30,6 +32,7 @@ void Application::Run(void) {
 	while (ProcessMessage() == 0 && !isShutdown_) {
 		
 		//各クラスの情報を更新
+		InputManager::GetInstance().Update();
 		SceneManager::GetInstance().Update();
 		
 		// 描画するスクリーンの設定 & そのスクリーンをクリア

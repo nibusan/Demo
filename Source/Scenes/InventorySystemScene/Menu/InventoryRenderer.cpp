@@ -1,4 +1,5 @@
 #include "InventoryRenderer.h"
+#include "Inventory.h"
 
 InventoryRenderer::InventoryRenderer(std::shared_ptr<Inventory<Item>> inventory) : inventory_(inventory) {
 

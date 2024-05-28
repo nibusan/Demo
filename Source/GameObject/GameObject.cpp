@@ -18,13 +18,6 @@ void GameObject::Update(void) {
 	Update_GameObject();
 }
 
-void GameObject::Draw(void) {
-	// アクティブじゃなかったら描画処理をしない
-	if (!IsActive()) return;
-
-	Draw_GameObject();
-}
-
 void GameObject::Release(void) {
 	Release_GameObject();
 }

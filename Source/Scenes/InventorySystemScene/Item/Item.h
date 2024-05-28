@@ -5,8 +5,12 @@
 class Item {
 public:
 	Item(void);
-	Item(int id, int count);
 	~Item(void) = default;
+
+	/// @brief コンストラクタ
+	/// @param id アイテムID
+	/// @param count アイテムの個数
+	Item(int id, int count);
 
 	/// @brief アイテムIDをセット
 	/// @param id アイテムID

@@ -63,7 +63,7 @@ void Graphic::Draw(const Vector2<float>& pos, bool isCenterDraw, const Shared_Pi
 
 void Graphic::Draw(const Vector2<float>& pos, bool isCenterDraw, int divX, int divY, int numX, int numY, const Shared_PixelShader& ps) {
 	Vector2<int> gDiv = { size_.x / divX, size_.y / divY };
-	Vector2<int> gStartPos = { gDiv.x * divX, gDiv.y * divY };
+	Vector2<int> gStartPos = { gDiv.x * numX, gDiv.y * numY };
 
 	if (ps == nullptr) {
 		if (isCenterDraw) {
@@ -85,6 +85,31 @@ void Graphic::Draw(const Vector2<float>& pos, bool isCenterDraw, int divX, int d
 		else {
 			DrawRectGraph(0, 0, gStartPos.x, gStartPos.y, gDiv.x, gDiv.y, handle_, true);
 		}
+
+		SetDrawScreen(beforeShaderScreen_);
+		ClearDrawScreen();
+		ps->SetUseTexture(0, afterShaderScreen_);
+		ps->Draw();
+
+		SetDrawScreen(defScreen);
+		DrawGraph(pos.x, pos.y, beforeShaderScreen_, true);
+	}
+}
+
+void Graphic::Draw(const Vector2<float>& pos, float scale, float angle, int divX, int divY, int numX, int numY, const Shared_PixelShader& ps) {
+	Vector2<int> gDiv = { size_.x / divX, size_.y / divY };
+	Vector2<int> gStartPos = { gDiv.x * numX, gDiv.y * numY };
+
+	if (ps == nullptr) {
+		DrawRectRotaGraph(pos.x, pos.y, gStartPos.x, gStartPos.y, gDiv.x, gDiv.y, scale, angle, handle_, true);
+	}
+	else {
+		// å≥ÇÃï`âÊÉXÉNÉäÅ[ÉìÇëﬁî
+		auto defScreen = GetDrawScreen();
+
+		SetDrawScreen(afterShaderScreen_);
+		ClearDrawScreen();
+		DrawRectRotaGraph(pos.x, pos.y, gStartPos.x, gStartPos.y, gDiv.x, gDiv.y, scale, angle, handle_, true);
 
 		SetDrawScreen(beforeShaderScreen_);
 		ClearDrawScreen();

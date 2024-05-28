@@ -2,8 +2,9 @@
 #include <memory>
 #include "../AbstractScene.h"
 
-class GameObject;
 /// @brief [Unknown Level] UIÇÃèàóù
+class GameObject;
+class AbstractUI;
 class UISystemScene : public AbstractScene {
 public:
 	UISystemScene();
@@ -14,8 +15,7 @@ public:
 	void Draw(void) override;
 	void Release(void) override;
 private:
-	std::unique_ptr<GameObject> obj1_;
-	std::unique_ptr<GameObject> obj2_;
+	std::shared_ptr<GameObject> obj1_;
 
 };
 

@@ -22,6 +22,7 @@ public:
 	// •`‰æŒn
 	void Draw(const Vector2<float>& pos, bool isCenterDraw, const Shared_PixelShader& ps);
 	void Draw(const Vector2<float>& pos, bool isCenterDraw, int divX, int divY, int numX, int numY, const Shared_PixelShader& ps);
+	void Draw(const Vector2<float>& pos, float scale, float angle, int divX, int divY, int numX, int numY, const Shared_PixelShader& ps);
 	void Draw(const Vector2<float>& pos1, const Vector2<float>& pos2, const Shared_PixelShader& ps);
 	void Draw(const Vector2<float>& pos1, const Vector2<float>& pos2, const Vector2<float>& pos3, const Shared_PixelShader& ps);
 	void Draw(const Vector2<float>& pos, float scale, float angle, const Shared_PixelShader& ps);

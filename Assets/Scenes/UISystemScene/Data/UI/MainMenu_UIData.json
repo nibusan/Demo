@@ -1,0 +1,25 @@
+{
+    "UIList": [
+        {
+            "Type": "Image",
+            "Pos": { "X": 500, "Y": 500 },
+            "Rot": { "X": 500, "Y": 500 },
+            "Scale": { "X": 1, "Y": 1 },
+            "Attribute": {
+                "Image_ResourceKey": "MainMenu_Logo"
+            }
+        },
+        {
+            "Type": "Text",
+            "Pos": { "X": 500, "Y": 700 },
+            "Rot": { "X": 500, "Y": 500 },
+            "Scale": { "X": 1, "Y": 1 },
+            "Attribute": {
+                "Font_ResourceKey": "Fonttt",
+                "FontSize": 32,
+                "FontColor": "ff0000",
+                "Text_Key": "MAIN_MENU_TEXT"
+            }
+        }
+    ]
+}

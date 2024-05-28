@@ -30,6 +30,7 @@ public:
 	/// @brief シャットダウンする 
 	void Shutdown(void);
 private:
+	// ゲームをシャットダウンするか
 	bool isShutdown_;
 
 	Application(void) = default;
