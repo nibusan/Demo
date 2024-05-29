@@ -10,16 +10,20 @@ public:
 	UI_Text(void) = default;
 	~UI_Text(void) = default;
 
-	UI_Text(std::shared_ptr<Font> font, const std::string& text);
+	UI_Text(std::shared_ptr<Font> font, const std::string& text, unsigned int color);
 
 	std::weak_ptr<Font> GetFont(void) const;
 	std::string GetText(void) const;
+	unsigned int GetTextColor(void) const;
 private:
 	// 使用するフォント
 	std::shared_ptr<Font> font_;
 
 	// 描画するテキスト
 	std::string text_;
+
+	// テキストの色
+	unsigned int textColor_;
 
 	void Init_UI(void) override;
 	void Update_UI(void) override;

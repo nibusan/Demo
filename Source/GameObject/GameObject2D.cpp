@@ -4,34 +4,85 @@
 #include "GameObject2D.h"
 
 void GameObject2D::Init_GameObject(void) {
+	Init_GameObject2D();
 
+	transform_.parentPos_ = Vector2<float>();
+	transform_.parentRot_ = Vector2<float>();
+	transform_.parentScl_ = Vector2<float>();
+	transform_.localPos_ = Vector2<float>();
+	transform_.localRot_ = Vector2<float>();
+	transform_.localScl_ = Vector2<float>();
+	transform_.currentPos_ = Vector2<float>();
+	transform_.currentRot_ = Vector2<float>();
+	transform_.currentScl_ = Vector2<float>();
 }
 
 void GameObject2D::Update_GameObject(void) {
+	// Transformの更新処理
+	CalculateTransform2D();
 
+	Update_GameObject2D();
 }
 
 void GameObject2D::Release_GameObject(void) {
+	Release_GameObject2D();
+}
+
+void GameObject2D::CalculateTransform2D(void) {
+	if (parent_.lock() != nullptr) {
+		const std::weak_ptr<GameObject2D>& parent_GameObject2D = std::dynamic_pointer_cast<GameObject2D>(parent_.lock());
+		const auto& parentTransform = parent_GameObject2D.lock()->GetTransform();
+		transform_.parentPos_ = parentTransform.currentPos_;
+		transform_.parentRot_ = parentTransform.currentRot_;
+		transform_.parentScl_ = parentTransform.currentScl_;
+		transform_.currentPos_ = transform_.parentPos_ + transform_.localPos_;
+		transform_.currentRot_ = transform_.parentRot_ + transform_.localRot_;
+		transform_.currentScl_ = transform_.parentScl_ * transform_.localScl_;
+	}
+	else {
+		transform_.localPos_ = transform_.parentPos_ + transform_.localPos_;
+		transform_.localRot_ = transform_.parentRot_ + transform_.localRot_;
+		transform_.localScl_ = transform_.parentScl_ + transform_.localScl_;
+		transform_.parentPos_ = Vector2<float>();
+		transform_.parentRot_ = Vector2<float>();
+		transform_.parentScl_ = Vector2<float>();
+		transform_.currentPos_ = transform_.localPos_;
+		transform_.currentRot_ = transform_.localRot_;
+		transform_.currentScl_ = transform_.localScl_;
+	}
+}
+
+void GameObject2D::SetParent(const std::shared_ptr<GameObject>& parent) {
+	parent_ = parent;
+
+	CalculateTransform2D();
+
+	for (const auto& child : childs_) {
+		auto& childTransform = std::dynamic_pointer_cast<GameObject2D>(child)->GetTransform();
+		childTransform.parentPos_ = transform_.currentPos_;
+		childTransform.parentRot_ = transform_.currentRot_;
+		childTransform.parentScl_ = transform_.currentScl_;
+	}
+}
+
+void GameObject2D::AddChild(const std::shared_ptr<GameObject>& child) {
+	std::shared_ptr<GameObject2D> thisPtr = std::dynamic_pointer_cast<GameObject2D>(shared_from_this());
+	//child->SetParent(std::dynamic_pointer_cast<GameObject>(shared_from_this()));
+	childs_.emplace_back(child);
 
 }
 
-const Transform<Vector2<float>>& GameObject2D::GetTransform(void) const {
+Transform<Vector2<float>>& GameObject2D::GetTransform(void) {
 	return transform_;
 }
 
 void GameObject2D::SetTransformData(
-	const Vector2<float>& pos, 
 	const Vector2<float>& localPos, 
-	const Vector2<float>& rot, 
 	const Vector2<float>& localRot, 
-	const Vector2<float>& scl, 
 	const Vector2<float>& localScl
 ) {
-	transform_.pos_ = pos;
 	transform_.localPos_ = localPos;
-	transform_.rot_ = rot;
 	transform_.localRot_ = localRot;
-	transform_.scl_ = scl;
 	transform_.localScl_ = localScl;
 }
 
@@ -43,12 +94,12 @@ Vector2<float> GameObject2D::GetWorldPos(void) {
 	
 	// 親座標を格納していくスタック(座標、ローカル座標)
 	// 一番上の親から計算していくのでスタックを利用してます
-	std::stack<std::pair<Vector2<float>, Vector2<float>>> parentPosStack_;
-	while (parent.lock() != nullptr) {
-		const auto& transform = parent.lock()->GetTransform();
-		parentPosStack_.push({ transform.pos_, transform.localPos_ });
-		parent = std::dynamic_pointer_cast<GameObject2D>(parent.lock()->GetParent().lock());
-	}
+	//std::stack<std::pair<Vector2<float>, Vector2<float>>> parentPosStack_;
+	//while (parent.lock() != nullptr) {
+	//	const auto& transform = parent.lock()->GetTransform();
+	//	parentPosStack_.push({ transform.pos_, transform.localPos_ });
+	//	parent = std::dynamic_pointer_cast<GameObject2D>(parent.lock()->GetParent().lock());
+	//}
 	
 	return Vector2<float>();
 }

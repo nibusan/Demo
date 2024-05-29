@@ -4,7 +4,6 @@
 #include "Transform.h"
 
 /// @brief ゲームオブジェクトの基底クラス
-/// @brief (Unityを参考にして設計しました)
 class GameObject : public std::enable_shared_from_this<GameObject> {
 public:
 	GameObject(void);
@@ -28,7 +27,8 @@ public:
 	
 	/// @brief 親オブジェクトをセット
 	/// @param parent 親オブジェクト
-	void SetParent(const std::shared_ptr<GameObject>& parent);
+	/// @note 2Dと3Dで計算が変わるので必ず派生クラスで実装すること
+	virtual void SetParent(const std::shared_ptr<GameObject>& parent) = 0;
 
 	/// @brief 子オブジェクトを格納した配列を返す 
 	/// @return 子オブジェクトを格納した配列
@@ -36,7 +36,8 @@ public:
 	
 	/// @brief 子オブジェクトを追加する
 	/// @param child 子オブジェクト
-	void AddChild(const std::shared_ptr<GameObject>& child);
+	/// @note 2Dと3Dで計算が変わるので必ず派生クラスで実装すること
+	virtual void AddChild(const std::shared_ptr<GameObject>& child) = 0;
 
 protected:
 	// アクティブかどうか

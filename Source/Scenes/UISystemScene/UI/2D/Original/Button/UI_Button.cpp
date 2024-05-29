@@ -5,6 +5,7 @@
 UI_Button::UI_Button(const std::shared_ptr<UI_Image>& uiImage, const std::shared_ptr<UI_Text>& uiText) : 
 uiImage_(uiImage),
 uiText_(uiText) {
+	AddChild(uiImage_);
 	// 画像の子としてテキストをセットする
 	uiImage_->AddChild(uiText_);
 }

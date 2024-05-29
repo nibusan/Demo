@@ -2,9 +2,13 @@
 #include "../../GameObject/GameObject2D.h"
 #include "../../Scenes/UISystemScene/UI/AbstractUI.h"
 #include "../../Scenes/UISystemScene/UI/2D/Parts/Image/UI_Image.h"
+#include "../../Scenes/UISystemScene/UI/2D/Parts/Image/UI_ImageRenderer.h"
 #include "../../Scenes/UISystemScene/UI/2D/Parts/Text/UI_Text.h"
+#include "../../Scenes/UISystemScene/UI/2D/Parts/Text/UI_TextRenderer.h"
 #include "../../Scenes/UISystemScene/UI/2D/Original/Button/UI_Button.h"
 #include "../../Scenes/UISystemScene/UI/2D/Original/Button/UI_ButtonRenderer.h"
+#include "../../Common/Handle/Graphic/Graphic.h"
+#include "../../Common/Handle/Font/Font.h"
 
 UISystemScene::UISystemScene(void) {
 	// このシーンの種類をセット
@@ -12,13 +16,37 @@ UISystemScene::UISystemScene(void) {
 }
 
 void UISystemScene::Init(void) {
-	ui1_ = std::make_shared<UI_Image>();
+	graphic_ = std::make_shared<Graphic>("Assets/Scenes/UISystemScene/UI/Button/UI_Image.png");
+	font_ = std::make_shared<Font>("Assets/Scenes/UISystemScene/Font/Revamped-X3q1a.ttf", "Revamped", 32);
+	ui1_ = std::make_shared<UI_Image>(graphic_);
 	ui1_->Init();
-	ui2_ = std::make_shared<UI_Text>();
+	ui1_->SetTransformData(
+		{ 1000.0f, 400.0f },
+		{ 0.0f, 0.0f },
+		{ 1.0f, 1.0f }
+	);
+	uiImageRenderer_ = std::make_shared<UI_ImageRenderer>(std::dynamic_pointer_cast<UI_Image>(ui1_));
+
+	ui2_ = std::make_shared<UI_Text>(font_, "AIUEO", 0x00FF00);
 	ui2_->Init();
-	ui3_ = std::make_shared<UI_Button>();
+	ui2_->SetTransformData(
+		{ 400.0f, 400.0f },
+		{ 0.0f, 0.0f },
+		{ 1.0f, 1.0f }
+	);
+	uiTextRenderer_ = std::make_shared<UI_TextRenderer>(std::dynamic_pointer_cast<UI_Text>(ui2_));
+	
+	ui3_ = std::make_shared<UI_Button>(
+		std::make_shared<UI_Image>(std::make_shared<Graphic>("Assets/Scenes/UISystemScene/UI/Button/UI_Button.png")),
+		std::make_shared<UI_Text>(std::make_shared<Font>("Assets/Scenes/UISystemScene/Font/Revamped-X3q1a.ttf", "Revamped", 32), "Button", 0xFFFFFF)
+	);
 	ui3_->Init();
-	uiRenderer_ = std::make_shared<UI_ButtonRenderer>(std::dynamic_pointer_cast<UI_Button>(ui3_));
+	ui3_->SetTransformData(
+		{ 400.0f, 400.0f },
+		{ 0.0f, 0.0f },
+		{ 1.0f, 1.0f }
+	);
+	uiButtonRenderer_ = std::make_shared<UI_ButtonRenderer>(std::dynamic_pointer_cast<UI_Button>(ui3_));
 }
 
 void UISystemScene::Update(void) {
@@ -28,7 +56,9 @@ void UISystemScene::Update(void) {
 }
 
 void UISystemScene::Draw(void) {
-	uiRenderer_->Render();
+	uiImageRenderer_->Render();
+	uiTextRenderer_->Render();
+	//uiButtonRenderer_->Render();
 }
 
 void UISystemScene::Release(void) {

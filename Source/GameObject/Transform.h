@@ -12,17 +12,25 @@ concept ValidType_ =
 template <ValidType_ T>
 class Transform {
 public:
+	// parent = 親の値
+	// local = 自身の値
+	// current = 計算済みの現在の値
+	// (parent + local = current)
+
 	// 座標
-	T pos_;
+	T parentPos_;
 	T localPos_;
+	T currentPos_;
 
 	// 角度
-	T rot_;
+	T parentRot_;
 	T localRot_;
+	T currentRot_;
 
 	// スケール値
-	T scl_;
+	T parentScl_;
 	T localScl_;
+	T currentScl_;
 
 	Transform(void) = default;
 	~Transform(void) = default;

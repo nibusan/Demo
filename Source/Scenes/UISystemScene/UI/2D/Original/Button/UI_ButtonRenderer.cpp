@@ -9,6 +9,7 @@ UI_ButtonRenderer::UI_ButtonRenderer(const std::shared_ptr<UI_Button> uiButton) 
 }
 
 void UI_ButtonRenderer::Render(void) {
+	// ‚»‚ê‚¼‚ê‚ÌUI‚ð•`‰æ‚·‚é
 	imageRenderer_->Render();
 	textRenderer_->Render();
 }

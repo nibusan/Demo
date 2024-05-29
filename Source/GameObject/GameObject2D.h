@@ -8,23 +8,26 @@ public:
 	GameObject2D(void) = default;
 	virtual ~GameObject2D(void) override = default;
 
-	/// @brief 2DのゲームオブジェクトのTransformを返す 
+	/// @brief 親オブジェクトをセット
+	/// @param parent 親オブジェクト
+	void SetParent(const std::shared_ptr<GameObject>& parent) override;
+
+	/// @brief 子オブジェクトを追加する
+	/// @param child 子オブジェクト
+	void AddChild(const std::shared_ptr<GameObject>& child) override;
+
+	/// @brief 2DのゲームオブジェクトのTransformの参照を返す 
+	/// @note 外部から中身を弄ることがあるのであえてconstを外してます
 	/// @return 2DのTransform
-	[[nodiscard]] const Transform<Vector2<float>>& GetTransform(void) const;
+	[[nodiscard]] Transform<Vector2<float>>& GetTransform(void);
 	
 	/// @brief Transformに渡すデータをセットする
-	/// @param pos 座標
 	/// @param localPos ローカル座標
-	/// @param rot 角度
 	/// @param localRot ローカル角度(名前変かも)
-	/// @param scl スケール値
 	/// @param localScl ローカルスケール値(名前変かも)
-	void SetTransformData(
-		const Vector2<float>& pos, 
+	void SetTransformData( 
 		const Vector2<float>& localPos, 
-		const Vector2<float>& rot, 
 		const Vector2<float>& localRot, 
-		const Vector2<float>& scl,
 		const Vector2<float>& localScl
 	);
 
@@ -35,7 +38,17 @@ protected:
 	// ゲームオブジェクトの基礎データ
 	Transform<Vector2<float>> transform_;
 
-	virtual void Init_GameObject(void) = 0;
-	virtual void Update_GameObject(void) = 0;
-	virtual void Release_GameObject(void) = 0;
+	void Init_GameObject(void) override;
+	void Update_GameObject(void) override;
+	void Release_GameObject(void) override;
+
+	// 派生クラスで定義 
+	virtual void Init_GameObject2D(void) = 0;
+	virtual void Update_GameObject2D(void) = 0;
+	virtual void Release_GameObject2D(void) = 0;
+
+private:
+	/// @brief 親オブジェクトを考慮して現在のTransform(2D)のcurrentの値を計算する
+	void CalculateTransform2D(void);
+
 };
