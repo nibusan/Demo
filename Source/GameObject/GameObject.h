@@ -23,12 +23,12 @@ public:
 
 	/// @brief 親オブジェクトを返す 
 	/// @return 親オブジェクト
-	[[nodiscard]] const std::weak_ptr<GameObject>& GetParent(void) const;
+	[[nodiscard]] std::weak_ptr<GameObject> GetParent(void) const;
 	
 	/// @brief 親オブジェクトをセット
 	/// @param parent 親オブジェクト
 	/// @note 2Dと3Dで計算が変わるので必ず派生クラスで実装すること
-	virtual void SetParent(const std::shared_ptr<GameObject>& parent) = 0;
+	virtual void SetParent(std::weak_ptr<GameObject> parent) = 0;
 
 	/// @brief 子オブジェクトを格納した配列を返す 
 	/// @return 子オブジェクトを格納した配列
@@ -37,7 +37,7 @@ public:
 	/// @brief 子オブジェクトを追加する
 	/// @param child 子オブジェクト
 	/// @note 2Dと3Dで計算が変わるので必ず派生クラスで実装すること
-	virtual void AddChild(const std::shared_ptr<GameObject>& child) = 0;
+	virtual void AddChild(std::shared_ptr<GameObject> child) = 0;
 
 protected:
 	// アクティブかどうか

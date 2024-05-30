@@ -5,6 +5,7 @@
 #include "../../../GameObject/GameObject2D.h"
 #include "../../../GameObject/Transform.h"
 
+class Graphic;
 /// @brief UIの抽象クラスです
 /// @note 2DのUIで使うことを前提に設計しているので3Dでは動きません
 class AbstractUI : public GameObject2D {
@@ -38,6 +39,9 @@ protected:
 
 	// クリックされた時に呼び出されるコールバック関数(isClickable_がtrueの時のみ使用できます)
 	std::function<void(void)> onClickCallBack_;
+
+	// このUIを描画するためのスクリーン
+	//std::unique_ptr<Graphic> renderScreen_;
 
 	void Init_GameObject2D(void) override;
 	void Update_GameObject2D(void) override;

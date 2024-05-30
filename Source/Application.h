@@ -14,7 +14,7 @@ public:
 	// 1•b‚ ‚½‚è‚ÌƒtƒŒ[ƒ€”
 	static constexpr float DELTA_TIME = 1.0f / static_cast<float>(FRAME_TIME);
 
-	~Application(void) = default;
+	~Application(void) noexcept = default;
 	THIS_CLASS_IS_STATIC_SINGLETON(Application);
 
 	/// @brief ‰Šú‰»ˆ—

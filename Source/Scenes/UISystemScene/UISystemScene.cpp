@@ -16,6 +16,7 @@ UISystemScene::UISystemScene(void) {
 }
 
 void UISystemScene::Init(void) {
+
 	graphic_ = std::make_shared<Graphic>("Assets/Scenes/UISystemScene/UI/Button/UI_Image.png");
 	font_ = std::make_shared<Font>("Assets/Scenes/UISystemScene/Font/Revamped-X3q1a.ttf", "Revamped", 32);
 	ui1_ = std::make_shared<UI_Image>(graphic_);
@@ -30,7 +31,7 @@ void UISystemScene::Init(void) {
 	ui2_ = std::make_shared<UI_Text>(font_, "AIUEO", 0x00FF00);
 	ui2_->Init();
 	ui2_->SetTransformData(
-		{ 400.0f, 400.0f },
+		{ 20.0f, 5.0f },
 		{ 0.0f, 0.0f },
 		{ 1.0f, 1.0f }
 	);
@@ -38,7 +39,7 @@ void UISystemScene::Init(void) {
 	
 	ui3_ = std::make_shared<UI_Button>(
 		std::make_shared<UI_Image>(std::make_shared<Graphic>("Assets/Scenes/UISystemScene/UI/Button/UI_Button.png")),
-		std::make_shared<UI_Text>(std::make_shared<Font>("Assets/Scenes/UISystemScene/Font/Revamped-X3q1a.ttf", "Revamped", 32), "Button", 0xFFFFFF)
+		std::make_shared<UI_Text>(font_, "Button", 0xFFFFFF)
 	);
 	ui3_->Init();
 	ui3_->SetTransformData(
@@ -52,13 +53,25 @@ void UISystemScene::Init(void) {
 void UISystemScene::Update(void) {
 	ui1_->Update();
 	ui2_->Update();
+
+	if(CheckHitKey(KEY_INPUT_W)) ui3_->GetTransform().localPos_.y--;
+	if(CheckHitKey(KEY_INPUT_A)) ui3_->GetTransform().localPos_.x--;
+	if(CheckHitKey(KEY_INPUT_S)) ui3_->GetTransform().localPos_.y++;
+	if(CheckHitKey(KEY_INPUT_D)) ui3_->GetTransform().localPos_.x++;
+	
+	auto child = std::dynamic_pointer_cast<GameObject2D>(ui3_->GetChilds()[0]->GetChilds()[0]);
+	if(CheckHitKey(KEY_INPUT_UP)) child->GetTransform().localPos_.y--;
+	if(CheckHitKey(KEY_INPUT_LEFT)) child->GetTransform().localPos_.x--;
+	if(CheckHitKey(KEY_INPUT_DOWN)) child->GetTransform().localPos_.y++;
+	if(CheckHitKey(KEY_INPUT_RIGHT)) child->GetTransform().localPos_.x++;
+
 	ui3_->Update();
 }
 
 void UISystemScene::Draw(void) {
 	uiImageRenderer_->Render();
 	uiTextRenderer_->Render();
-	//uiButtonRenderer_->Render();
+	uiButtonRenderer_->Render();
 }
 
 void UISystemScene::Release(void) {

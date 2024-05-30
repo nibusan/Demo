@@ -10,11 +10,11 @@ public:
 
 	/// @brief 親オブジェクトをセット
 	/// @param parent 親オブジェクト
-	void SetParent(const std::shared_ptr<GameObject>& parent) override;
+	void SetParent(std::weak_ptr<GameObject> parent) override;
 
 	/// @brief 子オブジェクトを追加する
 	/// @param child 子オブジェクト
-	void AddChild(const std::shared_ptr<GameObject>& child) override;
+	void AddChild(std::shared_ptr<GameObject> child) override;
 
 	/// @brief 2DのゲームオブジェクトのTransformの参照を返す 
 	/// @note 外部から中身を弄ることがあるのであえてconstを外してます

@@ -30,9 +30,6 @@
     <ClCompile Include="Source\Scenes\InventorySystemScene\InventorySystemScene.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Source\UIs\UICanvas.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Scenes\InventorySystemScene\Item\Item.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -81,18 +78,6 @@
     <ClCompile Include="Source\Scenes\UISystemScene\UI\AbstractUI.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Scenes\UISystemScene\UI\2D\Image\UI_Image.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Scenes\UISystemScene\UI\2D\Text\UI_Text.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Scenes\UISystemScene\UI\2D\Image\UI_ImageRenderer.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Scenes\UISystemScene\UI\2D\Text\UI_TextRenderer.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Scenes\UISystemScene\Canvas\Canvas.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -103,6 +88,27 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Source\Managers\JsonReader.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Managers\ResourceManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scenes\UISystemScene\UI\2D\Parts\Image\UI_Image.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scenes\UISystemScene\UI\2D\Parts\Text\UI_Text.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scenes\UISystemScene\UI\2D\Parts\Image\UI_ImageRenderer.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scenes\UISystemScene\UI\2D\Parts\Text\UI_TextRenderer.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scenes\UISystemScene\UI\2D\Original\Button\UI_Button.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scenes\UISystemScene\UI\2D\Original\Button\UI_ButtonRenderer.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -123,9 +129,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Source\Scenes\SceneType.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\UIs\UICanvas.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Source\Scenes\InventorySystemScene\Menu\Inventory.h">
@@ -191,19 +194,7 @@
     <ClInclude Include="Source\Scenes\UISystemScene\UI\AbstractUI.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Scenes\UISystemScene\UI\2D\Image\UI_Image.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Scenes\UISystemScene\UI\2D\Text\UI_Text.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Scenes\UISystemScene\UI\UIType.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Scenes\UISystemScene\UI\2D\Image\UI_ImageRenderer.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Scenes\UISystemScene\UI\2D\Text\UI_TextRenderer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Source\Scenes\UISystemScene\Canvas\Canvas.h">
@@ -222,6 +213,27 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Source\Managers\JsonReader.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Managers\ResourceManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scenes\UISystemScene\UI\2D\Parts\Image\UI_Image.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scenes\UISystemScene\UI\2D\Parts\Text\UI_Text.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scenes\UISystemScene\UI\2D\Parts\Image\UI_ImageRenderer.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scenes\UISystemScene\UI\2D\Parts\Text\UI_TextRenderer.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scenes\UISystemScene\UI\2D\Original\Button\UI_Button.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scenes\UISystemScene\UI\2D\Original\Button\UI_ButtonRenderer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

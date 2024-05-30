@@ -16,6 +16,7 @@ void GameObject::Init(void) {
 	for (size_t i = 0; i < childCount; i++) {
 		childs_[i]->Init();
 	}
+	auto a = shared_from_this();
 }
 
 void GameObject::Update(void) {
@@ -51,7 +52,7 @@ void GameObject::SetActive(bool flag) {
 	isActive_ = flag;
 }
 
-const std::weak_ptr<GameObject>& GameObject::GetParent(void) const {
+std::weak_ptr<GameObject> GameObject::GetParent(void) const {
 	return parent_;
 }
 

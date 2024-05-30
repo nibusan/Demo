@@ -52,7 +52,7 @@ void GameObject2D::CalculateTransform2D(void) {
 	}
 }
 
-void GameObject2D::SetParent(const std::shared_ptr<GameObject>& parent) {
+void GameObject2D::SetParent(std::weak_ptr<GameObject> parent) {
 	parent_ = parent;
 
 	CalculateTransform2D();
@@ -65,9 +65,8 @@ void GameObject2D::SetParent(const std::shared_ptr<GameObject>& parent) {
 	}
 }
 
-void GameObject2D::AddChild(const std::shared_ptr<GameObject>& child) {
-	std::shared_ptr<GameObject2D> thisPtr = std::dynamic_pointer_cast<GameObject2D>(shared_from_this());
-	//child->SetParent(std::dynamic_pointer_cast<GameObject>(shared_from_this()));
+void GameObject2D::AddChild(std::shared_ptr<GameObject> child) {
+	child->SetParent(shared_from_this());
 	childs_.emplace_back(child);
 
 }
@@ -87,7 +86,7 @@ void GameObject2D::SetTransformData(
 }
 
 Vector2<float> GameObject2D::GetWorldPos(void) {
-	std::weak_ptr<GameObject2D> parent = std::dynamic_pointer_cast<GameObject2D>(GetParent().lock());
+	//std::weak_ptr<GameObject2D> parent = std::dynamic_pointer_cast<GameObject2D>(GetParent());
 	
 	// åvéZçœÇ›ÇÃç¿ïWÇäiî[
 	Vector2<float> calcPos = {};
