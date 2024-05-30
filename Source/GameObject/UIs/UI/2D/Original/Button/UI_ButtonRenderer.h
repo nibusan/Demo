@@ -16,6 +16,9 @@ public:
 
 	/// @brief 描画処理
 	void Render(void) override;
+
+	/// @brief 描画処理(デバッグ用) 
+	virtual void DebugRender(void) override;
 private:
 	// 描画するボタンのUI
 	std::shared_ptr<UI_Button> uiButton_;

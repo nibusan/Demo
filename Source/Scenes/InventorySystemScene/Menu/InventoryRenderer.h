@@ -17,8 +17,11 @@ public:
 	/// @param inventory 描画するインベントリ
 	InventoryRenderer(std::shared_ptr<Inventory<Item>> inventory);
 
-	// 描画する
+	/// @brief 描画処理  
 	void Render(void) override;
+
+	/// @brief 描画処理(デバッグ用) 
+	virtual void DebugRender(void) override;
 private:
 	// インベントリのデータ
 	std::shared_ptr<Inventory<Item>> inventory_;

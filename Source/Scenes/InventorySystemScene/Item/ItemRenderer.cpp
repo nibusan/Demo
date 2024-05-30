@@ -8,3 +8,5 @@ ItemRenderer::ItemRenderer(std::shared_ptr<Item> item) : item_(item) {
 void ItemRenderer::Render(void) {
 	image_->Draw(Vector2<float>(400.0f, 400.0f), 10.0f, 0.0f, 8, 8, 2, 1, nullptr);
 }
+
+void ItemRenderer::DebugRender(void) {}

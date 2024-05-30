@@ -17,3 +17,5 @@ void InventoryRenderer::Render(void) {
 		);
 	}
 }
+
+void InventoryRenderer::DebugRender(void) {}

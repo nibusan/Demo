@@ -1,5 +1,4 @@
 #include <DxLib.h>
-#include "../HandleBase.h"
 #include "Font.h"
 
 Font::Font(void) :
@@ -33,4 +32,14 @@ int Font::GetFontSize(void) const {
 
 std::string Font::GetFontName(void) const {
 	return name_;
+}
+
+void Font::Draw(const Vector2<float>& pos, const std::string& text, unsigned int textColor) {
+	DrawStringToHandle(
+		static_cast<int>(pos.x),
+		static_cast<int>(pos.y),
+		text.c_str(),
+		textColor,
+		handle_
+	);
 }

@@ -3,13 +3,15 @@
 #include "../Common/Vector2.h"
 
 /// @brief ゲームオブジェクトの基礎データを管理するクラス
-/// @note conceptでtemplateの引数を制限してます
+/// @note 角度は2D、3Dで要素数が変わるので派生クラスで定義してます
+
+/// @brief conceptでtemplateの引数を制限してます
 /// @tparam T 何次元で管理するか(2D:Vector2<float> or 3D:Vector3<float>)
 template <typename T>
-concept ValidType_ = 
+concept VectorType_ = 
 	// 許容されている型かどうかを判定する
 	std::is_same_v<T, Vector2<float>>;
-template <ValidType_ T>
+template <VectorType_ T>
 class Transform {
 public:
 	// parent = 親の値
@@ -21,11 +23,6 @@ public:
 	T parentPos_;
 	T localPos_;
 	T currentPos_;
-
-	// 角度
-	T parentRot_;
-	T localRot_;
-	T currentRot_;
 
 	// スケール値
 	T parentScl_;

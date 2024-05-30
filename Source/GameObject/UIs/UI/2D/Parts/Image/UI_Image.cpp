@@ -1,6 +1,10 @@
 #include "UI_Image.h"
 
-UI_Image::UI_Image(std::shared_ptr<Graphic> image) : image_(image) {}
+UI_Image::UI_Image(void) : image_(nullptr) {}
+
+UI_Image::UI_Image(const Vector2<float>& canvasSize, std::shared_ptr<Graphic> image) : 
+AbstractUI(canvasSize), 
+image_(image) {}
 
 void UI_Image::Init_UI(void) {
 

@@ -75,16 +75,16 @@
     <ClCompile Include="Source\Managers\InputManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Scenes\UISystemScene\UI\AbstractUI.cpp">
+    <ClCompile Include="Source\GameObject\UIs\UI\AbstractUI.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Scenes\UISystemScene\Canvas\Canvas.cpp">
+    <ClCompile Include="Source\GameObject\UIs\Canvas\Canvas.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Scenes\UISystemScene\UILayer\AbstractUILayer.cpp">
+    <ClCompile Include="Source\GameObject\UIs\UILayer\AbstractUILayer.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Scenes\UISystemScene\UILayer\UILayer_MainMenu.cpp">
+    <ClCompile Include="Source\GameObject\UIs\UILayer\UILayer_MainMenu.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Source\Managers\JsonReader.cpp">
@@ -93,22 +93,22 @@
     <ClCompile Include="Source\Managers\ResourceManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Scenes\UISystemScene\UI\2D\Parts\Image\UI_Image.cpp">
+    <ClCompile Include="Source\GameObject\UIs\UI\2D\Parts\Image\UI_Image.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Scenes\UISystemScene\UI\2D\Parts\Text\UI_Text.cpp">
+    <ClCompile Include="Source\GameObject\UIs\UI\2D\Parts\Text\UI_Text.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Scenes\UISystemScene\UI\2D\Parts\Image\UI_ImageRenderer.cpp">
+    <ClCompile Include="Source\GameObject\UIs\UI\2D\Parts\Image\UI_ImageRenderer.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Scenes\UISystemScene\UI\2D\Parts\Text\UI_TextRenderer.cpp">
+    <ClCompile Include="Source\GameObject\UIs\UI\2D\Parts\Text\UI_TextRenderer.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Scenes\UISystemScene\UI\2D\Original\Button\UI_Button.cpp">
+    <ClCompile Include="Source\GameObject\UIs\UI\2D\Original\Button\UI_Button.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Scenes\UISystemScene\UI\2D\Original\Button\UI_ButtonRenderer.cpp">
+    <ClCompile Include="Source\GameObject\UIs\UI\2D\Original\Button\UI_ButtonRenderer.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -191,19 +191,19 @@
     <ClInclude Include="Source\Managers\InputManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Scenes\UISystemScene\UI\AbstractUI.h">
+    <ClInclude Include="Source\GameObject\UIs\UI\AbstractUI.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Scenes\UISystemScene\UI\UIType.h">
+    <ClInclude Include="Source\GameObject\UIs\UI\UIType.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Scenes\UISystemScene\Canvas\Canvas.h">
+    <ClInclude Include="Source\GameObject\UIs\Canvas\Canvas.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Scenes\UISystemScene\UILayer\AbstractUILayer.h">
+    <ClInclude Include="Source\GameObject\UIs\UILayer\AbstractUILayer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Scenes\UISystemScene\UILayer\UILayer_MainMenu.h">
+    <ClInclude Include="Source\GameObject\UIs\UILayer\UILayer_MainMenu.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Source\Library\nlohmann-json\json.hpp">
@@ -218,22 +218,25 @@
     <ClInclude Include="Source\Managers\ResourceManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Scenes\UISystemScene\UI\2D\Parts\Image\UI_Image.h">
+    <ClInclude Include="Source\GameObject\UIs\UI\2D\Parts\Image\UI_Image.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Scenes\UISystemScene\UI\2D\Parts\Text\UI_Text.h">
+    <ClInclude Include="Source\GameObject\UIs\UI\2D\Parts\Text\UI_Text.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Scenes\UISystemScene\UI\2D\Parts\Image\UI_ImageRenderer.h">
+    <ClInclude Include="Source\GameObject\UIs\UI\2D\Parts\Image\UI_ImageRenderer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Scenes\UISystemScene\UI\2D\Parts\Text\UI_TextRenderer.h">
+    <ClInclude Include="Source\GameObject\UIs\UI\2D\Parts\Text\UI_TextRenderer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Scenes\UISystemScene\UI\2D\Original\Button\UI_Button.h">
+    <ClInclude Include="Source\GameObject\UIs\UI\2D\Original\Button\UI_Button.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Scenes\UISystemScene\UI\2D\Original\Button\UI_ButtonRenderer.h">
+    <ClInclude Include="Source\GameObject\UIs\UI\2D\Original\Button\UI_ButtonRenderer.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameObject\Transform2D.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

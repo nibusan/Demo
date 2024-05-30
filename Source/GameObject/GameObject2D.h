@@ -1,6 +1,6 @@
 #pragma once
 #include "GameObject.h"
-#include "Transform.h"
+#include "Transform2D.h"
 #include "../Common/Vector2.h"
 
 class GameObject2D : public GameObject {
@@ -19,7 +19,7 @@ public:
 	/// @brief 2DのゲームオブジェクトのTransformの参照を返す 
 	/// @note 外部から中身を弄ることがあるのであえてconstを外してます
 	/// @return 2DのTransform
-	[[nodiscard]] Transform<Vector2<float>>& GetTransform(void);
+	[[nodiscard]] Transform2D& GetTransform(void);
 	
 	/// @brief Transformに渡すデータをセットする
 	/// @param localPos ローカル座標
@@ -27,7 +27,7 @@ public:
 	/// @param localScl ローカルスケール値(名前変かも)
 	void SetTransformData( 
 		const Vector2<float>& localPos, 
-		const Vector2<float>& localRot, 
+		float localRot, 
 		const Vector2<float>& localScl
 	);
 
@@ -36,7 +36,7 @@ public:
 	Vector2<float> GetWorldPos(void);
 protected:
 	// ゲームオブジェクトの基礎データ
-	Transform<Vector2<float>> transform_;
+	Transform2D transform_;
 
 	void Init_GameObject(void) override;
 	void Update_GameObject(void) override;

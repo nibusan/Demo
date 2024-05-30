@@ -16,6 +16,9 @@ public:
 
 	/// @brief アイテムの描画処理
 	void Render(void) override;
+
+	/// @brief 描画処理(デバッグ用) 
+	virtual void DebugRender(void) override;
 private:
 	// 描画するアイテム
 	std::shared_ptr<Item> item_;

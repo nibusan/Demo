@@ -3,6 +3,7 @@
 #include "../../Parts/Text/UI_Text.h"
 
 UI_Button::UI_Button(const std::shared_ptr<UI_Image>& uiImage, const std::shared_ptr<UI_Text>& uiText) : 
+AbstractUI(Vector2<float>(1920.0f,1080.0f)),
 uiImage_(uiImage),
 uiText_(uiText) {
 
@@ -17,6 +18,18 @@ std::weak_ptr<UI_Text> UI_Button::GetUIText(void) {
 }
 
 void UI_Button::Init_UI(void) {
+	uiImage_->SetTransformData(
+		{ 0.0f, 0.0f },
+		0.0f,
+		{ 1.0f, 1.0f }
+	);
+
+	uiText_->SetTransformData(
+		{ 0.0f, 0.0f },
+		0.0f,
+		{ 1.0f, 1.0f }
+	);
+
 	AddChild(uiImage_);
 	// 画像の子としてテキストをセットする
 	uiImage_->AddChild(uiText_);

@@ -5,15 +5,14 @@
 
 void GameObject2D::Init_GameObject(void) {
 	Init_GameObject2D();
-
 	transform_.parentPos_ = Vector2<float>();
-	transform_.parentRot_ = Vector2<float>();
+	transform_.parentRot_ = 0.0f;
 	transform_.parentScl_ = Vector2<float>();
 	transform_.localPos_ = Vector2<float>();
-	transform_.localRot_ = Vector2<float>();
+	transform_.localRot_ = 0.0f;
 	transform_.localScl_ = Vector2<float>();
 	transform_.currentPos_ = Vector2<float>();
-	transform_.currentRot_ = Vector2<float>();
+	transform_.currentRot_ = 0.0f;
 	transform_.currentScl_ = Vector2<float>();
 }
 
@@ -44,7 +43,7 @@ void GameObject2D::CalculateTransform2D(void) {
 		transform_.localRot_ = transform_.parentRot_ + transform_.localRot_;
 		transform_.localScl_ = transform_.parentScl_ + transform_.localScl_;
 		transform_.parentPos_ = Vector2<float>();
-		transform_.parentRot_ = Vector2<float>();
+		transform_.parentRot_ = 0.0f;
 		transform_.parentScl_ = Vector2<float>();
 		transform_.currentPos_ = transform_.localPos_;
 		transform_.currentRot_ = transform_.localRot_;
@@ -71,13 +70,13 @@ void GameObject2D::AddChild(std::shared_ptr<GameObject> child) {
 
 }
 
-Transform<Vector2<float>>& GameObject2D::GetTransform(void) {
+Transform2D& GameObject2D::GetTransform(void) {
 	return transform_;
 }
 
 void GameObject2D::SetTransformData(
 	const Vector2<float>& localPos, 
-	const Vector2<float>& localRot, 
+	float localRot, 
 	const Vector2<float>& localScl
 ) {
 	transform_.localPos_ = localPos;

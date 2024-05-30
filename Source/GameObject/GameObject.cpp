@@ -16,7 +16,6 @@ void GameObject::Init(void) {
 	for (size_t i = 0; i < childCount; i++) {
 		childs_[i]->Init();
 	}
-	auto a = shared_from_this();
 }
 
 void GameObject::Update(void) {

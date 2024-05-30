@@ -6,12 +6,13 @@
 class Graphic;
 class UI_Image : public AbstractUI {
 public:
-	UI_Image(void) = default;
+	UI_Image(void);
 	~UI_Image(void) = default;
 
 	/// @brief コンストラクタ
+	/// @param canvasSize UIのキャンバスのサイズ
 	/// @param image 描画する画像
-	UI_Image(std::shared_ptr<Graphic> image);
+	UI_Image(const Vector2<float>& canvasSize, std::shared_ptr<Graphic> image);
 
 	void Init_UI(void) override;
 	void Update_UI(void) override;

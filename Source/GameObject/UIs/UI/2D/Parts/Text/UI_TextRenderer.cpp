@@ -7,12 +7,17 @@
 UI_TextRenderer::UI_TextRenderer(std::shared_ptr<UI_Text> uiText) : uiText_(uiText) {}
 
 void UI_TextRenderer::Render(void) {
+	// UIの基礎データを取得
 	const auto& transform = uiText_->GetTransform();
-	DrawStringToHandle(
-		static_cast<int>(transform.currentPos_.x),
-		static_cast<int>(transform.currentPos_.y),
-		uiText_->GetText().c_str(),
-		uiText_->GetTextColor(),
-		uiText_->GetFont().lock()->GetHandle()
+
+	// 親オブジェクトを取得
+	const auto& parent = uiText_->GetParent();
+
+	uiText_->GetFont().lock()->Draw(
+		parent.lock() == nullptr ? transform.currentPos_ : transform.localPos_,
+		uiText_->GetText(),
+		uiText_->GetTextColor()
 	);
 }
+
+void UI_TextRenderer::DebugRender(void) {}

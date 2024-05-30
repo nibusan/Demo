@@ -13,6 +13,9 @@ public:
 	AbstractUI(void);
 	~AbstractUI(void) = default;
 
+	/// @brief コンストラクタ
+	/// @param canvasSize UIのキャンバスのサイズ
+	AbstractUI(const Vector2<float>& canvasSize);
 
 	/// @brief 強調表示するかをセット
 	/// @param flag 強調表示するかのフラグ
@@ -30,6 +33,9 @@ public:
 	/// @param callBack コールバック関数
 	void SetOnClickCallBack(const std::function<void(void)>& callBack);
 
+	/// @brief 描画用のキャンバスを返す 
+	/// @return 描画用のキャンバス
+	std::weak_ptr<Graphic> GetRenderCanvas(void);
 protected:
 	// 強調表示されてるか
 	bool isHighlighted_;
@@ -40,8 +46,8 @@ protected:
 	// クリックされた時に呼び出されるコールバック関数(isClickable_がtrueの時のみ使用できます)
 	std::function<void(void)> onClickCallBack_;
 
-	// このUIを描画するためのスクリーン
-	//std::unique_ptr<Graphic> renderScreen_;
+	// このUIを描画するためのキャンバス
+	std::shared_ptr<Graphic> renderCanvas_;
 
 	void Init_GameObject2D(void) override;
 	void Update_GameObject2D(void) override;
@@ -51,6 +57,12 @@ protected:
 	virtual void Init_UI(void) = 0;
 	virtual void Update_UI(void) = 0;
 	virtual void Release_UI(void) = 0;
+	
+	/// @brief UIを長押ししている時の処理 (isClickable_がtrueの時のみ使用できます)
+	virtual void OnClickDown(void);
+
+	/// @brief UIを離した時の処理 (isClickable_がtrueの時のみ使用できます)
+	virtual void OnClickUp(void);
 
 	/// @brief 強調表示されてる時の更新処理 
 	virtual void HighlightUpdate(void);
