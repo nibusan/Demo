@@ -13,6 +13,12 @@
                 "FilePath": "Scene/UISystemScene/UI/UI_Image/",
                 "FileName": "UI_Image_Test",
                 "Extension": ".png"
+            },
+            {
+                "Key": "IMAGE_UI_ITEMS",
+                "FilePath": "Scene/InventorySystemScene/UI/Item/",
+                "FileName": "Items",
+                "Extension": ".png"
             }
         ],
         "Sound": null,

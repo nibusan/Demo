@@ -1,0 +1,11 @@
+{
+    "ResourceList": {
+        "Image": [
+            "IMAGE_UI_ITEMS"
+        ],
+        "Sound": null,
+        "Model": null,
+        "PixelShader": null,
+        "VertexShader": null
+    }
+}
