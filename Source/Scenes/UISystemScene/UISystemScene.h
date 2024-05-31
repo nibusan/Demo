@@ -24,6 +24,8 @@ private:
 	std::shared_ptr<AbstractUI> ui1_;
 	std::shared_ptr<AbstractUI> ui2_;
 	std::shared_ptr<AbstractUI> ui3_;
+	std::shared_ptr<AbstractUI> ui4_;
+	std::shared_ptr<AbstractUI> ui5_;
 	std::shared_ptr<UI_ImageRenderer> uiImageRenderer_;
 	std::shared_ptr<UI_TextRenderer> uiTextRenderer_;
 	std::shared_ptr<UI_ButtonRenderer> uiButtonRenderer_;

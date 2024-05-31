@@ -1,7 +1,7 @@
 #pragma once
 #include "SceneType.h"
 
-/// @brief シーンの基底クラス
+/// @brief シーンの抽象クラス
 class AbstractScene {
 public:
 	AbstractScene(void);

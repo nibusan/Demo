@@ -1,4 +1,5 @@
 #include "AbstractScene.h"
+#include "../Managers/SceneManager.h"
 
 AbstractScene::AbstractScene(void) : 
 type_(Scene::TYPE::NONE) {}

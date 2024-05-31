@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\GameObject\GameObject2DRenderer.cpp" />
     <ClCompile Include="Source\Managers\ResourceManager.cpp" />
     <ClCompile Include="Source\Managers\JsonReader.cpp" />
     <ClCompile Include="Source\GameObject\UIs\UILayer\AbstractUILayer.cpp" />
@@ -181,7 +182,9 @@
     <ClCompile Include="Source\GameObject\UIs\UI\2D\Original\Button\UI_ButtonRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\GameObject\GameObject2DRenderer.h" />
     <ClInclude Include="Source\GameObject\Transform2D.h" />
+    <ClInclude Include="Source\Managers\Resource.h" />
     <ClInclude Include="Source\Managers\ResourceManager.h" />
     <ClInclude Include="Source\Managers\JsonReader.h" />
     <ClInclude Include="Source\Library\nlohmann-json\json.hpp" />
@@ -217,7 +220,7 @@
     <ClInclude Include="Source\GameObject\Transform.h" />
     <ClInclude Include="Source\GameObject\UIs\UI\2D\Parts\Image\UI_Image.h" />
     <ClInclude Include="Source\GameObject\UIs\UI\2D\Parts\Text\UI_Text.h" />
-    <ClInclude Include="Source\GameObject\UIs\UI\UIType.h" />
+    <ClInclude Include="Source\GameObject\UIs\UI\UI_Info.h" />
     <ClInclude Include="Source\GameObject\UIs\UI\2D\Parts\Image\UI_ImageRenderer.h" />
     <ClInclude Include="Source\GameObject\UIs\UI\2D\Parts\Text\UI_TextRenderer.h" />
     <ClInclude Include="Source\GameObject\UIs\UILayer\UILayer_MainMenu.h" />

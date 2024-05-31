@@ -19,16 +19,17 @@ UISystemScene::UISystemScene(void) {
 void UISystemScene::Init(void) {
 	graphic_ = std::make_shared<Graphic>("Assets/Scenes/UISystemScene/UI/Button/UI_Image.png");
 	font_ = std::make_shared<Font>("Assets/Scenes/UISystemScene/Font/Revamped-X3q1a.ttf", "Revamped", 32);
-	ui1_ = std::make_shared<UI_Image>(graphic_->GetSize().ToVector2f(), graphic_);
+
+	ui1_ = std::make_shared<UI_Image>(graphic_->GetSize().ToVector2f(), UI::UI_ORIGIN_TYPE::DOWN_RIGHT, graphic_);
 	ui1_->Init();
 	ui1_->SetTransformData(
-		{ 1000.0f, 400.0f },
+		{ 20.0f, 20.0f },
 		0.0f,
 		{ 1.0f, 1.0f }
 	);
 	uiImageRenderer_ = std::make_shared<UI_ImageRenderer>(std::dynamic_pointer_cast<UI_Image>(ui1_));
 
-	ui2_ = std::make_shared<UI_Text>(font_, "AIUEO", 0x00FF00);
+	ui2_ = std::make_shared<UI_Text>(graphic_->GetSize().ToVector2f(), UI::UI_ORIGIN_TYPE::CENTER_CENTER, font_, "AIUEO", 0x00FF00);
 	ui2_->Init();
 	ui2_->SetTransformData(
 		{ 20.0f, 5.0f },
@@ -39,8 +40,12 @@ void UISystemScene::Init(void) {
 	
 	auto buttonGraphic = std::make_shared<Graphic>("Assets/Scenes/UISystemScene/UI/Button/UI_Button.png");
 	ui3_ = std::make_shared<UI_Button>(
-		std::make_shared<UI_Image>(buttonGraphic->GetSize().ToVector2f(), buttonGraphic),
-		std::make_shared<UI_Text>(font_, "Button", 0xFFFFFF)
+		buttonGraphic->GetSize().ToVector2f(),
+		UI::UI_ORIGIN_TYPE::CENTER_CENTER, 
+		std::make_shared<UI_Image>(buttonGraphic->GetSize().ToVector2f(), 
+			UI::UI_ORIGIN_TYPE::UP_LEFT, buttonGraphic),
+		std::make_shared<UI_Text>(buttonGraphic->GetSize().ToVector2f(), 
+			UI::UI_ORIGIN_TYPE::UP_LEFT,font_, "Button", 0xFFFFFF)
 	);
 	ui3_->Init();
 	ui3_->SetTransformData(
@@ -48,6 +53,39 @@ void UISystemScene::Init(void) {
 		0.0f,
 		{ 1.0f, 1.0f }
 	);
+
+	//ui4_ = std::make_shared<UI_Button>(
+	//	buttonGraphic->GetSize().ToVector2f(), 
+	//	UI::UI_ORIGIN_TYPE::CENTER_CENTER, 
+	//	std::make_shared<UI_Image>(buttonGraphic->GetSize().ToVector2f(), 
+	//		UI::UI_ORIGIN_TYPE::CENTER_CENTER, buttonGraphic),
+	//	std::make_shared<UI_Text>(buttonGraphic->GetSize().ToVector2f(), 
+	//		UI::UI_ORIGIN_TYPE::CENTER_CENTER,font_, "Button", 0xFFFFFF)
+	//);
+	//ui4_->Init();
+	//ui4_->SetTransformData(
+	//	{ 300.0f, 300.0f },
+	//	0.0f,
+	//	{ 1.0f, 1.0f }
+	//);
+	//ui3_->AddChild(ui4_);
+
+	//ui5_ = std::make_shared<UI_Button>(
+	//	buttonGraphic->GetSize().ToVector2f(), 
+	//	UI::UI_ORIGIN_TYPE::CENTER_CENTER, 
+	//	std::make_shared<UI_Image>(buttonGraphic->GetSize().ToVector2f(), 
+	//		UI::UI_ORIGIN_TYPE::CENTER_CENTER, buttonGraphic),
+	//	std::make_shared<UI_Text>(buttonGraphic->GetSize().ToVector2f(), 
+	//		UI::UI_ORIGIN_TYPE::CENTER_CENTER,font_, "Button", 0xFFFFFF)
+	//);
+	//ui5_->Init();
+	//ui5_->SetTransformData(
+	//	{ 300.0f, 300.0f },
+	//	0.0f,
+	//	{ 1.0f, 1.0f }
+	//);
+	//ui4_->AddChild(ui5_);
+
 	uiButtonRenderer_ = std::make_shared<UI_ButtonRenderer>(std::dynamic_pointer_cast<UI_Button>(ui3_));
 }
 
@@ -70,9 +108,9 @@ void UISystemScene::Update(void) {
 }
 
 void UISystemScene::Draw(void) {
-	uiImageRenderer_->Render();
 	uiTextRenderer_->Render();
 	uiButtonRenderer_->Render();
+	uiImageRenderer_->Render();
 }
 
 void UISystemScene::Release(void) {

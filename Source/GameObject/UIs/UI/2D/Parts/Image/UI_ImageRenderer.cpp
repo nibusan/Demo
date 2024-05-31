@@ -18,6 +18,7 @@ void UI_ImageRenderer::Render(void) {
 	// 親オブジェクトを取得
 	const auto& parent = uiImage_->GetParent();
 
+	// 描画スクリーンをUI描画用キャンバスに切り替える
 	SetDrawScreen(renderCanvas.lock()->GetHandle());
 	ClearDrawScreen();
 
@@ -27,7 +28,11 @@ void UI_ImageRenderer::Render(void) {
 	DebugRender();
 
 	SetDrawScreen(preRenderScreen);
-	renderCanvas.lock()->Draw(parent.lock() == nullptr ? transform.currentPos_ : transform.localPos_, 1.0f,transform.currentRot_, nullptr);
+
+	auto offset = uiImage_->GetCanvasRenderOffset();
+
+	// 
+	renderCanvas.lock()->Draw(parent.lock() == nullptr ? transform.currentPos_ + offset : transform.localPos_ + offset, 1.0f,transform.currentRot_, nullptr);
 
 }
 

@@ -50,6 +50,7 @@ protected:
 	std::vector<std::shared_ptr<GameObject>> childs_;
 
 	// 派生クラスで定義する関数
+	// 外部から隠蔽するためにpublicにしていません
 	virtual void Init_GameObject(void) = 0;
 	virtual void Update_GameObject(void) = 0;
 	virtual void Release_GameObject(void) = 0;

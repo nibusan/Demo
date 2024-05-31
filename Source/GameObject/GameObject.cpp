@@ -1,8 +1,6 @@
 #include "GameObject.h"
 
-GameObject::GameObject(void) : isActive_(true) {
-
-}
+GameObject::GameObject(void) : isActive_(true) {}
 
 void GameObject::Init(void) {
 	//初期化処理
@@ -20,7 +18,7 @@ void GameObject::Init(void) {
 
 void GameObject::Update(void) {
 	// アクティブじゃなかったら更新処理をしない
-	if (!IsActive()) return;
+	if (!isActive_) return;
 
 	// 更新処理
 	Update_GameObject();

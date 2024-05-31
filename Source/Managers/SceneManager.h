@@ -6,7 +6,9 @@
 
 class SceneManager : public StaticSingleton<SceneManager> {
 public:
-	SceneManager() = default;
+	~SceneManager(void) = default;
+	THIS_CLASS_IS_STATIC_SINGLETON(SceneManager);
+
 	void Init(void);
 	void Update(void);
 	void Draw(void);
@@ -16,8 +18,7 @@ private:
 	// 現在のシーンのインスタンス
 	std::unique_ptr<AbstractScene> currentScene_;
 
-	~SceneManager(void) = default;
-	THIS_CLASS_IS_STATIC_SINGLETON(SceneManager);
+	SceneManager() = default;
 
 	/// @brief シーンを切り替える
 	/// @param シーンの種類

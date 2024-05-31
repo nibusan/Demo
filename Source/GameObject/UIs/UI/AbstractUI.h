@@ -4,6 +4,7 @@
 #include "../../../Common/Vector2.h"
 #include "../../../GameObject/GameObject2D.h"
 #include "../../../GameObject/Transform.h"
+#include "UI_Info.h"
 
 class Graphic;
 /// @brief UIの抽象クラスです
@@ -15,7 +16,8 @@ public:
 
 	/// @brief コンストラクタ
 	/// @param canvasSize UIのキャンバスのサイズ
-	AbstractUI(const Vector2<float>& canvasSize);
+	/// @param originType どこを原点にするか
+	AbstractUI(const Vector2<float>& canvasSize, UI::UI_ORIGIN_TYPE originType);
 
 	/// @brief 強調表示するかをセット
 	/// @param flag 強調表示するかのフラグ
@@ -36,6 +38,18 @@ public:
 	/// @brief 描画用のキャンバスを返す 
 	/// @return 描画用のキャンバス
 	std::weak_ptr<Graphic> GetRenderCanvas(void);
+
+	/// @brief このUIの種類を返す 
+	/// @return UIの種類
+	[[nodiscard]] UI::UI_TYPE GetType(void) const;
+
+	/// @brief このUIがどこを原点にしてるかを返す 
+	/// @return 原点の種類
+	[[nodiscard]] UI::UI_ORIGIN_TYPE GetOriginType(void) const;
+
+	/// @brief UIを描画し終わったキャンバスをスクリーンのどこに描画するかを調整するオフセットを返す
+	/// @return オフセット
+	Vector2<float> GetCanvasRenderOffset(void) const;
 protected:
 	// 強調表示されてるか
 	bool isHighlighted_;
@@ -49,6 +63,13 @@ protected:
 	// このUIを描画するためのキャンバス
 	std::shared_ptr<Graphic> renderCanvas_;
 
+	// このUIの種類
+	UI::UI_TYPE type_;
+
+	// このUIのどこを原点にするか
+	UI::UI_ORIGIN_TYPE originType_;
+
+	// 外部から隠蔽するためにpublicにしない
 	void Init_GameObject2D(void) override;
 	void Update_GameObject2D(void) override;
 	void Release_GameObject2D(void) override;

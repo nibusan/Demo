@@ -7,10 +7,16 @@
 class Font;
 class UI_Text : public AbstractUI {
 public:
-	UI_Text(void) = default;
+	UI_Text(void);
 	~UI_Text(void) = default;
 
-	UI_Text(std::shared_ptr<Font> font, const std::string& text, unsigned int color);
+	UI_Text(
+		const Vector2<float>& canvasSize, 
+		UI::UI_ORIGIN_TYPE originType, 
+		std::shared_ptr<Font> font, 
+		const std::string& text, 
+		unsigned int color
+	);
 
 	std::weak_ptr<Font> GetFont(void) const;
 	std::string GetText(void) const;

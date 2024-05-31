@@ -12,7 +12,11 @@ public:
 	/// @brief コンストラクタ
 	/// @param canvasSize UIのキャンバスのサイズ
 	/// @param image 描画する画像
-	UI_Image(const Vector2<float>& canvasSize, std::shared_ptr<Graphic> image);
+	UI_Image(
+		const Vector2<float>& canvasSize, 
+		UI::UI_ORIGIN_TYPE originType,
+		std::shared_ptr<Graphic> image
+	);
 
 	void Init_UI(void) override;
 	void Update_UI(void) override;

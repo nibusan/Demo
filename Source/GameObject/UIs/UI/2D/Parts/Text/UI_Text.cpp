@@ -1,10 +1,23 @@
 #include "UI_Text.h"
 
-UI_Text::UI_Text(std::shared_ptr<Font> font, const std::string& text, unsigned int color) : 
+UI_Text::UI_Text(void) :
+font_(nullptr),
+text_(),
+textColor_(0x000000) {
+	type_ = UI::UI_TYPE::TEXT;
+}
+
+UI_Text::UI_Text(
+	const Vector2<float>& canvasSize, 
+	UI::UI_ORIGIN_TYPE originType, 
+	std::shared_ptr<Font> font, 
+	const std::string& text, 
+	unsigned int color) :
+AbstractUI(canvasSize, originType),
 font_(font),
 text_(text),
 textColor_(color) {
-
+	type_ = UI::UI_TYPE::TEXT;
 }
 
 std::weak_ptr<Font> UI_Text::GetFont(void) const {

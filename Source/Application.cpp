@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "Managers/SceneManager.h"
 #include "Managers/InputManager.h"
+#include "Managers/ResourceManager.h"
 
 bool Application::Init(void) {
 	// ウィンドウを初期化
@@ -23,6 +24,7 @@ bool Application::Init(void) {
 
 	InputManager::GetInstance().Init();
 	SceneManager::GetInstance().Init();
+	ResourceManager::GetInstance().Init();
 	
 	return true;
 }

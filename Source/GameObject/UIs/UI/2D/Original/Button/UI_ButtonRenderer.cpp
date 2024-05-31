@@ -34,7 +34,10 @@ void UI_ButtonRenderer::Render(void) {
 	DebugRender();
 
 	SetDrawScreen(preRenderScreen);
-	renderCanvas.lock()->Draw(parent.lock() == nullptr ? transform.currentPos_ : transform.localPos_, false, nullptr);
+
+	auto offset = uiButton_->GetCanvasRenderOffset();
+
+	renderCanvas.lock()->Draw(parent.lock() == nullptr ? transform.currentPos_ + offset: transform.localPos_ + offset, true, nullptr);
 }
 
 void UI_ButtonRenderer::DebugRender(void) {
