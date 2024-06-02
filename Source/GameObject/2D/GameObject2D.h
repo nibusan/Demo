@@ -1,7 +1,7 @@
 #pragma once
-#include "GameObject.h"
+#include "../GameObject.h"
 #include "Transform2D.h"
-#include "../Common/Vector2.h"
+#include "../../Common/Vector2.h"
 
 class GameObject2D : public GameObject {
 public:

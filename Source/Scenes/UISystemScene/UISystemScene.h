@@ -22,7 +22,11 @@ public:
 private:
 	std::shared_ptr<GameObject> obj1_;
 	std::shared_ptr<AbstractUI> uiButton_;
+	std::shared_ptr<AbstractUI> uiButton2_;
+	std::shared_ptr<AbstractUI> uiButton3_;
 	std::shared_ptr<UI_ButtonRenderer> uiButtonRenderer_;
+	std::shared_ptr<UI_ButtonRenderer> uiButtonRenderer2_;
+	std::shared_ptr<UI_ButtonRenderer> uiButtonRenderer3_;
 	std::weak_ptr<Graphic> graphic_;
 	std::shared_ptr<Font> font_;
 };

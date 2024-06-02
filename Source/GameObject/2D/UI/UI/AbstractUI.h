@@ -1,9 +1,8 @@
 #pragma once
 #include <memory>
 #include <functional>
-#include "../../../Common/Vector2.h"
-#include "../../../GameObject/GameObject2D.h"
-#include "../../../GameObject/Transform.h"
+#include "../../../../Common/Vector2.h"
+#include "../../GameObject2D.h"
 #include "UI_Info.h"
 
 class Graphic;

@@ -1,7 +1,7 @@
 #pragma once
 #include <memory>
 #include <string>
-#include "../../../AbstractUI.h"
+#include "../../AbstractUI.h"
 
 class Graphic;
 class UI_Image : public AbstractUI {

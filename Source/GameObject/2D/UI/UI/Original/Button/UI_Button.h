@@ -1,7 +1,7 @@
 #pragma once
 #include <memory>
 #include <string>
-#include "../../../AbstractUI.h"
+#include "../../AbstractUI.h"
 
 /// @brief テキストのUIのクラスです
 class UI_Image;
