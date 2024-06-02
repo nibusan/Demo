@@ -5,6 +5,7 @@
 
 void GameObject2D::Init_GameObject(void) {
 	Init_GameObject2D();
+	CalculateTransform2D();
 }
 
 void GameObject2D::Update_GameObject(void) {
@@ -45,6 +46,17 @@ void GameObject2D::CalculateTransform2D(void) {
 void GameObject2D::SetParent(std::weak_ptr<GameObject> parent) {
 	parent_ = parent;
 
+	//CalculateTransform2D();
+
+	const std::weak_ptr<GameObject2D>& parent_GameObject2D = std::dynamic_pointer_cast<GameObject2D>(parent_.lock());
+	const auto& parentTransform = parent_GameObject2D.lock()->GetTransform();
+	transform_.parentPos_ = parentTransform.currentPos_;
+	transform_.parentRot_ = parentTransform.currentRot_;
+	transform_.parentScl_ = parentTransform.currentScl_;
+	transform_.localPos_ = transform_.currentPos_ - transform_.parentPos_;
+	transform_.currentPos_ = transform_.parentPos_ + transform_.localPos_;
+	transform_.currentRot_ = transform_.parentRot_ + transform_.localRot_;
+	transform_.currentScl_ = transform_.parentScl_ * transform_.localScl_;
 	CalculateTransform2D();
 
 	for (const auto& child : childs_) {
@@ -53,6 +65,14 @@ void GameObject2D::SetParent(std::weak_ptr<GameObject> parent) {
 		childTransform.parentRot_ = transform_.currentRot_;
 		childTransform.parentScl_ = transform_.currentScl_;
 	}
+}
+
+void GameObject2D::DeleteChild(void) {
+	childs_.clear();
+}
+
+void GameObject2D::DeleteKankei(void) {
+	parent_.reset();
 }
 
 void GameObject2D::AddChild(std::shared_ptr<GameObject> child) {
@@ -73,6 +93,10 @@ void GameObject2D::SetTransformData(
 	transform_.localPos_ = localPos;
 	transform_.localRot_ = localRot;
 	transform_.localScl_ = localScl;
+
+	transform_.currentPos_ = transform_.parentPos_ + transform_.localPos_;
+	transform_.currentRot_ = transform_.parentRot_ + transform_.localRot_;
+	transform_.currentScl_ = transform_.parentScl_ * transform_.localScl_;
 }
 
 Vector2<float> GameObject2D::GetWorldPos(void) {

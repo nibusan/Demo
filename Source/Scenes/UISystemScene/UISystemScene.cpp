@@ -11,6 +11,7 @@
 #include "../../Common/Handle/Graphic/Graphic.h"
 #include "../../Common/Handle/Font/Font.h"
 #include "../../Managers/ResourceManager.h"
+#include "../../Managers/InputManager.h"
 
 UISystemScene::UISystemScene(void) {
 	// このシーンの種類をセット
@@ -70,7 +71,7 @@ void UISystemScene::Init(void) {
 	);
 	uiButton_->Init();
 	uiButton_->SetTransformData(
-		{ 0.0f, 0.0f },
+		{ 650.0f, 467.0f },
 		0.0f,
 		{ 1.0f, 1.0f }
 	);
@@ -98,12 +99,12 @@ void UISystemScene::Init(void) {
 		)
 	);
 	uiButton2_->Init();
+	uiButton_->AddChild(uiButton2_);
 	uiButton2_->SetTransformData(
-		{ 0.0f, 0.0f },
+		{ 20.0f, 20.0f },
 		0.0f,
 		{ 1.0f, 1.0f }
 	);
-	uiButton_->AddChild(uiButton2_);
 
 	uiButton3_ = std::make_shared<UI_Button>(
 		Vector2<float>(800.0f,800.0f),
@@ -128,44 +129,12 @@ void UISystemScene::Init(void) {
 		)
 	);
 	uiButton3_->Init();
+	uiButton2_->AddChild(uiButton3_);
 	uiButton3_->SetTransformData(
-		{ 0.0f, 0.0f },
+		{ 20.0f, 20.0f },
 		0.0f,
 		{ 1.0f, 1.0f }
 	);
-	uiButton2_->AddChild(uiButton3_);
-
-	//ui4_ = std::make_shared<UI_Button>(
-	//	buttonGraphic->GetSize().ToVector2f(), 
-	//	UI::UI_ORIGIN_TYPE::CENTER_CENTER, 
-	//	std::make_shared<UI_Image>(buttonGraphic->GetSize().ToVector2f(), 
-	//		UI::UI_ORIGIN_TYPE::CENTER_CENTER, buttonGraphic),
-	//	std::make_shared<UI_Text>(buttonGraphic->GetSize().ToVector2f(), 
-	//		UI::UI_ORIGIN_TYPE::CENTER_CENTER,font_, "Button", 0xFFFFFF)
-	//);
-	//ui4_->Init();
-	//ui4_->SetTransformData(
-	//	{ 300.0f, 300.0f },
-	//	0.0f,
-	//	{ 1.0f, 1.0f }
-	//);
-	//ui3_->AddChild(ui4_);
-
-	//ui5_ = std::make_shared<UI_Button>(
-	//	buttonGraphic->GetSize().ToVector2f(), 
-	//	UI::UI_ORIGIN_TYPE::CENTER_CENTER, 
-	//	std::make_shared<UI_Image>(buttonGraphic->GetSize().ToVector2f(), 
-	//		UI::UI_ORIGIN_TYPE::CENTER_CENTER, buttonGraphic),
-	//	std::make_shared<UI_Text>(buttonGraphic->GetSize().ToVector2f(), 
-	//		UI::UI_ORIGIN_TYPE::CENTER_CENTER,font_, "Button", 0xFFFFFF)
-	//);
-	//ui5_->Init();
-	//ui5_->SetTransformData(
-	//	{ 300.0f, 300.0f },
-	//	0.0f,
-	//	{ 1.0f, 1.0f }
-	//);
-	//ui4_->AddChild(ui5_);
 
 	uiButtonRenderer_ = std::make_shared<UI_ButtonRenderer>(std::dynamic_pointer_cast<UI_Button>(uiButton_));
 	uiButtonRenderer2_ = std::make_shared<UI_ButtonRenderer>(std::dynamic_pointer_cast<UI_Button>(uiButton2_));
@@ -173,13 +142,19 @@ void UISystemScene::Init(void) {
 }
 
 void UISystemScene::Update(void) {
-	//ui1_->Update();
-	//ui2_->Update();
-
+	
 	if(CheckHitKey(KEY_INPUT_W)) uiButton_->GetTransform().localPos_.y--;
 	if(CheckHitKey(KEY_INPUT_A)) uiButton_->GetTransform().localPos_.x--;
 	if(CheckHitKey(KEY_INPUT_S)) uiButton_->GetTransform().localPos_.y++;
 	if(CheckHitKey(KEY_INPUT_D)) uiButton_->GetTransform().localPos_.x++;
+
+	if (CheckHitKey(KEY_INPUT_Q)) {
+		uiButton2_->DeleteKankei();
+	}
+
+	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_E)) {
+		uiButton_->AddChild(uiButton2_);
+	}
 	
 	auto child = std::dynamic_pointer_cast<GameObject2D>(uiButton_->GetChilds()[0]->GetChilds()[0]);
 	if(CheckHitKey(KEY_INPUT_UP)) child->GetTransform().localPos_.y--;
@@ -191,7 +166,7 @@ void UISystemScene::Update(void) {
 }
 
 void UISystemScene::Draw(void) {
-	uiButtonRenderer_->Begin();
+	/*uiButtonRenderer_->Begin();
 	uiButtonRenderer_->Render();
 
 	uiButtonRenderer2_->Begin();
@@ -201,7 +176,21 @@ void UISystemScene::Draw(void) {
 	uiButtonRenderer3_->Render();
 	uiButtonRenderer3_->End();
 	uiButtonRenderer2_->End();
+	uiButtonRenderer_->End();*/
+
+	uiButtonRenderer_->Begin();
+	uiButtonRenderer_->Render();
 	uiButtonRenderer_->End();
+
+	if (uiButtonRenderer2_ != nullptr) {
+		uiButtonRenderer2_->Begin();
+		uiButtonRenderer2_->Render();
+		uiButtonRenderer2_->End();
+	}
+
+	uiButtonRenderer3_->Begin();
+	uiButtonRenderer3_->Render();
+	uiButtonRenderer3_->End();
 }
 
 void UISystemScene::Release(void) {

@@ -8,9 +8,8 @@ public:
 	GameObject2D(void) = default;
 	virtual ~GameObject2D(void) override = default;
 
-	/// @brief 親オブジェクトをセット
-	/// @param parent 親オブジェクト
-	void SetParent(std::weak_ptr<GameObject> parent) override;
+	void DeleteChild(void);
+	void DeleteKankei(void);
 
 	/// @brief 子オブジェクトを追加する
 	/// @param child 子オブジェクト
@@ -34,6 +33,7 @@ public:
 	/// @brief このゲームオブジェクトの現在の座標(親の座標も計算済み)を返す
 	/// @return 座標
 	Vector2<float> GetWorldPos(void);
+
 protected:
 	// ゲームオブジェクトの基礎データ
 	Transform2D transform_;
@@ -47,6 +47,9 @@ protected:
 	virtual void Update_GameObject2D(void) = 0;
 	virtual void Release_GameObject2D(void) = 0;
 
+	/// @brief 親オブジェクトをセット
+	/// @param parent 親オブジェクト
+	void SetParent(std::weak_ptr<GameObject> parent) override;
 private:
 	/// @brief 親オブジェクトを考慮して現在のTransform(2D)のcurrentの値を計算する
 	void CalculateTransform2D(void);

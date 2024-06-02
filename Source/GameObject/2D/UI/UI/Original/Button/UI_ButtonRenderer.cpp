@@ -13,6 +13,7 @@ UI_ButtonRenderer::UI_ButtonRenderer(const std::shared_ptr<UI_Button> uiButton) 
 }
 
 void UI_ButtonRenderer::Begin(void) {
+	if (uiButton_ == nullptr) return;
 	if (!uiButton_->IsChildUIClipped()) return;
 
 	// 元の描画用スクリーンを退避する
@@ -26,6 +27,7 @@ void UI_ButtonRenderer::Begin(void) {
 }
 
 void UI_ButtonRenderer::Render(void) {
+	if (uiButton_ == nullptr) return;
 	// それぞれのUIを描画する
 	imageRenderer_->Begin();
 	imageRenderer_->Render();
@@ -39,6 +41,7 @@ void UI_ButtonRenderer::Render(void) {
 }
 
 void UI_ButtonRenderer::End(void) {
+	if (uiButton_ == nullptr) return;
 	if (!uiButton_->IsChildUIClipped()) return;
 
 	// UIの基礎データを取得
