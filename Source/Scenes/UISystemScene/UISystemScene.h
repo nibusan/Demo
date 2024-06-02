@@ -21,15 +21,9 @@ public:
 	void Release(void) override;
 private:
 	std::shared_ptr<GameObject> obj1_;
-	std::shared_ptr<AbstractUI> ui1_;
-	std::shared_ptr<AbstractUI> ui2_;
-	std::shared_ptr<AbstractUI> ui3_;
-	std::shared_ptr<AbstractUI> ui4_;
-	std::shared_ptr<AbstractUI> ui5_;
-	std::shared_ptr<UI_ImageRenderer> uiImageRenderer_;
-	std::shared_ptr<UI_TextRenderer> uiTextRenderer_;
+	std::shared_ptr<AbstractUI> uiButton_;
 	std::shared_ptr<UI_ButtonRenderer> uiButtonRenderer_;
-	std::shared_ptr<Graphic> graphic_;
+	std::weak_ptr<Graphic> graphic_;
 	std::shared_ptr<Font> font_;
 };
 

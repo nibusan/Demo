@@ -10,6 +10,7 @@
 #include "../../GameObject/UIs/UI/2D/Original/Button/UI_ButtonRenderer.h"
 #include "../../Common/Handle/Graphic/Graphic.h"
 #include "../../Common/Handle/Font/Font.h"
+#include "../../Managers/ResourceManager.h"
 
 UISystemScene::UISystemScene(void) {
 	// このシーンの種類をセット
@@ -17,38 +18,37 @@ UISystemScene::UISystemScene(void) {
 }
 
 void UISystemScene::Init(void) {
-	graphic_ = std::make_shared<Graphic>("Assets/Scenes/UISystemScene/UI/Button/UI_Image.png");
-	font_ = std::make_shared<Font>("Assets/Scenes/UISystemScene/Font/Revamped-X3q1a.ttf", "Revamped", 32);
+	// リソースファイル取得用
+	auto& resourceManager = ResourceManager::GetInstance();
 
-	ui1_ = std::make_shared<UI_Image>(graphic_->GetSize().ToVector2f(), UI::UI_ORIGIN_TYPE::DOWN_RIGHT, graphic_);
-	ui1_->Init();
-	ui1_->SetTransformData(
-		{ 20.0f, 20.0f },
-		0.0f,
-		{ 1.0f, 1.0f }
+	graphic_ = std::dynamic_pointer_cast<Graphic>(resourceManager.GetResourceFile("IMAGE_UI_IMAGE_TEST").lock());
+	std::weak_ptr<Font> aFont = std::dynamic_pointer_cast<Font>(resourceManager.GetResourceFile("FONT_REVAMPED").lock());
+	font_ = std::make_shared<Font>(
+		aFont.lock()->GetFontName(),
+		32
 	);
-	uiImageRenderer_ = std::make_shared<UI_ImageRenderer>(std::dynamic_pointer_cast<UI_Image>(ui1_));
-
-	ui2_ = std::make_shared<UI_Text>(graphic_->GetSize().ToVector2f(), UI::UI_ORIGIN_TYPE::CENTER_CENTER, font_, "AIUEO", 0x00FF00);
-	ui2_->Init();
-	ui2_->SetTransformData(
-		{ 20.0f, 5.0f },
-		0.0f,
-		{ 1.0f, 1.0f }
+	Weak_Graphic buttonGraphic = std::dynamic_pointer_cast<Graphic>(resourceManager.GetResourceFile("IMAGE_UI_BUTTON").lock());
+	uiButton_ = std::make_shared<UI_Button>(
+		Vector2<float>(800.0f,800.0f),
+		UI::UI_ORIGIN_TYPE::UP_LEFT, 
+		std::make_shared<UI_Image>(
+			buttonGraphic.lock()->GetSize().ToVector2f(), 
+			UI::UI_ORIGIN_TYPE::CENTER_CENTER,
+			buttonGraphic
+		),
+		std::make_shared<UI_Text>(
+			Vector2<float>{ 
+				static_cast<float>(GetDrawStringWidthToHandle("Button", 6, font_->GetHandle())),
+				static_cast<float>(font_->GetFontSize())
+			}, 
+			UI::UI_ORIGIN_TYPE::CENTER_CENTER,
+			font_, 
+			"Button", 
+			0xFFFFFF
+		)
 	);
-	uiTextRenderer_ = std::make_shared<UI_TextRenderer>(std::dynamic_pointer_cast<UI_Text>(ui2_));
-	
-	auto buttonGraphic = std::make_shared<Graphic>("Assets/Scenes/UISystemScene/UI/Button/UI_Button.png");
-	ui3_ = std::make_shared<UI_Button>(
-		buttonGraphic->GetSize().ToVector2f(),
-		UI::UI_ORIGIN_TYPE::CENTER_CENTER, 
-		std::make_shared<UI_Image>(buttonGraphic->GetSize().ToVector2f(), 
-			UI::UI_ORIGIN_TYPE::UP_LEFT, buttonGraphic),
-		std::make_shared<UI_Text>(buttonGraphic->GetSize().ToVector2f(), 
-			UI::UI_ORIGIN_TYPE::UP_LEFT,font_, "Button", 0xFFFFFF)
-	);
-	ui3_->Init();
-	ui3_->SetTransformData(
+	uiButton_->Init();
+	uiButton_->SetTransformData(
 		{ 0.0f, 0.0f },
 		0.0f,
 		{ 1.0f, 1.0f }
@@ -86,20 +86,20 @@ void UISystemScene::Init(void) {
 	//);
 	//ui4_->AddChild(ui5_);
 
-	uiButtonRenderer_ = std::make_shared<UI_ButtonRenderer>(std::dynamic_pointer_cast<UI_Button>(ui3_));
+	uiButtonRenderer_ = std::make_shared<UI_ButtonRenderer>(std::dynamic_pointer_cast<UI_Button>(uiButton_));
 }
 
 void UISystemScene::Update(void) {
-	ui1_->Update();
-	ui2_->Update();
+	//ui1_->Update();
+	//ui2_->Update();
 
-	ui3_->Update();
-	if(CheckHitKey(KEY_INPUT_W)) ui3_->GetTransform().localPos_.y--;
-	if(CheckHitKey(KEY_INPUT_A)) ui3_->GetTransform().localPos_.x--;
-	if(CheckHitKey(KEY_INPUT_S)) ui3_->GetTransform().localPos_.y++;
-	if(CheckHitKey(KEY_INPUT_D)) ui3_->GetTransform().localPos_.x++;
+	uiButton_->Update();
+	if(CheckHitKey(KEY_INPUT_W)) uiButton_->GetTransform().localPos_.y--;
+	if(CheckHitKey(KEY_INPUT_A)) uiButton_->GetTransform().localPos_.x--;
+	if(CheckHitKey(KEY_INPUT_S)) uiButton_->GetTransform().localPos_.y++;
+	if(CheckHitKey(KEY_INPUT_D)) uiButton_->GetTransform().localPos_.x++;
 	
-	auto child = std::dynamic_pointer_cast<GameObject2D>(ui3_->GetChilds()[0]->GetChilds()[0]);
+	auto child = std::dynamic_pointer_cast<GameObject2D>(uiButton_->GetChilds()[0]->GetChilds()[0]);
 	if(CheckHitKey(KEY_INPUT_UP)) child->GetTransform().localPos_.y--;
 	if(CheckHitKey(KEY_INPUT_LEFT)) child->GetTransform().localPos_.x--;
 	if(CheckHitKey(KEY_INPUT_DOWN)) child->GetTransform().localPos_.y++;
@@ -108,13 +108,9 @@ void UISystemScene::Update(void) {
 }
 
 void UISystemScene::Draw(void) {
-	uiTextRenderer_->Render();
 	uiButtonRenderer_->Render();
-	uiImageRenderer_->Render();
 }
 
 void UISystemScene::Release(void) {
-	ui1_->Release();
-	ui2_->Release();
-	ui3_->Release();
+	uiButton_->Release();
 }

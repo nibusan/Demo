@@ -1,4 +1,6 @@
+#include <DxLib.h>
 #include "UI_Text.h"
+#include "../../../../../../Common/Handle/Font/Font.h"
 
 UI_Text::UI_Text(void) :
 font_(nullptr),

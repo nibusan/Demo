@@ -1,7 +1,7 @@
 #include "AnimationSystemScene.h"
 
 AnimationSystemScene::AnimationSystemScene(void) {
-	type_ = Scene::TYPE::ANIMATION_SYSTEM;
+	//type_ = Scene::TYPE::ANIMATION_SYSTEM;
 }
 
 void AnimationSystemScene::Init(void) {

@@ -15,7 +15,7 @@ public:
 	UI_Image(
 		const Vector2<float>& canvasSize, 
 		UI::UI_ORIGIN_TYPE originType,
-		std::shared_ptr<Graphic> image
+		std::weak_ptr<Graphic> image
 	);
 
 	void Init_UI(void) override;
@@ -25,7 +25,7 @@ public:
 	std::weak_ptr<Graphic> GetImage(void);
 private:
 	// •`‰æ‚·‚é‰æ‘œ
-	std::shared_ptr<Graphic> image_;
+	std::weak_ptr<Graphic> image_;
 
 	/// @brief ‹­’²•\¦‚³‚ê‚Ä‚é‚ÌXVˆ— 
 	void HighlightUpdate(void) override;

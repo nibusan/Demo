@@ -23,8 +23,8 @@ bool Application::Init(void) {
 	}
 
 	InputManager::GetInstance().Init();
-	SceneManager::GetInstance().Init();
 	ResourceManager::GetInstance().Init();
+	SceneManager::GetInstance().Init();
 	
 	return true;
 }

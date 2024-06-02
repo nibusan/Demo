@@ -1,13 +1,13 @@
 #include "UI_Image.h"
 
-UI_Image::UI_Image(void) : image_(nullptr) {
+UI_Image::UI_Image(void) {
 	type_ = UI::UI_TYPE::BUTTON;
 }
 
 UI_Image::UI_Image(
 	const Vector2<float>& canvasSize, 
 	UI::UI_ORIGIN_TYPE originType,
-	std::shared_ptr<Graphic> image) : 
+	std::weak_ptr<Graphic> image) : 
 AbstractUI(canvasSize, originType), 
 image_(image) {
 	type_ = UI::UI_TYPE::BUTTON;

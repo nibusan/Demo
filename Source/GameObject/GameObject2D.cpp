@@ -5,15 +5,6 @@
 
 void GameObject2D::Init_GameObject(void) {
 	Init_GameObject2D();
-	transform_.parentPos_ = Vector2<float>();
-	transform_.parentRot_ = 0.0f;
-	transform_.parentScl_ = Vector2<float>();
-	transform_.localPos_ = Vector2<float>();
-	transform_.localRot_ = 0.0f;
-	transform_.localScl_ = Vector2<float>();
-	transform_.currentPos_ = Vector2<float>();
-	transform_.currentRot_ = 0.0f;
-	transform_.currentScl_ = Vector2<float>();
 }
 
 void GameObject2D::Update_GameObject(void) {

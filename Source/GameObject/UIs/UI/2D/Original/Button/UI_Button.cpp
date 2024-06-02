@@ -25,25 +25,37 @@ std::weak_ptr<UI_Text> UI_Button::GetUIText(void) {
 }
 
 void UI_Button::Init_UI(void) {
+	const auto& buttonCanvasSize = renderCanvas_->GetSize().ToVector2f();
 	uiImage_->SetTransformData(
-		{ 0.0f, 0.0f },
+		buttonCanvasSize / 2.0f,
 		0.0f,
 		{ 1.0f, 1.0f }
 	);
 
-	uiText_->SetTransformData(
-		{ 0.0f, 0.0f },
-		0.0f,
-		{ 1.0f, 1.0f }
-	);
-
-	// このボタンの子として画像UIをセットする
+	// このボタンの子として画像をセットする
 	AddChild(uiImage_);
+	
+	const auto& imageCanvasSize = uiImage_->GetRenderCanvas().lock()->GetSize().ToVector2f();
+	uiText_->SetTransformData(
+		imageCanvasSize / 2.0f,
+		//{ 0.0f, 0.0f },
+		0.0f,
+		{ 1.0f, 1.0f }
+	);
 
 	// 画像の子としてテキストをセットする
 	uiImage_->AddChild(uiText_);
 }
 
-void UI_Button::Update_UI(void) {}
+void UI_Button::Update_UI(void) {
+	//const auto& imageCanvasSize = uiImage_->GetRenderCanvas().lock()->GetSize().ToVector2f();
+	//const auto& textCanvasSize = uiText_->GetRenderCanvas().lock()->GetSize().ToVector2f();
+	//uiText_->SetTransformData(
+	//	imageCanvasSize / 2.0f - textCanvasSize / 2.0f,
+	//	//{ 256.0f, 64.0f },
+	//	0.0f,
+	//	{ 1.0f, 1.0f }
+	//);
+}
 
 void UI_Button::Release_UI(void) {}

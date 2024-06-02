@@ -1,7 +1,9 @@
 #include <DxLib.h>
 #include "UI_ButtonRenderer.h"
 #include "UI_Button.h"
+#include "../../Parts/Image/UI_Image.h"
 #include "../../Parts/Image/UI_ImageRenderer.h"
+#include "../../Parts/Text/UI_Text.h"
 #include "../../Parts/Text/UI_TextRenderer.h"
 #include "../../../../../../Common/Handle/Graphic/Graphic.h"
 
@@ -28,7 +30,29 @@ void UI_ButtonRenderer::Render(void) {
 
 	// それぞれのUIを描画する
 	imageRenderer_->Render();
+	
+	// 元の描画用スクリーンを退避する
+	const auto preRenderScreen2 = GetDrawScreen();
+
+	// UIの描画用キャンバスを取得
+	const auto& renderCanvas2 = uiButton_->GetUIImage().lock()->GetRenderCanvas();
+
+	// UIの基礎データを取得
+	const auto& transform2 = uiButton_->GetUIImage().lock()->GetTransform();
+
+	// 親オブジェクトを取得
+	const auto& parent2 = uiButton_->GetUIImage().lock()->GetParent();
+
+	SetDrawScreen(renderCanvas2.lock()->GetHandle());
+	ClearDrawScreen();
+	
 	textRenderer_->Render();
+
+	SetDrawScreen(preRenderScreen2);
+
+	auto offset2 = uiButton_->GetUIText().lock()->GetCanvasRenderOffset();
+
+	renderCanvas2.lock()->Draw(parent2.lock() == nullptr ? transform2.currentPos_ + offset2: transform2.localPos_ + offset2, true, nullptr);
 
 	// デバッグ用
 	DebugRender();
@@ -51,7 +75,7 @@ void UI_ButtonRenderer::DebugRender(void) {
 		0,
 		static_cast<int>(canvasSize.x),
 		static_cast<int>(canvasSize.y),
-		0xFF0000,
+		0xFFFF00,
 		false
 	);
 	DrawLine(
@@ -59,13 +83,13 @@ void UI_ButtonRenderer::DebugRender(void) {
 		0,
 		static_cast<int>(canvasSize.x),
 		static_cast<int>(canvasSize.y),
-		0xFF0000
+		0xFFFF00
 	);
 	DrawLine(
 		0,
 		static_cast<int>(canvasSize.y),
 		static_cast<int>(canvasSize.x),
 		0,
-		0xFF0000
+		0xFFFF00
 	);
 }

@@ -4,6 +4,7 @@
 #include "../Scenes/AbstractScene.h"
 #include "../Scenes/InventorySystemScene/InventorySystemScene.h"
 #include "../Scenes/UISystemScene/UISystemScene.h"
+#include "ResourceManager.h"
 
 void SceneManager::ChangeScene(Scene::TYPE type) {
 	if (currentScene_ != nullptr) {
@@ -28,13 +29,21 @@ void SceneManager::ChangeScene(Scene::TYPE type) {
 	default:
 		break;
 	}
+
+	// 次のシーンで使うリソースファイルを読み込む
+	ResourceManager::GetInstance().LoadSceneResourceFile(type);
+
+	// シーンの初期化
 	currentScene_->Init();
+}
+
+Scene::TYPE SceneManager::GetCurrentSceneType(void) {
+	return currentScene_->GetType();
 }
 
 void SceneManager::Init(void) {
 	// 最初のシーンを設定
-	currentScene_ = std::make_unique<UISystemScene>();
-	currentScene_->Init();
+	ChangeScene(Scene::TYPE::UI_SYSTEM);
 }
 
 void SceneManager::Update(void) {

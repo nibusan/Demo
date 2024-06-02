@@ -4,31 +4,40 @@
         "Image": [
             {
                 "Key": "IMAGE_UI_BUTTON",
-                "FilePath": "Scene/UISystemScene/UI/UI_Button/",
+                "FilePath": "Scenes/UISystemScene/UI/Button/",
                 "FileName": "UI_Button",
                 "Extension": ".png"
             },
             {
                 "Key": "IMAGE_UI_IMAGE_TEST",
-                "FilePath": "Scene/UISystemScene/UI/UI_Image/",
+                "FilePath": "Scenes/UISystemScene/UI/Button/",
                 "FileName": "UI_Image_Test",
                 "Extension": ".png"
             },
             {
                 "Key": "IMAGE_UI_ITEMS",
-                "FilePath": "Scene/InventorySystemScene/UI/Item/",
+                "FilePath": "Scenes/InventorySystemScene/UI/Item/",
                 "FileName": "Items",
                 "Extension": ".png"
             }
         ],
-        "Sound": null,
+        "Sound2D": null,
+        "Sound3D": null,
         "Model": null,
+        "Font": [
+            {
+                "Key": "FONT_REVAMPED",
+                "FilePath": "Scenes/UISystemScene/Font/",
+                "FileName": "Revamped",
+                "Extension": ".ttf"
+            }
+        ],
         "PixelShader": null,
         "VertexShader": null
     },
+    "GlobalUsingResourceListPath": "Scenes/UsingResourceList.json",
     "UsingResourceListPath": [
-        "ResourceList/Global/",
-        "ResourceList/UISystemScene/",
-        "ResourceList/InventorySystemScene/"
+        "Scenes/InventorySystemScene/UsingResourceList.json",
+        "Scenes/UISystemScene/UsingResourceList.json"
     ]
 }

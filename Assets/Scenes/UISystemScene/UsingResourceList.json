@@ -1,0 +1,15 @@
+{
+    "ResourceList": {
+        "Image": [
+            "IMAGE_UI_BUTTON"
+        ],
+        "Sound2D": null,
+        "Sound3D": null,
+        "Model": null,
+        "Font": [
+            "FONT_REVAMPED"
+        ],
+        "PixelShader": null,
+        "VertexShader": null
+    }
+}

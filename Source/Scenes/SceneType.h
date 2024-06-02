@@ -1,12 +1,11 @@
 #pragma once
 
-namespace Scene {
-	// シーンの種類
+namespace Scene {	
+	/// @brief シーンの種類
 	enum class TYPE {
-		NONE,
+		NONE = -1,
 		INVENTORY_SYSTEM,
 		UI_SYSTEM,
-		ANIMATION_SYSTEM,
-		CAMERA_SYSTEM
+		MAX					// 要素数カウント用
 	};
 }

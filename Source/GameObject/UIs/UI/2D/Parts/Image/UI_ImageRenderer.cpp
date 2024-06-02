@@ -22,7 +22,7 @@ void UI_ImageRenderer::Render(void) {
 	SetDrawScreen(renderCanvas.lock()->GetHandle());
 	ClearDrawScreen();
 
-	uiImage_->GetImage().lock()->Draw(parent.lock() == nullptr ? Vector2<float>(0.0f, 0.0f) : transform.localPos_, false, nullptr);
+	uiImage_->GetImage().lock()->Draw(Vector2<float>(0.0f, 0.0f), false, nullptr);
 	
 	// デバッグ用
 	DebugRender();

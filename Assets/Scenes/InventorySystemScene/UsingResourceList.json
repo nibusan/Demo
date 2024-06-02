@@ -3,8 +3,10 @@
         "Image": [
             "IMAGE_UI_ITEMS"
         ],
-        "Sound": null,
+        "Sound2D": null,
+        "Sound3D": null,
         "Model": null,
+        "Font": null,
         "PixelShader": null,
         "VertexShader": null
     }
