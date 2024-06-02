@@ -7,8 +7,9 @@ UI_Image::UI_Image(void) {
 UI_Image::UI_Image(
 	const Vector2<float>& canvasSize, 
 	UI::UI_ORIGIN_TYPE originType,
+	bool isChildUIClipped,
 	std::weak_ptr<Graphic> image) : 
-AbstractUI(canvasSize, originType), 
+AbstractUI(canvasSize, originType, isChildUIClipped), 
 image_(image) {
 	type_ = UI::UI_TYPE::BUTTON;
 }

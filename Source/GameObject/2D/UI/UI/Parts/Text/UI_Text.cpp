@@ -12,10 +12,11 @@ textColor_(0x000000) {
 UI_Text::UI_Text(
 	const Vector2<float>& canvasSize, 
 	UI::UI_ORIGIN_TYPE originType, 
+	bool isChildUIClipped,
 	std::shared_ptr<Font> font, 
 	const std::string& text, 
 	unsigned int color) :
-AbstractUI(canvasSize, originType),
+AbstractUI(canvasSize, originType, isChildUIClipped),
 font_(font),
 text_(text),
 textColor_(color) {

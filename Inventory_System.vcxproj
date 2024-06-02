@@ -147,7 +147,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\GameObject\GameObject2DRenderer.cpp" />
     <ClCompile Include="Source\Managers\ResourceManager.cpp" />
     <ClCompile Include="Source\Managers\JsonReader.cpp" />
     <ClCompile Include="Source\GameObject\2D\UI\UILayer\AbstractUILayer.cpp" />
@@ -182,7 +181,6 @@
     <ClCompile Include="Source\GameObject\2D\UI\UI\Original\Button\UI_ButtonRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\GameObject\GameObject2DRenderer.h" />
     <ClInclude Include="Source\GameObject\2D\Transform2D.h" />
     <ClInclude Include="Source\Managers\Resource.h" />
     <ClInclude Include="Source\Managers\ResourceManager.h" />
@@ -193,7 +191,7 @@
     <ClInclude Include="Source\GameObject\2D\UI\Canvas\Canvas.h" />
     <ClInclude Include="Source\GameObject\2D\UI\UI\AbstractUI.h" />
     <ClInclude Include="Source\Managers\InputManager.h" />
-    <ClInclude Include="Source\Renderer\IRenderer.h" />
+    <ClInclude Include="Source\Renderer\AbstractRenderer.h" />
     <ClInclude Include="Source\Scenes\InventorySystemScene\Item\ItemRenderer.h" />
     <ClInclude Include="Source\Scenes\AnimationSystemScene\AnimationSystemScene.h" />
     <ClInclude Include="Source\Scenes\AnimationSystemScene\Animation\Animation.h" />

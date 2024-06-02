@@ -5,6 +5,8 @@ InventoryRenderer::InventoryRenderer(std::shared_ptr<Inventory<Item>> inventory)
 
 }
 
+void InventoryRenderer::Begin(void) {}
+
 void InventoryRenderer::Render(void) {
 	for (int i = 0; i < inventory_->MAX_ITEM_SLOT_COUNT; i++) {
 		DrawBox(
@@ -17,5 +19,7 @@ void InventoryRenderer::Render(void) {
 		);
 	}
 }
+
+void InventoryRenderer::End(void) {}
 
 void InventoryRenderer::DebugRender(void) {}

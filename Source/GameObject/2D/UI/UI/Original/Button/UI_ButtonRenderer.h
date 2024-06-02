@@ -1,11 +1,11 @@
 #pragma once
 #include <memory>
-#include "../../../../../../Renderer/IRenderer.h"
+#include "../../../../../../Renderer/AbstractRenderer.h"
 #include "../../Parts/Image/UI_ImageRenderer.h"
 #include "../../Parts/Text/UI_TextRenderer.h"
 
 class UI_Button;
-class UI_ButtonRenderer : public IRenderer {
+class UI_ButtonRenderer : public AbstractRenderer {
 public:
 	UI_ButtonRenderer(void) = default;
 	~UI_ButtonRenderer(void) = default;
@@ -14,8 +14,14 @@ public:
 	/// @param uiButton •`‰æ‚·‚éƒ{ƒ^ƒ“‚ÌUI
 	UI_ButtonRenderer(const std::shared_ptr<UI_Button> uiButton);
 
-	/// @brief •`‰æˆ—
-	void Render(void) override;
+	/// @brief •`‰æŠJnˆ—
+	virtual void Begin(void) override;
+
+	/// @brief •`‰æˆ— 
+	virtual void Render(void) override;
+
+	/// @brief •`‰æI—¹ˆ— 
+	virtual void End(void) override;
 
 	/// @brief •`‰æˆ—(ƒfƒoƒbƒO—p) 
 	virtual void DebugRender(void) override;

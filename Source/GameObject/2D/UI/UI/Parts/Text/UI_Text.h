@@ -13,6 +13,7 @@ public:
 	UI_Text(
 		const Vector2<float>& canvasSize, 
 		UI::UI_ORIGIN_TYPE originType, 
+		bool isChildUIClipped, 
 		std::shared_ptr<Font> font, 
 		const std::string& text, 
 		unsigned int color

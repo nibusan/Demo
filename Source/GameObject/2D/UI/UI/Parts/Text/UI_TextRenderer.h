@@ -1,9 +1,9 @@
 #pragma once
 #include <memory>
-#include "../../../../../../Renderer/IRenderer.h"
+#include "../../../../../../Renderer/AbstractRenderer.h"
 
 class UI_Text;
-class UI_TextRenderer : public IRenderer {
+class UI_TextRenderer : public AbstractRenderer {
 public:
 	UI_TextRenderer(void) = default;
 	~UI_TextRenderer(void) = default;
@@ -12,8 +12,14 @@ public:
 	/// @param uiText •`‰æ‚·‚éText‚ÌUI
 	UI_TextRenderer(std::shared_ptr<UI_Text> uiText);
 
-	/// @brief •`‰æˆ—
-	void Render(void) override;
+	/// @brief •`‰æŠJnˆ—
+	virtual void Begin(void) override;
+
+	/// @brief •`‰æˆ— 
+	virtual void Render(void) override;
+
+	/// @brief •`‰æI—¹ˆ— 
+	virtual void End(void) override;
 
 	/// @brief •`‰æˆ—(ƒfƒoƒbƒO—p) 
 	virtual void DebugRender(void) override;

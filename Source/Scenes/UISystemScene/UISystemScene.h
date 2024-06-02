@@ -5,9 +5,7 @@
 /// @brief [Unknown Level & Detonation] UI‚Ìˆ—(‰ü—Ç”Å)
 class GameObject;
 class AbstractUI;
-class UI_ImageRenderer;
-class UI_TextRenderer;
-class UI_ButtonRenderer;
+class AbstractRenderer;
 class Graphic;
 class Font;
 class UISystemScene : public AbstractScene {
@@ -24,9 +22,17 @@ private:
 	std::shared_ptr<AbstractUI> uiButton_;
 	std::shared_ptr<AbstractUI> uiButton2_;
 	std::shared_ptr<AbstractUI> uiButton3_;
-	std::shared_ptr<UI_ButtonRenderer> uiButtonRenderer_;
-	std::shared_ptr<UI_ButtonRenderer> uiButtonRenderer2_;
-	std::shared_ptr<UI_ButtonRenderer> uiButtonRenderer3_;
+	std::shared_ptr<AbstractRenderer> uiButtonRenderer_;
+	std::shared_ptr<AbstractRenderer> uiButtonRenderer2_;
+	std::shared_ptr<AbstractRenderer> uiButtonRenderer3_;
+	std::shared_ptr<AbstractUI> uiImage_;
+	std::shared_ptr<AbstractUI> uiImage2_;
+	std::shared_ptr<AbstractUI> uiText_;
+	std::shared_ptr<AbstractUI> uiText2_;
+	std::shared_ptr<AbstractRenderer> uiImageRenderer_;
+	std::shared_ptr<AbstractRenderer> uiImageRenderer2_;
+	std::shared_ptr<AbstractRenderer> uiTextRenderer_;
+	std::shared_ptr<AbstractRenderer> uiTextRenderer2_;
 	std::weak_ptr<Graphic> graphic_;
 	std::shared_ptr<Font> font_;
 };

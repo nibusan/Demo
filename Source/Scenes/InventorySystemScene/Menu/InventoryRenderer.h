@@ -1,14 +1,14 @@
 #pragma once
 #include <memory>
 #include <DxLib.h>
-#include "../../../Renderer/IRenderer.h"
+#include "../../../Renderer/AbstractRenderer.h"
 
 /// @brief インベントリを描画するためのクラス
 /// @brief 今回はItemクラスを使用する前提で設計してます
 template <typename T>
 class Inventory;
 class Item;
-class InventoryRenderer : public IRenderer {
+class InventoryRenderer : public AbstractRenderer {
 public:
 	InventoryRenderer(void) = default;
 	~InventoryRenderer(void) override = default;
@@ -17,8 +17,14 @@ public:
 	/// @param inventory 描画するインベントリ
 	InventoryRenderer(std::shared_ptr<Inventory<Item>> inventory);
 
-	/// @brief 描画処理  
-	void Render(void) override;
+	/// @brief 描画開始処理
+	virtual void Begin(void) override;
+
+	/// @brief 描画処理 
+	virtual void Render(void) override;
+
+	/// @brief 描画終了処理 
+	virtual void End(void) override;
 
 	/// @brief 描画処理(デバッグ用) 
 	virtual void DebugRender(void) override;

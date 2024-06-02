@@ -7,15 +7,17 @@ isClickable_(false),
 onClickCallBack_(nullptr),
 renderCanvas_(nullptr),
 type_(UI::UI_TYPE::NONE),
-originType_(UI::UI_ORIGIN_TYPE::CENTER_CENTER) {}
+originType_(UI::UI_ORIGIN_TYPE::CENTER_CENTER),
+isChildUIClipped_(false){}
 
-AbstractUI::AbstractUI(const Vector2<float>& canvasSize, UI::UI_ORIGIN_TYPE originType) : 
+AbstractUI::AbstractUI(const Vector2<float>& canvasSize, UI::UI_ORIGIN_TYPE originType, bool isChildUIClipped) : 
 isHighlighted_(false),
 isClickable_(false),
 onClickCallBack_(nullptr),
 renderCanvas_(std::make_unique<Graphic>(MakeScreen(static_cast<int>(canvasSize.x), static_cast<int>(canvasSize.y), true))),
 type_(UI::UI_TYPE::NONE),
-originType_(originType) {}
+originType_(originType),
+isChildUIClipped_(isChildUIClipped){}
 
 void AbstractUI::Init_GameObject2D(void) {
 	Init_UI();
@@ -127,6 +129,10 @@ Vector2<float> AbstractUI::GetCanvasRenderOffset(void) const {
 		break;
 	}
 	return ret;
+}
+
+bool AbstractUI::IsChildUIClipped(void) const {
+	return isChildUIClipped_;
 }
 
 std::weak_ptr<Graphic> AbstractUI::GetRenderCanvas(void) {

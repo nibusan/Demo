@@ -27,13 +27,33 @@ void UISystemScene::Init(void) {
 		aFont.lock()->GetFontName(),
 		32
 	);
+
+	uiImage_ = std::make_shared<UI_Image>(
+		graphic_.lock()->GetSize().ToVector2f(),
+		UI::UI_ORIGIN_TYPE::CENTER_CENTER,
+		false,
+		graphic_
+	);
+
+	uiImage2_ = std::make_shared<UI_Image>(
+		graphic_.lock()->GetSize().ToVector2f(),
+		UI::UI_ORIGIN_TYPE::CENTER_CENTER,
+		false,
+		graphic_
+	);
+
+	uiImage_->AddChild(uiImage2_);
+
+
 	Weak_Graphic buttonGraphic = std::dynamic_pointer_cast<Graphic>(resourceManager.GetResourceFile("IMAGE_UI_BUTTON").lock());
 	uiButton_ = std::make_shared<UI_Button>(
 		Vector2<float>(800.0f,800.0f),
 		UI::UI_ORIGIN_TYPE::UP_LEFT, 
+		true,
 		std::make_shared<UI_Image>(
 			buttonGraphic.lock()->GetSize().ToVector2f(), 
 			UI::UI_ORIGIN_TYPE::CENTER_CENTER,
+			true,
 			buttonGraphic
 		),
 		std::make_shared<UI_Text>(
@@ -42,6 +62,7 @@ void UISystemScene::Init(void) {
 				static_cast<float>(font_->GetFontSize())
 			}, 
 			UI::UI_ORIGIN_TYPE::CENTER_CENTER,
+			true,
 			font_, 
 			"Button", 
 			0xFFFFFF
@@ -57,17 +78,20 @@ void UISystemScene::Init(void) {
 	uiButton2_ = std::make_shared<UI_Button>(
 		Vector2<float>(800.0f,800.0f),
 		UI::UI_ORIGIN_TYPE::UP_LEFT, 
+		true,
 		std::make_shared<UI_Image>(
 			buttonGraphic.lock()->GetSize().ToVector2f(), 
 			UI::UI_ORIGIN_TYPE::CENTER_CENTER,
+			true,
 			buttonGraphic
 		),
 		std::make_shared<UI_Text>(
 			Vector2<float>{ 
-		static_cast<float>(GetDrawStringWidthToHandle("Button", 6, font_->GetHandle())),
+		static_cast<float>(GetDrawStringWidthToHandle("Button2", 7, font_->GetHandle())),
 			static_cast<float>(font_->GetFontSize())
 	}, 
 			UI::UI_ORIGIN_TYPE::CENTER_CENTER,
+			true,
 			font_, 
 			"Button2", 
 			0xFFFFFF
@@ -75,7 +99,7 @@ void UISystemScene::Init(void) {
 	);
 	uiButton2_->Init();
 	uiButton2_->SetTransformData(
-		{ 200.0f, 200.0f },
+		{ 0.0f, 0.0f },
 		0.0f,
 		{ 1.0f, 1.0f }
 	);
@@ -84,17 +108,20 @@ void UISystemScene::Init(void) {
 	uiButton3_ = std::make_shared<UI_Button>(
 		Vector2<float>(800.0f,800.0f),
 		UI::UI_ORIGIN_TYPE::UP_LEFT, 
+		true,
 		std::make_shared<UI_Image>(
 			buttonGraphic.lock()->GetSize().ToVector2f(), 
 			UI::UI_ORIGIN_TYPE::CENTER_CENTER,
+			true,
 			buttonGraphic
 		),
 		std::make_shared<UI_Text>(
 			Vector2<float>{ 
-		static_cast<float>(GetDrawStringWidthToHandle("Button", 6, font_->GetHandle())),
+		static_cast<float>(GetDrawStringWidthToHandle("Button3", 7, font_->GetHandle())),
 			static_cast<float>(font_->GetFontSize())
 	}, 
 			UI::UI_ORIGIN_TYPE::CENTER_CENTER,
+			true,
 			font_, 
 			"Button3", 
 			0xFFFFFF
@@ -102,7 +129,7 @@ void UISystemScene::Init(void) {
 	);
 	uiButton3_->Init();
 	uiButton3_->SetTransformData(
-		{ 200.0f, 200.0f },
+		{ 0.0f, 0.0f },
 		0.0f,
 		{ 1.0f, 1.0f }
 	);
@@ -164,9 +191,17 @@ void UISystemScene::Update(void) {
 }
 
 void UISystemScene::Draw(void) {
+	uiButtonRenderer_->Begin();
 	uiButtonRenderer_->Render();
+
+	uiButtonRenderer2_->Begin();
 	uiButtonRenderer2_->Render();
+	
+	uiButtonRenderer3_->Begin();
 	uiButtonRenderer3_->Render();
+	uiButtonRenderer3_->End();
+	uiButtonRenderer2_->End();
+	uiButtonRenderer_->End();
 }
 
 void UISystemScene::Release(void) {

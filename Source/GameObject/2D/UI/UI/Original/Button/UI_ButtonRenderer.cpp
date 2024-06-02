@@ -12,12 +12,34 @@ UI_ButtonRenderer::UI_ButtonRenderer(const std::shared_ptr<UI_Button> uiButton) 
 	textRenderer_ = std::make_unique<UI_TextRenderer>(uiButton_->GetUIText().lock());
 }
 
-void UI_ButtonRenderer::Render(void) {
+void UI_ButtonRenderer::Begin(void) {
+	if (!uiButton_->IsChildUIClipped()) return;
+
 	// 元の描画用スクリーンを退避する
-	const auto preRenderScreen = GetDrawScreen();
+	defaultScreenHadle_ = GetDrawScreen();
 
 	// UIの描画用キャンバスを取得
 	const auto& renderCanvas = uiButton_->GetRenderCanvas();
+
+	SetDrawScreen(renderCanvas.lock()->GetHandle());
+	ClearDrawScreen();
+}
+
+void UI_ButtonRenderer::Render(void) {
+	// それぞれのUIを描画する
+	imageRenderer_->Begin();
+	imageRenderer_->Render();
+	textRenderer_->Begin();
+	textRenderer_->Render();
+	textRenderer_->End();
+	imageRenderer_->End();
+	
+	// デバッグ用
+	DebugRender();
+}
+
+void UI_ButtonRenderer::End(void) {
+	if (!uiButton_->IsChildUIClipped()) return;
 
 	// UIの基礎データを取得
 	const auto& transform = uiButton_->GetTransform();
@@ -25,43 +47,14 @@ void UI_ButtonRenderer::Render(void) {
 	// 親オブジェクトを取得
 	const auto& parent = uiButton_->GetParent();
 
-	SetDrawScreen(renderCanvas.lock()->GetHandle());
-	ClearDrawScreen();
-
-	// それぞれのUIを描画する
-	imageRenderer_->Render();
-	
-	// 元の描画用スクリーンを退避する
-	const auto preRenderScreen2 = GetDrawScreen();
-
 	// UIの描画用キャンバスを取得
-	const auto& renderCanvas2 = uiButton_->GetUIImage().lock()->GetRenderCanvas();
+	const auto& renderCanvas = uiButton_->GetRenderCanvas();
 
-	// UIの基礎データを取得
-	const auto& transform2 = uiButton_->GetUIImage().lock()->GetTransform();
-
-	// 親オブジェクトを取得
-	const auto& parent2 = uiButton_->GetUIImage().lock()->GetParent();
-
-	SetDrawScreen(renderCanvas2.lock()->GetHandle());
-	ClearDrawScreen();
-	
-	textRenderer_->Render();
-
-	SetDrawScreen(preRenderScreen2);
-
-	auto offset2 = uiButton_->GetUIText().lock()->GetCanvasRenderOffset();
-
-	renderCanvas2.lock()->Draw(parent2.lock() == nullptr ? transform2.currentPos_ + offset2: transform2.localPos_ + offset2, true, nullptr);
-
-	// デバッグ用
-	DebugRender();
-
-	SetDrawScreen(preRenderScreen);
+	SetDrawScreen(defaultScreenHadle_);
 
 	auto offset = uiButton_->GetCanvasRenderOffset();
 
-	renderCanvas.lock()->Draw(parent.lock() == nullptr ? transform.currentPos_ + offset: transform.localPos_ + offset, true, nullptr);
+	renderCanvas.lock()->Draw(uiButton_->GetUIImage().lock()->IsChildUIClipped() ? transform.currentPos_ + offset : transform.currentPos_ + offset, true, nullptr);
 }
 
 void UI_ButtonRenderer::DebugRender(void) {

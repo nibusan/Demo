@@ -7,9 +7,29 @@
 
 UI_TextRenderer::UI_TextRenderer(std::shared_ptr<UI_Text> uiText) : uiText_(uiText) {}
 
-void UI_TextRenderer::Render(void) {
+void UI_TextRenderer::Begin(void) {
+	if (!uiText_->IsChildUIClipped()) return;
+
 	// 元の描画用スクリーンを退避する
-	const auto preRenderScreen = GetDrawScreen();
+	defaultScreenHadle_ = GetDrawScreen();
+
+	// UIの描画用キャンバスを取得
+	const auto& renderCanvas = uiText_->GetRenderCanvas();
+
+	// 描画スクリーンをUI描画用キャンバスに切り替える
+	SetDrawScreen(renderCanvas.lock()->GetHandle());
+	ClearDrawScreen();
+}
+
+void UI_TextRenderer::Render(void) {
+	uiText_->GetFont().lock()->Draw(Vector2<float>(0.0f, 0.0f), uiText_->GetText(), uiText_->GetTextColor());
+
+	// デバッグ用
+	DebugRender();
+}
+
+void UI_TextRenderer::End(void) {
+	if (!uiText_->IsChildUIClipped()) return;
 
 	// UIの描画用キャンバスを取得
 	const auto& renderCanvas = uiText_->GetRenderCanvas();
@@ -20,21 +40,12 @@ void UI_TextRenderer::Render(void) {
 	// 親オブジェクトを取得
 	const auto& parent = uiText_->GetParent();
 
-	// 描画スクリーンをUI描画用キャンバスに切り替える
-	SetDrawScreen(renderCanvas.lock()->GetHandle());
-	ClearDrawScreen();
-
-	uiText_->GetFont().lock()->Draw(Vector2<float>(0.0f, 0.0f), uiText_->GetText(), uiText_->GetTextColor());
-
-	// デバッグ用
-	DebugRender();
-
-	SetDrawScreen(preRenderScreen);
+	SetDrawScreen(defaultScreenHadle_);
 
 	auto offset = uiText_->GetCanvasRenderOffset();
 
 	// 
-	renderCanvas.lock()->Draw(parent.lock() == nullptr ? transform.currentPos_ + offset : transform.localPos_ + offset, 1.0f,transform.currentRot_, nullptr);
+	renderCanvas.lock()->Draw(uiText_->IsChildUIClipped() ? transform.localPos_ + offset : transform.localPos_ + offset, 1.0f, transform.currentRot_, nullptr);
 }
 
 void UI_TextRenderer::DebugRender(void) {

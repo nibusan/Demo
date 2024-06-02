@@ -17,6 +17,7 @@ public:
 	UI_Button(
 		const Vector2<float> canvasSize, 
 		UI::UI_ORIGIN_TYPE originType, 
+		bool isChildUIClipped, 
 		const std::shared_ptr<UI_Image>& uiImage, 
 		const std::shared_ptr<UI_Text>& uiText
 	);

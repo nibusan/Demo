@@ -1,11 +1,11 @@
 #pragma once
 #include <memory>
-#include "../../../Renderer/IRenderer.h"
+#include "../../../Renderer/AbstractRenderer.h"
 
 /// @brief アイテムを描画するためのクラス
 class Item;
 class Graphic;
-class ItemRenderer : public IRenderer {
+class ItemRenderer : public AbstractRenderer {
 public:
 	ItemRenderer(void) = default;
 	~ItemRenderer(void) override = default;
@@ -14,8 +14,14 @@ public:
 	/// @param inventory 描画するインベントリ
 	ItemRenderer(std::shared_ptr<Item> item);
 
-	/// @brief アイテムの描画処理
-	void Render(void) override;
+	/// @brief 描画開始処理
+	virtual void Begin(void) override;
+
+	/// @brief 描画処理 
+	virtual void Render(void) override;
+
+	/// @brief 描画終了処理 
+	virtual void End(void) override;
 
 	/// @brief 描画処理(デバッグ用) 
 	virtual void DebugRender(void) override;
