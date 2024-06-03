@@ -3,11 +3,11 @@
 #include "UI_Image.h"
 #include "../../../../../../Common/Handle/Graphic/Graphic.h"
 
-UI_ImageRenderer::UI_ImageRenderer(std::shared_ptr<UI_Image> uiImage) : uiImage_(uiImage) {}
+UI_ImageRenderer::UI_ImageRenderer(bool useLocalPos, std::shared_ptr<UI_Image> uiImage) : 
+AbstractRenderer(useLocalPos),
+uiImage_(uiImage) {}
 
 void UI_ImageRenderer::Begin(void) {
-	if (!uiImage_->IsChildUIClipped()) return;
-
 	// 元の描画用スクリーンを退避する
 	defaultScreenHadle_ = GetDrawScreen();
 
@@ -27,8 +27,6 @@ void UI_ImageRenderer::Render(void) {
 }
 
 void UI_ImageRenderer::End(void) {
-	if (!uiImage_->IsChildUIClipped()) return;
-
 	// UIの基礎データを取得
 	const auto& transform = uiImage_->GetTransform();
 
@@ -42,8 +40,33 @@ void UI_ImageRenderer::End(void) {
 
 	auto offset = uiImage_->GetCanvasRenderOffset();
 
-	// 
-	renderCanvas.lock()->Draw(uiImage_->IsChildUIClipped() ? transform.localPos_ + offset : transform.currentPos_ + offset, 1.0f, transform.currentRot_, nullptr);
+	if (parent.lock() != nullptr) {
+		if (useLocalPos_) {
+			renderCanvas.lock()->Draw(
+				transform.localPos_ + offset,
+				1.0f,
+				transform.currentRot_,
+				nullptr
+			);
+		}
+		else {
+			renderCanvas.lock()->Draw(
+				transform.currentPos_ + offset,
+				1.0f,
+				transform.currentRot_,
+				nullptr
+			);
+		}
+	}
+	else {
+		renderCanvas.lock()->Draw(
+			transform.currentPos_ + offset,
+			1.0f,
+			transform.currentRot_,
+			nullptr
+		);
+	}
+
 }
 
 void UI_ImageRenderer::DebugRender(void) {

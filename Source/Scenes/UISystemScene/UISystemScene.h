@@ -35,5 +35,7 @@ private:
 	std::shared_ptr<AbstractRenderer> uiTextRenderer2_;
 	std::weak_ptr<Graphic> graphic_;
 	std::shared_ptr<Font> font_;
+	std::shared_ptr<AbstractUI> uiSystemMenu_;
+	std::shared_ptr<AbstractRenderer> uiSystemMenuRenderer_;
 };
 

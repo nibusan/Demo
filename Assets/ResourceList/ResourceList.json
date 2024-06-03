@@ -15,6 +15,12 @@
                 "Extension": ".png"
             },
             {
+                "Key": "IMAGE_UI_UISYSTEMMENU",
+                "FilePath": "Scenes/UISystemScene/UI/UISystemMenu/",
+                "FileName": "UISystemMenu",
+                "Extension": ".png"
+            },
+            {
                 "Key": "IMAGE_UI_ITEMS",
                 "FilePath": "Scenes/InventorySystemScene/UI/Item/",
                 "FileName": "Items",

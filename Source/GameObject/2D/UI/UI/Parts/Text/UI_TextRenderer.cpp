@@ -5,11 +5,11 @@
 #include "../../../../../../Common/Handle/Graphic/Graphic.h"
 #include "../../../../../../Common/Handle/Font/Font.h"
 
-UI_TextRenderer::UI_TextRenderer(std::shared_ptr<UI_Text> uiText) : uiText_(uiText) {}
+UI_TextRenderer::UI_TextRenderer(bool useLocalPos, std::shared_ptr<UI_Text> uiText) : 
+AbstractRenderer(useLocalPos),
+uiText_(uiText) {}
 
 void UI_TextRenderer::Begin(void) {
-	if (!uiText_->IsChildUIClipped()) return;
-
 	// 元の描画用スクリーンを退避する
 	defaultScreenHadle_ = GetDrawScreen();
 
@@ -29,8 +29,6 @@ void UI_TextRenderer::Render(void) {
 }
 
 void UI_TextRenderer::End(void) {
-	if (!uiText_->IsChildUIClipped()) return;
-
 	// UIの描画用キャンバスを取得
 	const auto& renderCanvas = uiText_->GetRenderCanvas();
 
@@ -44,8 +42,32 @@ void UI_TextRenderer::End(void) {
 
 	auto offset = uiText_->GetCanvasRenderOffset();
 
-	// 
-	renderCanvas.lock()->Draw(uiText_->IsChildUIClipped() ? transform.localPos_ + offset : transform.localPos_ + offset, 1.0f, transform.currentRot_, nullptr);
+	if (parent.lock() != nullptr) {
+		if (useLocalPos_) {
+			renderCanvas.lock()->Draw(
+				transform.localPos_ + offset,
+				1.0f,
+				transform.currentRot_,
+				nullptr
+			);
+		}
+		else {
+			renderCanvas.lock()->Draw(
+				transform.currentPos_ + offset,
+				1.0f,
+				transform.currentRot_,
+				nullptr
+			);
+		}
+	}
+	else {
+		renderCanvas.lock()->Draw(
+			transform.currentPos_ + offset,
+			1.0f,
+			transform.currentRot_,
+			nullptr
+		);
+	}
 }
 
 void UI_TextRenderer::DebugRender(void) {

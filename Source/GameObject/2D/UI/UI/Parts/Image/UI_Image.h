@@ -15,7 +15,6 @@ public:
 	UI_Image(
 		const Vector2<float>& canvasSize, 
 		UI::UI_ORIGIN_TYPE originType,
-		bool isChildUIClipped,
 		std::weak_ptr<Graphic> image
 	);
 

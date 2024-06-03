@@ -7,15 +7,14 @@
 #include "../../Parts/Text/UI_TextRenderer.h"
 #include "../../../../../../Common/Handle/Graphic/Graphic.h"
 
-UI_ButtonRenderer::UI_ButtonRenderer(const std::shared_ptr<UI_Button> uiButton) : uiButton_(uiButton) {
-	imageRenderer_ = std::make_unique<UI_ImageRenderer>(uiButton_->GetUIImage().lock());
-	textRenderer_ = std::make_unique<UI_TextRenderer>(uiButton_->GetUIText().lock());
+UI_ButtonRenderer::UI_ButtonRenderer(bool useLocalPos, const std::shared_ptr<UI_Button> uiButton) : 
+AbstractRenderer(useLocalPos),
+uiButton_(uiButton) {
+	imageRenderer_ = std::make_unique<UI_ImageRenderer>(true, uiButton_->GetUIImage().lock());
+	textRenderer_ = std::make_unique<UI_TextRenderer>(true, uiButton_->GetUIText().lock());
 }
 
 void UI_ButtonRenderer::Begin(void) {
-	if (uiButton_ == nullptr) return;
-	if (!uiButton_->IsChildUIClipped()) return;
-
 	// 元の描画用スクリーンを退避する
 	defaultScreenHadle_ = GetDrawScreen();
 
@@ -27,23 +26,19 @@ void UI_ButtonRenderer::Begin(void) {
 }
 
 void UI_ButtonRenderer::Render(void) {
-	if (uiButton_ == nullptr) return;
 	// それぞれのUIを描画する
 	imageRenderer_->Begin();
 	imageRenderer_->Render();
+	imageRenderer_->End();
 	textRenderer_->Begin();
 	textRenderer_->Render();
 	textRenderer_->End();
-	imageRenderer_->End();
 	
 	// デバッグ用
 	DebugRender();
 }
 
 void UI_ButtonRenderer::End(void) {
-	if (uiButton_ == nullptr) return;
-	if (!uiButton_->IsChildUIClipped()) return;
-
 	// UIの基礎データを取得
 	const auto& transform = uiButton_->GetTransform();
 
@@ -57,7 +52,39 @@ void UI_ButtonRenderer::End(void) {
 
 	auto offset = uiButton_->GetCanvasRenderOffset();
 
-	renderCanvas.lock()->Draw(uiButton_->GetUIImage().lock()->IsChildUIClipped() ? transform.currentPos_ + offset : transform.currentPos_ + offset, true, nullptr);
+	/*renderCanvas.lock()->Draw(
+		(uiButton_->GetParent().lock() == nullptr) && uiButton_->IsChildUIClipped() ? transform.localPos_ + offset : transform.currentPos_ + offset,
+		true, 
+		nullptr
+	);*/
+
+	if (parent.lock() != nullptr) {
+		if (useLocalPos_) {
+			renderCanvas.lock()->Draw(
+				transform.localPos_ + offset,
+				1.0f,
+				transform.currentRot_,
+				nullptr
+			);
+		}
+		else {
+			renderCanvas.lock()->Draw(
+				transform.currentPos_ + offset,
+				1.0f,
+				transform.currentRot_,
+				nullptr
+			);
+		}
+	}
+	else {
+		renderCanvas.lock()->Draw(
+			transform.currentPos_ + offset,
+			1.0f,
+			transform.currentRot_,
+			nullptr
+		);
+	}
+
 }
 
 void UI_ButtonRenderer::DebugRender(void) {

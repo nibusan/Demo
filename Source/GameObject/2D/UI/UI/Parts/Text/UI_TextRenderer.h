@@ -10,7 +10,7 @@ public:
 	
 	/// @brief コンストラクタ
 	/// @param uiText 描画するTextのUI
-	UI_TextRenderer(std::shared_ptr<UI_Text> uiText);
+	UI_TextRenderer(bool useLocalPos, std::shared_ptr<UI_Text> uiText);
 
 	/// @brief 描画開始処理
 	virtual void Begin(void) override;

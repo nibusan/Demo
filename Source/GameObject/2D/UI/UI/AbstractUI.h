@@ -16,8 +16,7 @@ public:
 	/// @brief コンストラクタ
 	/// @param canvasSize UIのキャンバスのサイズ
 	/// @param originType どこを原点にするか
-	/// @param originType 子UIを描画するとき自身のキャンバスからはみ出ないようにクリッピングするか
-	AbstractUI(const Vector2<float>& canvasSize, UI::UI_ORIGIN_TYPE originType, bool isChildUIClipped);
+	AbstractUI(const Vector2<float>& canvasSize, UI::UI_ORIGIN_TYPE originType);
 
 	/// @brief 強調表示するかをセット
 	/// @param flag 強調表示するかのフラグ
@@ -50,10 +49,6 @@ public:
 	/// @brief UIを描画し終わったキャンバスをスクリーンのどこに描画するかを調整するオフセットを返す
 	/// @return オフセット
 	[[nodiscard]] Vector2<float> GetCanvasRenderOffset(void) const;
-
-	/// @brief 子UIを描画するとき自身のキャンバスからはみ出ないようにクリッピングするかを返す 
-	/// @return クリッピングするか
-	[[nodiscard]] bool IsChildUIClipped(void) const;
 protected:
 	// 強調表示されてるか
 	bool isHighlighted_;
@@ -72,9 +67,6 @@ protected:
 
 	// このUIのどこを原点にするか
 	UI::UI_ORIGIN_TYPE originType_;
-
-	// 子UIを描画するとき自身のキャンバスからはみ出ないようにクリッピングするか
-	bool isChildUIClipped_;
 
 	// 外部から隠蔽するためにpublicにしない
 	void Init_GameObject2D(void) override;

@@ -1,7 +1,8 @@
 {
     "ResourceList": {
         "Image": [
-            "IMAGE_UI_BUTTON"
+            "IMAGE_UI_BUTTON",
+            "IMAGE_UI_UISYSTEMMENU"
         ],
         "Sound2D": null,
         "Sound3D": null,
