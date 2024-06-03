@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Managers\RenderManager.cpp" />
     <ClCompile Include="Source\Managers\ResourceManager.cpp" />
     <ClCompile Include="Source\Managers\JsonReader.cpp" />
     <ClCompile Include="Source\GameObject\2D\UI\UILayer\AbstractUILayer.cpp" />
@@ -154,9 +155,7 @@
     <ClCompile Include="Source\GameObject\2D\UI\UI\AbstractUI.cpp" />
     <ClCompile Include="Source\Managers\InputManager.cpp" />
     <ClCompile Include="Source\Renderer\AbstractRenderer.cpp" />
-    <ClCompile Include="Source\Scenes\InventorySystemScene\Item\ItemRenderer.cpp" />
     <ClCompile Include="Source\Scenes\AnimationSystemScene\AnimationSystemScene.cpp" />
-    <ClCompile Include="Source\Scenes\InventorySystemScene\Menu\InventoryRenderer.cpp" />
     <ClCompile Include="Source\GameObject\2D\GameObject2D.cpp" />
     <ClCompile Include="Source\GameObject\GameObject.cpp" />
     <ClCompile Include="Source\Common\Handle\Font\Font.cpp" />
@@ -182,8 +181,14 @@
     <ClCompile Include="Source\GameObject\2D\UI\UI\Original\Button\UI_ButtonRenderer.cpp" />
     <ClCompile Include="Source\GameObject\2D\UI\UI\Original\UISystemMenu\UI_UISystemMenu.cpp" />
     <ClCompile Include="Source\GameObject\2D\UI\UI\Original\UISystemMenu\UI_UISystemMenuRenderer.cpp" />
+    <ClCompile Include="Source\GameObject\2D\UI\UI\Original\Inventory\UI_Inventory.cpp" />
+    <ClCompile Include="Source\GameObject\2D\UI\UI\Original\Inventory\UI_InventoryRenderer.cpp" />
+    <ClCompile Include="Source\GameObject\2D\UI\UI\Original\Item\UI_Item.cpp" />
+    <ClCompile Include="Source\GameObject\2D\UI\UI\Original\Item\UI_ItemRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\GameObject\2D\UI\UILayer\UILayerType.h" />
+    <ClInclude Include="Source\Managers\RenderManager.h" />
     <ClInclude Include="Source\GameObject\2D\Transform2D.h" />
     <ClInclude Include="Source\Managers\Resource.h" />
     <ClInclude Include="Source\Managers\ResourceManager.h" />
@@ -195,7 +200,6 @@
     <ClInclude Include="Source\GameObject\2D\UI\UI\AbstractUI.h" />
     <ClInclude Include="Source\Managers\InputManager.h" />
     <ClInclude Include="Source\Renderer\AbstractRenderer.h" />
-    <ClInclude Include="Source\Scenes\InventorySystemScene\Item\ItemRenderer.h" />
     <ClInclude Include="Source\Scenes\AnimationSystemScene\AnimationSystemScene.h" />
     <ClInclude Include="Source\Scenes\AnimationSystemScene\Animation\Animation.h" />
     <ClInclude Include="Source\GameObject\2D\GameObject2D.h" />
@@ -208,7 +212,6 @@
     <ClInclude Include="Source\Common\Handle\Sound\Sound.h" />
     <ClInclude Include="Source\Common\Handle\VertexShader\VertexShader.h" />
     <ClInclude Include="Source\Common\Vector2.h" />
-    <ClInclude Include="Source\Scenes\InventorySystemScene\Menu\InventoryRenderer.h" />
     <ClInclude Include="Source\Scenes\InventorySystemScene\Item\Item.h" />
     <ClInclude Include="Source\Scenes\InventorySystemScene\Menu\Inventory.h" />
     <ClInclude Include="Source\Scenes\InventorySystemScene\InventorySystemScene.h" />
@@ -229,6 +232,22 @@
     <ClInclude Include="Source\GameObject\2D\UI\UI\Original\Button\UI_ButtonRenderer.h" />
     <ClInclude Include="Source\GameObject\2D\UI\UI\Original\UISystemMenu\UI_UISystemMenu.h" />
     <ClInclude Include="Source\GameObject\2D\UI\UI\Original\UISystemMenu\UI_UISystemMenuRenderer.h" />
+    <ClInclude Include="Source\GameObject\2D\UI\UI\Original\Inventory\UI_Inventory.h" />
+    <ClInclude Include="Source\GameObject\2D\UI\UI\Original\Inventory\UI_InventoryRenderer.h" />
+    <ClInclude Include="Source\GameObject\2D\UI\UI\Original\Item\UI_Item.h" />
+    <ClInclude Include="Source\GameObject\2D\UI\UI\Original\Item\UI_ItemRenderer.h" />
+    <ClInclude Include="Source\GameObject\2D\UI\UI\UIFactory.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Source\HLSL\Pixel\PS_Rainbow.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Source\HLSL\Pixel\PixelShader_Header.hlsli" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

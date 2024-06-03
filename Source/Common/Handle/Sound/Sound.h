@@ -6,6 +6,7 @@
 
 class Sound : public HandleBase {
 public:
+	/// @brief 2Dの音か3Dの音か
 	enum class DIMENSION_TYPE {
 		_2D = 0,
 		_3D
@@ -25,21 +26,31 @@ public:
 
 	~Sound(void) override;
 
-	/*!
-	@brief サウンドの長さを返す
-	@return LONGLONG型のサウンドの長さ
-	*/
+	/// @brief サウンドの長さを返す
+	/// @return サウンドの長さ
 	[[nodiscard]] LONGLONG GetTotalTime(void) const;
 
-	// 2D
+	/// @brief 音を再生(2D)
+	/// @param isLoop ループするか
 	void Play(bool isLoop);
+
+	/// @brief 音が再生かを返す(2D)
+	/// @return 再生中かどうか
 	bool IsPlaying(void);
+
+	/// @brief 音を止める(2D)
 	void Stop(void);
 
-	// 3D
+	/// @brief 音を再生(3D)
+	/// @param listnerPos 聞く人の座標
+	/// @param listnerDir 聞く人が向いてる方向
+	/// @param emitterPos 音を鳴らす座標
 	void Play3D(VECTOR listnerPos, VECTOR listnerDir, VECTOR emitterPos);
 private:
-	LONGLONG totalTime_;	//トータルの再生時間
+	// トータルの再生時間
+	LONGLONG totalTime_;
+	
+	// 2Dか3Dか
 	DIMENSION_TYPE dimensionType_;
 };
 

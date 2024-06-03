@@ -1,8 +1,6 @@
 {
     "ResourceList": {
-        "Image": [
-            "IMAGE_UI_IMAGE_TEST"
-        ],
+        "Image": null,
         "Sound2D": null,
         "Sound3D": null,
         "Model": null,

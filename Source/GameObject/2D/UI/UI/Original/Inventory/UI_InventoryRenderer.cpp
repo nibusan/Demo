@@ -1,50 +1,59 @@
 #include <DxLib.h>
-#include "UI_ImageRenderer.h"
-#include "UI_Image.h"
+#include "UI_Inventory.h"
+#include "../../Parts/Image/UI_Image.h"
+#include "../../Parts/Image/UI_ImageRenderer.h"
 #include "../../../../../../Common/Handle/Graphic/Graphic.h"
+#include "UI_InventoryRenderer.h"
 
-UI_ImageRenderer::UI_ImageRenderer(bool useLocalPos, std::shared_ptr<UI_Image> uiImage) : 
+
+UI_InventoryRenderer::UI_InventoryRenderer(
+	bool useLocalPos, 
+	const std::shared_ptr<UI_Inventory> uiInventory) :
 AbstractRenderer(useLocalPos),
-uiImage_(uiImage) {}
+uiInventory_(uiInventory) {
+	imageRenderer_ = std::make_unique<UI_ImageRenderer>(true, uiInventory_->GetUIImage().lock());
+}
 
-void UI_ImageRenderer::Begin(void) {
+void UI_InventoryRenderer::Begin(void) {
 	// 元の描画用スクリーンを退避する
 	defaultScreenHadle_ = GetDrawScreen();
 
 	// UIの描画用キャンバスを取得
-	const auto& renderCanvas = uiImage_->GetRenderCanvas();
+	const auto& renderCanvas = uiInventory_->GetRenderCanvas();
 
-	// 描画スクリーンをUI描画用キャンバスに切り替える
 	SetDrawScreen(renderCanvas.lock()->GetHandle());
 	ClearDrawScreen();
 }
 
-void UI_ImageRenderer::Render(void) {
-	uiImage_->GetImage().lock()->Draw(Vector2<float>(0.0f, 0.0f), false, nullptr);
-	
+void UI_InventoryRenderer::Render(void) {
+	// それぞれのUIを描画する
+	imageRenderer_->Begin();
+	imageRenderer_->Render();
+	imageRenderer_->End();
+
 	// デバッグ用
-	//DebugRender();
+	DebugRender();
 }
 
-void UI_ImageRenderer::End(void) {
+void UI_InventoryRenderer::End(void) {
 	// UIの基礎データを取得
-	const auto& transform = uiImage_->GetTransform();
+	const auto& transform = uiInventory_->GetTransform();
 
 	// 親オブジェクトを取得
-	const auto& parent = uiImage_->GetParent();
+	const auto& parent = uiInventory_->GetParent();
 
 	// UIの描画用キャンバスを取得
-	const auto& renderCanvas = uiImage_->GetRenderCanvas();
+	const auto& renderCanvas = uiInventory_->GetRenderCanvas();
 
 	SetDrawScreen(defaultScreenHadle_);
 
-	auto offset = uiImage_->GetCanvasRenderOffset();
+	auto offset = uiInventory_->GetCanvasRenderOffset();
 
 	if (parent.lock() != nullptr) {
 		if (useLocalPos_) {
 			renderCanvas.lock()->Draw(
 				transform.localPos_ + offset,
-				1.0f,
+				8.0f,
 				transform.currentRot_,
 				nullptr
 			);
@@ -52,7 +61,7 @@ void UI_ImageRenderer::End(void) {
 		else {
 			renderCanvas.lock()->Draw(
 				transform.currentPos_ + offset,
-				1.0f,
+				8.0f,
 				transform.currentRot_,
 				nullptr
 			);
@@ -61,17 +70,16 @@ void UI_ImageRenderer::End(void) {
 	else {
 		renderCanvas.lock()->Draw(
 			transform.currentPos_ + offset,
-			1.0f,
+			8.0f,
 			transform.currentRot_,
 			nullptr
 		);
 	}
-
 }
 
-void UI_ImageRenderer::DebugRender(void) {
+void UI_InventoryRenderer::DebugRender(void) {
 	// UIの描画用キャンバスを取得
-	const auto& renderCanvas = uiImage_->GetRenderCanvas();
+	const auto& renderCanvas = uiInventory_->GetRenderCanvas();
 
 	// デバッグ用のボックス
 	auto canvasSize = renderCanvas.lock()->GetSize();
@@ -80,7 +88,7 @@ void UI_ImageRenderer::DebugRender(void) {
 		0,
 		static_cast<int>(canvasSize.x),
 		static_cast<int>(canvasSize.y),
-		0xFF0000,
+		0x00FFFF,
 		false
 	);
 	DrawLine(
@@ -88,13 +96,13 @@ void UI_ImageRenderer::DebugRender(void) {
 		0,
 		static_cast<int>(canvasSize.x),
 		static_cast<int>(canvasSize.y),
-		0xFF0000
+		0x00FFFF
 	);
 	DrawLine(
 		0,
 		static_cast<int>(canvasSize.y),
 		static_cast<int>(canvasSize.x),
 		0,
-		0xFF0000
+		0x00FFFF
 	);
 }

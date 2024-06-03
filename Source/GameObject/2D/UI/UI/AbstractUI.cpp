@@ -129,6 +129,10 @@ Vector2<float> AbstractUI::GetCanvasRenderOffset(void) const {
 	return ret;
 }
 
+std::weak_ptr<PixelShader> AbstractUI::GetUsingPixelShader(void) const {
+	return usingPixelShader_;
+}
+
 std::weak_ptr<Graphic> AbstractUI::GetRenderCanvas(void) {
 	return renderCanvas_;
 }

@@ -4,7 +4,8 @@
 
 template <typename T>
 class Inventory;
-class InventoryRenderer;
+class UI_Inventory;
+class UI_InventoryRenderer;
 class Item;
 class ItemRenderer;
 
@@ -16,12 +17,10 @@ public:
 
 	void Init(void) override;
 	void Update(void) override;
-	void Draw(void) override;
 	void Release(void) override;
 
 private:
 	std::shared_ptr<Inventory<Item>> inventory_;
-	std::unique_ptr<InventoryRenderer> inventoryRenderer_;
-	std::shared_ptr<Item> item_;
-	std::unique_ptr<ItemRenderer> itemRenderer_;
+	std::shared_ptr<UI_Inventory> uiInventory_;
+	std::unique_ptr<UI_InventoryRenderer> inventoryRenderer_;
 };

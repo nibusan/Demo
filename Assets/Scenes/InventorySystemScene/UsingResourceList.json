@@ -1,7 +1,8 @@
 {
     "ResourceList": {
         "Image": [
-            "IMAGE_UI_ITEMS"
+            "IMAGE_UI_ITEMS",
+            "IMAGE_UI_INVENTORY"
         ],
         "Sound2D": null,
         "Sound3D": null,

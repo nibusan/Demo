@@ -12,10 +12,6 @@ void AnimationSystemScene::Update(void) {
 
 }
 
-void AnimationSystemScene::Draw(void) {
-
-}
-
 void AnimationSystemScene::Release(void) {
 
 }

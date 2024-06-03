@@ -43,22 +43,12 @@ Scene::TYPE SceneManager::GetCurrentSceneType(void) {
 
 void SceneManager::Init(void) {
 	// 最初のシーンを設定
-	ChangeScene(Scene::TYPE::UI_SYSTEM);
+	ChangeScene(Scene::TYPE::INVENTORY_SYSTEM);
 }
 
 void SceneManager::Update(void) {
 	// シーンの更新
 	currentScene_->Update();
-}
-
-void SceneManager::Draw(void) {
-	SetDrawScreen(DX_SCREEN_BACK);
-	ClearDrawScreen();
-
-	// シーンの描画
-	currentScene_->Draw();
-
-	ScreenFlip();
 }
 
 void SceneManager::Release(void) {

@@ -1,11 +1,27 @@
 #pragma once
+#include <string>
+#include <unordered_map>
+
 namespace UI {
 	// UIの種類
 	enum class UI_TYPE {
-		NONE,	// なし
-		IMAGE,	// 画像
-		TEXT,	// テキスト
-		BUTTON	// ボタン
+		NONE,			// なし
+		IMAGE,			// 画像
+		TEXT,			// テキスト
+		BUTTON,			// ボタン
+		UI_SYSTEM_MENU,	// UISystemSceneで使うメニュー
+		INVENTORY,		// インベントリ
+		ITEM			// アイテム
+	};
+
+	// jsonで使っているタグ(キー)をUI_TYPEに変換する連想配列
+	static const std::unordered_map<std::string, UI_TYPE> TAG_TO_UI_TYPE {
+		{ "Image",			UI_TYPE::IMAGE },
+		{ "Text",			UI_TYPE::TEXT },
+		{ "Button",			UI_TYPE::BUTTON },
+		{ "UISystemMenu",	UI_TYPE::UI_SYSTEM_MENU },
+		{ "Inventory",		UI_TYPE::INVENTORY },
+		{ "Item",			UI_TYPE::ITEM },
 	};
 
 	// UIのどこを原点として配置するか
@@ -20,4 +36,5 @@ namespace UI {
 		DOWN_CENTER,	// 下段 中心
 		DOWN_RIGHT		// 下段 右
 	};
+
 }

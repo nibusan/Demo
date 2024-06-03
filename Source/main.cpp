@@ -6,7 +6,6 @@
 
 // WinMainŠÖ”
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
-	
 	// ƒƒ‚ƒŠƒŠ[ƒN‚ğŒŸ’m‚Å‚«‚é‚æ‚¤‚É‚·‚é
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 

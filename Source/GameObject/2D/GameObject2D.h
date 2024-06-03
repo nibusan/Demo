@@ -8,9 +8,6 @@ public:
 	GameObject2D(void) = default;
 	virtual ~GameObject2D(void) override = default;
 
-	void DeleteChild(void);
-	void DeleteKankei(void);
-
 	/// @brief 子オブジェクトを追加する
 	/// @param child 子オブジェクト
 	void AddChild(std::shared_ptr<GameObject> child) override;

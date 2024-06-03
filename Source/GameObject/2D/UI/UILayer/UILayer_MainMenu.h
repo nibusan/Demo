@@ -1,10 +1,11 @@
 #pragma once
 #include "AbstractUILayer.h"
 
-class UILayer_MainMenu : public AbstractUILayer {
+/// @brief UISystemMenu‚ÌUI‚ð“Z‚ß‚½ƒNƒ‰ƒX‚Å‚·
+class UILayer_UISystemMenu : public AbstractUILayer {
 public:
-	UILayer_MainMenu(void) = default;
-	~UILayer_MainMenu(void) = default;
+	UILayer_UISystemMenu(void) = default;
+	~UILayer_UISystemMenu(void) = default;
 
 private:
 

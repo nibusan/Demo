@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <memory>
+#include "UILayerType.h"
 
 class AbstractUI;
 /// @brief 複数のUIのまとまり(ポーズ画面など)を一枚のレイヤーとして扱えるクラス
@@ -14,6 +15,9 @@ public:
 	virtual void Release(void) = 0;
 private:
 	// このレイヤーに登録されたUI
-	std::vector<AbstractUI> uis_;
+	std::vector<std::shared_ptr<AbstractUI>> uis_;
 
+	/// @brief 指定されたUILayerを読み込む
+	/// @param type UILayerの種類
+	void LoadUILayer(UILayer::TYPE type);
 };

@@ -9,7 +9,6 @@ public:
 
 	virtual void Init(void) = 0;
 	virtual void Update(void) = 0;
-	virtual void Draw(void) = 0;
 	virtual void Release(void) = 0;
 
 	/// @brief ‚±‚ÌƒV[ƒ“‚Ìí—Ş‚ğ•Ô‚·

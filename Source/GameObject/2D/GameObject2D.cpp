@@ -67,14 +67,6 @@ void GameObject2D::SetParent(std::weak_ptr<GameObject> parent) {
 	}
 }
 
-void GameObject2D::DeleteChild(void) {
-	childs_.clear();
-}
-
-void GameObject2D::DeleteKankei(void) {
-	parent_.reset();
-}
-
 void GameObject2D::AddChild(std::shared_ptr<GameObject> child) {
 	child->SetParent(shared_from_this());
 	childs_.emplace_back(child);

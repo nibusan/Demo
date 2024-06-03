@@ -66,12 +66,6 @@
     <ClCompile Include="Source\Scenes\AnimationSystemScene\AnimationSystemScene.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Scenes\InventorySystemScene\Item\ItemRenderer.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Scenes\InventorySystemScene\Menu\InventoryRenderer.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Managers\InputManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -120,6 +114,21 @@
     <ClCompile Include="Source\Renderer\AbstractRenderer.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Managers\RenderManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameObject\2D\UI\UI\Original\Item\UI_Item.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameObject\2D\UI\UI\Original\Item\UI_ItemRenderer.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameObject\2D\UI\UI\Original\Inventory\UI_Inventory.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameObject\2D\UI\UI\Original\Inventory\UI_InventoryRenderer.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Application.h">
@@ -144,9 +153,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Source\Scenes\InventorySystemScene\Item\Item.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Scenes\InventorySystemScene\Menu\InventoryRenderer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Source\Common\Handle\Font\Font.h">
@@ -189,9 +195,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Source\Scenes\AnimationSystemScene\Animation\Animation.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Scenes\InventorySystemScene\Item\ItemRenderer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Source\Renderer\AbstractRenderer.h">
@@ -257,5 +260,32 @@
     <ClInclude Include="Source\GameObject\2D\UI\UI\Original\UISystemMenu\UI_UISystemMenuRenderer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Managers\RenderManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameObject\2D\UI\UI\Original\Item\UI_Item.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameObject\2D\UI\UI\Original\Item\UI_ItemRenderer.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameObject\2D\UI\UI\Original\Inventory\UI_Inventory.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameObject\2D\UI\UI\Original\Inventory\UI_InventoryRenderer.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameObject\2D\UI\UILayer\UILayerType.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameObject\2D\UI\UI\UIFactory.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Source\HLSL\Pixel\PS_Rainbow.hlsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Source\HLSL\Pixel\PixelShader_Header.hlsli" />
   </ItemGroup>
 </Project>

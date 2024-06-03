@@ -1,6 +1,7 @@
 {
     "ResourceList": {
         "Image": [
+            "IMAGE_UI_IMAGE_TEST_1",
             "IMAGE_UI_BUTTON",
             "IMAGE_UI_UISYSTEMMENU"
         ],
@@ -10,7 +11,9 @@
         "Font": [
             "FONT_REVAMPED"
         ],
-        "PixelShader": null,
+        "PixelShader": [
+            "PIXELSHADER_RAINBOW"
+        ],
         "VertexShader": null
     }
 }

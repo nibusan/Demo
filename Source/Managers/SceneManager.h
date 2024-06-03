@@ -11,7 +11,6 @@ public:
 
 	void Init(void);
 	void Update(void);
-	void Draw(void);
 	void Release(void);
 
 	/// @brief ƒV[ƒ“‚ğØ‚è‘Ö‚¦‚é

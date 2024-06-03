@@ -2,6 +2,7 @@
 #include <memory>
 #include <functional>
 #include "../../../../Common/Vector2.h"
+#include "../../../../Common/Handle/PixelShader/PixelShader.h"
 #include "../../GameObject2D.h"
 #include "UI_Info.h"
 
@@ -49,6 +50,10 @@ public:
 	/// @brief UIを描画し終わったキャンバスをスクリーンのどこに描画するかを調整するオフセットを返す
 	/// @return オフセット
 	[[nodiscard]] Vector2<float> GetCanvasRenderOffset(void) const;
+
+	/// @brief 描画する際に使用するピクセルシェーダーを返す 
+	/// @return ピクセルシェーダー
+	[[nodiscard]] std::weak_ptr<PixelShader> GetUsingPixelShader(void) const;
 protected:
 	// 強調表示されてるか
 	bool isHighlighted_;
@@ -67,6 +72,9 @@ protected:
 
 	// このUIのどこを原点にするか
 	UI::UI_ORIGIN_TYPE originType_;
+
+	// 描画する際に使用するピクセルシェーダー
+	std::shared_ptr<PixelShader> usingPixelShader_;
 
 	// 外部から隠蔽するためにpublicにしない
 	void Init_GameObject2D(void) override;

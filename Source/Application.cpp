@@ -3,6 +3,7 @@
 #include "Managers/SceneManager.h"
 #include "Managers/InputManager.h"
 #include "Managers/ResourceManager.h"
+#include "Managers/RenderManager.h"
 
 bool Application::Init(void) {
 	// ウィンドウを初期化
@@ -22,10 +23,11 @@ bool Application::Init(void) {
 		return false;
 	}
 
+	RenderManager::GetInstance().Init();
 	InputManager::GetInstance().Init();
 	ResourceManager::GetInstance().Init();
 	SceneManager::GetInstance().Init();
-	
+
 	return true;
 }
 
@@ -42,8 +44,8 @@ void Application::Run(void) {
 		SetDrawScreen(DX_SCREEN_BACK);	
 		ClearDrawScreen();
 		
-		// シーンの描画
-		SceneManager::GetInstance().Draw();
+		// 描画
+		RenderManager::GetInstance().Render();
 
 		// 裏の画面を表の画面にコピー
 		ScreenFlip();

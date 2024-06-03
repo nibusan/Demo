@@ -1,0 +1,6 @@
+{
+    "UILayerListPath": [
+        "Scenes/InventorySystemScene/UI/UILayer.json",
+        "Scenes/UISystemScene/UI/UILayer.json"
+    ]
+}

@@ -9,9 +9,9 @@
                 "Extension": ".png"
             },
             {
-                "Key": "IMAGE_UI_IMAGE_TEST",
-                "FilePath": "Scenes/UISystemScene/UI/Button/",
-                "FileName": "UI_Image_Test",
+                "Key": "IMAGE_UI_IMAGE_TEST_1",
+                "FilePath": "Scenes/UISystemScene/UI/Image/",
+                "FileName": "ImageTest_1",
                 "Extension": ".png"
             },
             {
@@ -24,6 +24,12 @@
                 "Key": "IMAGE_UI_ITEMS",
                 "FilePath": "Scenes/InventorySystemScene/UI/Item/",
                 "FileName": "Items",
+                "Extension": ".png"
+            },
+            {
+                "Key": "IMAGE_UI_INVENTORY",
+                "FilePath": "Scenes/InventorySystemScene/UI/Inventory/",
+                "FileName": "Inventory",
                 "Extension": ".png"
             }
         ],
@@ -38,7 +44,14 @@
                 "Extension": ".ttf"
             }
         ],
-        "PixelShader": null,
+        "PixelShader": [
+            {
+                "Key": "PIXELSHADER_RAINBOW",
+                "FilePath": "Scenes/UISystemScene/Shader/Pixel/",
+                "FileName": "PS_Rainbow",
+                "Extension": ".cso"
+            }
+        ],
         "VertexShader": null
     },
     "GlobalUsingResourceListPath": "Scenes/UsingResourceList.json",

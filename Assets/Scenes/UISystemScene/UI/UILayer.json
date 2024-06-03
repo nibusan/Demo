@@ -3,24 +3,32 @@
         {
             "Type": "Image",
             "Pos": { "X": 0.0, "Y": 0.0 },
-            "Rot": { "X": 0.0, "Y": 0.0 },
+            "Rot": 0.0,
             "Scl": { "X": 0.0, "Y": 0.0 },
+            "OriginType": 0,
             "CanvasSize": null,
+            "IsClickable": false,
             "OnClickID": -1,
             "Attribute": {
-                "ImageResourceKey": "IMAGE_UI_IMAGE_TEST"
+                "ImageResourceKey": "IMAGE_UI_IMAGE_TEST",
+                "PixelShaderResourceKey": "PIXELSHADER_RAINBOW",
+                "PixelShaderEventID": 0
             },
             "Child": null
         },
         {
             "Type": "Button",
             "Pos": { "X": 0.0, "Y": 0.0 },
-            "Rot": { "X": 0.0, "Y": 0.0 },
+            "Rot": 0.0,
             "Scl": { "X": 0.0, "Y": 0.0 },
+            "OriginType": 0,
             "CanvasSize": null,
+            "IsClickable": false,
             "OnClickID": -1,
             "Attribute": {
                 "ImageResourceKey": "IMAGE_UI_IMAGE_TEST",
+                "PixelShaderResourceKey": null,
+                "PixelShaderEventID": -1,
                 "FontResourceKey": "FONT_REVAMPED",
                 "TextSize": 32,
                 "TextColor": "0xffffff",

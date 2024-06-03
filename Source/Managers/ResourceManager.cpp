@@ -209,5 +209,8 @@ std::shared_ptr<HandleBase> ResourceManager::LoadResourceFile(const std::string&
 		break;
 	}
 	
+	// デストラクタが呼ばれた際に自動でハンドルを解放するようにする
+	resourceFile->SetIsAutoDeleteHandle(true);
+
 	return resourceFile;
 }
