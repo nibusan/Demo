@@ -6,23 +6,10 @@
 #include "UI_InventoryRenderer.h"
 
 
-UI_InventoryRenderer::UI_InventoryRenderer(
-	bool useLocalPos, 
-	const std::shared_ptr<UI_Inventory> uiInventory) :
-AbstractRenderer(useLocalPos),
-uiInventory_(uiInventory) {
-	imageRenderer_ = std::make_unique<UI_ImageRenderer>(true, uiInventory_->GetUIImage().lock());
-}
-
-void UI_InventoryRenderer::Begin(void) {
-	// 元の描画用スクリーンを退避する
-	defaultScreenHadle_ = GetDrawScreen();
-
-	// UIの描画用キャンバスを取得
-	const auto& renderCanvas = uiInventory_->GetRenderCanvas();
-
-	SetDrawScreen(renderCanvas.lock()->GetHandle());
-	ClearDrawScreen();
+UI_InventoryRenderer::UI_InventoryRenderer(bool useLocalPos, std::shared_ptr<UI_Inventory> uiInventory) :
+AbstractUIRenderer(useLocalPos, uiInventory) {
+	const auto _uiInventory = std::dynamic_pointer_cast<UI_Inventory>(uiInventory);
+	imageRenderer_ = std::make_unique<UI_ImageRenderer>(true, _uiInventory->GetUIImage().lock());
 }
 
 void UI_InventoryRenderer::Render(void) {
@@ -35,51 +22,9 @@ void UI_InventoryRenderer::Render(void) {
 	DebugRender();
 }
 
-void UI_InventoryRenderer::End(void) {
-	// UIの基礎データを取得
-	const auto& transform = uiInventory_->GetTransform();
-
-	// 親オブジェクトを取得
-	const auto& parent = uiInventory_->GetParent();
-
-	// UIの描画用キャンバスを取得
-	const auto& renderCanvas = uiInventory_->GetRenderCanvas();
-
-	SetDrawScreen(defaultScreenHadle_);
-
-	auto offset = uiInventory_->GetCanvasRenderOffset();
-
-	if (parent.lock() != nullptr) {
-		if (useLocalPos_) {
-			renderCanvas.lock()->Draw(
-				transform.localPos_ + offset,
-				8.0f,
-				transform.currentRot_,
-				nullptr
-			);
-		}
-		else {
-			renderCanvas.lock()->Draw(
-				transform.currentPos_ + offset,
-				8.0f,
-				transform.currentRot_,
-				nullptr
-			);
-		}
-	}
-	else {
-		renderCanvas.lock()->Draw(
-			transform.currentPos_ + offset,
-			8.0f,
-			transform.currentRot_,
-			nullptr
-		);
-	}
-}
-
 void UI_InventoryRenderer::DebugRender(void) {
 	// UIの描画用キャンバスを取得
-	const auto& renderCanvas = uiInventory_->GetRenderCanvas();
+	const auto& renderCanvas = ui_->GetRenderCanvas();
 
 	// デバッグ用のボックス
 	auto canvasSize = renderCanvas.lock()->GetSize();

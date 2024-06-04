@@ -1,9 +1,10 @@
 #pragma once
 #include <memory>
 #include "../../../../../../Renderer/AbstractRenderer.h"
+#include "../../AbstractUIRenderer.h"
 
 class UI_Image;
-class UI_ImageRenderer : public AbstractRenderer {
+class UI_ImageRenderer : public AbstractUIRenderer {
 public:
 	UI_ImageRenderer(void) = default;
 	~UI_ImageRenderer(void) = default;
@@ -12,20 +13,11 @@ public:
 	/// @param uiText •`‰æ‚·‚éText‚ÌUI
 	UI_ImageRenderer(bool useLocalPos, std::shared_ptr<UI_Image> uiImage);
 
-	/// @brief •`‰æŠJnˆ—
-	virtual void Begin(void) override;
-
 	/// @brief •`‰æˆ— 
 	virtual void Render(void) override;
 
-	/// @brief •`‰æI—¹ˆ— 
-	virtual void End(void) override;
-
 	/// @brief •`‰æˆ—(ƒfƒoƒbƒO—p) 
 	virtual void DebugRender(void) override;
-private:
-	// •`‰æ‚·‚éText‚ÌUI
-	std::shared_ptr<UI_Image> uiImage_;
 
 };
 

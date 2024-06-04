@@ -36,7 +36,7 @@ void GameObject2D::CalculateTransform2D(void) {
 		transform_.localScl_ = transform_.parentScl_ + transform_.localScl_;
 		transform_.parentPos_ = Vector2<float>();
 		transform_.parentRot_ = 0.0f;
-		transform_.parentScl_ = Vector2<float>();
+		transform_.parentScl_ = 0.0f;
 		transform_.currentPos_ = transform_.localPos_;
 		transform_.currentRot_ = transform_.localRot_;
 		transform_.currentScl_ = transform_.localScl_;
@@ -80,7 +80,7 @@ Transform2D& GameObject2D::GetTransform(void) {
 void GameObject2D::SetTransformData(
 	const Vector2<float>& localPos, 
 	float localRot, 
-	const Vector2<float>& localScl
+	float localScl
 ) {
 	transform_.localPos_ = localPos;
 	transform_.localRot_ = localRot;
@@ -91,20 +91,6 @@ void GameObject2D::SetTransformData(
 	transform_.currentScl_ = transform_.parentScl_ * transform_.localScl_;
 }
 
-Vector2<float> GameObject2D::GetWorldPos(void) {
-	//std::weak_ptr<GameObject2D> parent = std::dynamic_pointer_cast<GameObject2D>(GetParent());
-	
-	// 計算済みの座標を格納
-	Vector2<float> calcPos = {};
-	
-	// 親座標を格納していくスタック(座標、ローカル座標)
-	// 一番上の親から計算していくのでスタックを利用してます
-	//std::stack<std::pair<Vector2<float>, Vector2<float>>> parentPosStack_;
-	//while (parent.lock() != nullptr) {
-	//	const auto& transform = parent.lock()->GetTransform();
-	//	parentPosStack_.push({ transform.pos_, transform.localPos_ });
-	//	parent = std::dynamic_pointer_cast<GameObject2D>(parent.lock()->GetParent().lock());
-	//}
-	
-	return Vector2<float>();
+std::weak_ptr<AbstractCollider> GameObject2D::GetCollider(void) const {
+	return collider_;
 }

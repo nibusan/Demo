@@ -26,7 +26,10 @@ originType_(originType),
 isClickable_(isClickable),
 onClickCallBack_(onClickCallBack),
 usingPixelShader_(usingPixelShader),
-usingPixelShaderEventID_(usingPixelShaderEventID) {}
+usingPixelShaderEventID_(usingPixelShaderEventID) {
+	// デストラクタが呼ばれたら自動で解放するようにする
+	renderCanvas_->SetIsAutoDeleteHandle(true);
+}
 
 void AbstractUI::Init_GameObject2D(void) {
 	Init_UI();

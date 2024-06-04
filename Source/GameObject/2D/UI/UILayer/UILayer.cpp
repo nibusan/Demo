@@ -84,6 +84,7 @@ void UILayer::LoadUILayer(UILayerInfo::TYPE type) {
 				ui["Attribute"]["PixelShaderEventID"],
 				image
 			);
+			createUI->CreateCollider<CircleCollider>(Vector2<float>(0.0f, 0.0f), 1.0f);
 			createUIRenderer = std::make_shared<UI_ImageRenderer>(false, std::dynamic_pointer_cast<UI_Image>(createUI));
 			break;
 		}
@@ -113,6 +114,7 @@ void UILayer::LoadUILayer(UILayerInfo::TYPE type) {
 				text,
 				0xFFFFFF
 			);
+			createUI->CreateCollider<RectCollider>(Vector2<float>(0.0f, 0.0f), Vector2<float>(100.0f, 100.0f));
 			createUIRenderer = std::make_shared<UI_TextRenderer>(false, std::dynamic_pointer_cast<UI_Text>(createUI));
 			break;
 		}
@@ -138,7 +140,7 @@ void UILayer::LoadUILayer(UILayerInfo::TYPE type) {
 		createUI->SetTransformData(
 			{ ui["Pos"]["X"], ui["Pos"]["Y"] },
 			ui["Rot"],
-			{ ui["Scl"]["X"], ui["Scl"]["Y"] }
+			ui["Scl"]
 		);
 
 		renderManager.AddRenderer2D(createUIRenderer);

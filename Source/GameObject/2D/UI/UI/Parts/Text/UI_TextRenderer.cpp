@@ -1,78 +1,26 @@
 #include <DxLib.h>
-#include "UI_TextRenderer.h"
 #include "UI_Text.h"
 #include "../../../../../../GameObject/Transform.h"
 #include "../../../../../../Common/Handle/Graphic/Graphic.h"
 #include "../../../../../../Common/Handle/Font/Font.h"
+#include "../../../../Collider/RectCollider.h"
+#include "UI_TextRenderer.h"
 
-UI_TextRenderer::UI_TextRenderer(bool useLocalPos, std::shared_ptr<UI_Text> uiText) : 
-AbstractRenderer(useLocalPos),
-uiText_(uiText) {}
-
-void UI_TextRenderer::Begin(void) {
-	// 元の描画用スクリーンを退避する
-	defaultScreenHadle_ = GetDrawScreen();
-
-	// UIの描画用キャンバスを取得
-	const auto& renderCanvas = uiText_->GetRenderCanvas();
-
-	// 描画スクリーンをUI描画用キャンバスに切り替える
-	SetDrawScreen(renderCanvas.lock()->GetHandle());
-	ClearDrawScreen();
-}
+UI_TextRenderer::UI_TextRenderer(bool useLocalPos, std::shared_ptr<UI_Text> uiText) : AbstractUIRenderer(useLocalPos, uiText) {}
 
 void UI_TextRenderer::Render(void) {
-	uiText_->GetFont().lock()->Draw(Vector2<float>(0.0f, 0.0f), uiText_->GetText(), uiText_->GetTextColor());
+	// 描画処理
+	const auto uiText = std::dynamic_pointer_cast<UI_Text>(ui_);
+	uiText->GetFont().lock()->Draw(Vector2<float>(0.0f, 0.0f), uiText->GetText(), uiText->GetTextColor());
 
 	// デバッグ用
 	DebugRender();
 }
 
-void UI_TextRenderer::End(void) {
-	// UIの描画用キャンバスを取得
-	const auto& renderCanvas = uiText_->GetRenderCanvas();
-
-	// UIの基礎データを取得
-	const auto& transform = uiText_->GetTransform();
-
-	// 親オブジェクトを取得
-	const auto& parent = uiText_->GetParent();
-
-	SetDrawScreen(defaultScreenHadle_);
-
-	auto offset = uiText_->GetCanvasRenderOffset();
-
-	if (parent.lock() != nullptr) {
-		if (useLocalPos_) {
-			renderCanvas.lock()->Draw(
-				transform.localPos_ + offset,
-				1.0f,
-				transform.currentRot_,
-				nullptr
-			);
-		}
-		else {
-			renderCanvas.lock()->Draw(
-				transform.currentPos_ + offset,
-				1.0f,
-				transform.currentRot_,
-				nullptr
-			);
-		}
-	}
-	else {
-		renderCanvas.lock()->Draw(
-			transform.currentPos_ + offset,
-			1.0f,
-			transform.currentRot_,
-			nullptr
-		);
-	}
-}
-
 void UI_TextRenderer::DebugRender(void) {
 	// UIの描画用キャンバスを取得
-	const auto& renderCanvas = uiText_->GetRenderCanvas();
+	const auto& renderCanvas = ui_->GetRenderCanvas();
+	const auto collider = ui_->GetCollider();
 
 	// デバッグ用のボックス
 	auto canvasSize = renderCanvas.lock()->GetSize();

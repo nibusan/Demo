@@ -47,16 +47,15 @@ void UI_UISystemMenu::Init_UI(void) {
 	uiImage_BackGround_->SetTransformData(
 		menuCanvasSize / 2.0f,
 		0.0f,
-		{ 1.0f, 1.0f }
+		1.0f
 	);
 
 	uiImage_BackGround_->AddChild(uiText_Title_);
 	const auto& imageCanvasSize = uiImage_BackGround_->GetRenderCanvas().lock()->GetSize().ToVector2f();
 	uiText_Title_->SetTransformData(
 		Vector2<float>(0.0f, 0.0f),
-		//{ 0.0f, 0.0f },
 		0.0f,
-		{ 1.0f, 1.0f }
+		1.0f
 	);
 
 	// 画像の子としてボタンをセットする
@@ -65,9 +64,8 @@ void UI_UISystemMenu::Init_UI(void) {
 		
 		buttonList_[i]->SetTransformData(
 			Vector2<float>(menuCanvasSize.x / 2.0f, (imageCanvasSize.y / 5) * (i + 1)),
-			//{ 0.0f, 0.0f },
 			0.0f,
-			{ 1.0f, 1.0f }
+			1.0f
 		);
 	}
 }

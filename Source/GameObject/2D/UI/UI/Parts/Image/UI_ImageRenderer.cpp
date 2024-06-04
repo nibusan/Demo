@@ -3,80 +3,21 @@
 #include "UI_Image.h"
 #include "../../../../../../Common/Handle/Graphic/Graphic.h"
 
-UI_ImageRenderer::UI_ImageRenderer(bool useLocalPos, std::shared_ptr<UI_Image> uiImage) : 
-AbstractRenderer(useLocalPos),
-uiImage_(uiImage) {}
-
-void UI_ImageRenderer::Begin(void) {
-	// 元の描画用スクリーンを退避する
-	defaultScreenHadle_ = GetDrawScreen();
-
-	// UIの描画用キャンバスを取得
-	const auto& renderCanvas = uiImage_->GetRenderCanvas();
-
-	// 描画スクリーンをUI描画用キャンバスに切り替える
-	SetDrawScreen(renderCanvas.lock()->GetHandle());
-	ClearDrawScreen();
-}
+UI_ImageRenderer::UI_ImageRenderer(bool useLocalPos, std::shared_ptr<UI_Image> uiImage) : AbstractUIRenderer(useLocalPos, uiImage) {}
 
 void UI_ImageRenderer::Render(void) {
-	const auto pixelShader =  uiImage_->GetUsingPixelShader();
-	uiImage_->GetImage().lock()->Draw(
-		Vector2<float>(0.0f, 0.0f), 
-		false, 
-		pixelShader.lock()
-	);
+
+	// 描画処理
+	const auto uiImage = std::dynamic_pointer_cast<UI_Image>(ui_);
+	uiImage->GetImage().lock()->Draw(Vector2<float>(0.0f, 0.0f), false, ui_->GetUsingPixelShader().lock());
 	
 	// デバッグ用
 	//DebugRender();
 }
 
-void UI_ImageRenderer::End(void) {
-	// UIの基礎データを取得
-	const auto& transform = uiImage_->GetTransform();
-
-	// 親オブジェクトを取得
-	const auto& parent = uiImage_->GetParent();
-
-	// UIの描画用キャンバスを取得
-	const auto& renderCanvas = uiImage_->GetRenderCanvas();
-
-	SetDrawScreen(defaultScreenHadle_);
-
-	auto offset = uiImage_->GetCanvasRenderOffset();
-
-	if (parent.lock() != nullptr) {
-		if (useLocalPos_) {
-			renderCanvas.lock()->Draw(
-				transform.localPos_ + offset,
-				10.0f,
-				transform.currentRot_,
-				nullptr
-			);
-		}
-		else {
-			renderCanvas.lock()->Draw(
-				transform.currentPos_ + offset,
-				10.0f,
-				transform.currentRot_,
-				nullptr
-			);
-		}
-	}
-	else {
-		renderCanvas.lock()->Draw(
-			transform.currentPos_ + offset,
-			10.0f,
-			transform.currentRot_,
-			nullptr
-		);
-	}
-
-}
-
 void UI_ImageRenderer::DebugRender(void) {
 	// UIの描画用キャンバスを取得
-	const auto& renderCanvas = uiImage_->GetRenderCanvas();
+	const auto& renderCanvas = ui_->GetRenderCanvas();
 
 	// デバッグ用のボックス
 	auto canvasSize = renderCanvas.lock()->GetSize();

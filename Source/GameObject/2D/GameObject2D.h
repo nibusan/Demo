@@ -2,7 +2,12 @@
 #include "../GameObject.h"
 #include "Transform2D.h"
 #include "../../Common/Vector2.h"
+#include "../../GameObject/2D/Collider/Collider_Info.h"
+#include "../../GameObject/2D/Collider/AbstractCollider.h"
+#include "../../GameObject/2D/Collider/CircleCollider.h"
+#include "../../GameObject/2D/Collider/RectCollider.h"
 
+class AbstractCollider;
 class GameObject2D : public GameObject {
 public:
 	GameObject2D(void) = default;
@@ -24,16 +29,19 @@ public:
 	void SetTransformData( 
 		const Vector2<float>& localPos, 
 		float localRot, 
-		const Vector2<float>& localScl
+		float localScl
 	);
 
-	/// @brief このゲームオブジェクトの現在の座標(親の座標も計算済み)を返す
-	/// @return 座標
-	Vector2<float> GetWorldPos(void);
+	template <typename T, typename ...Args>
+	void CreateCollider(const Vector2<float>& centerPos, Args&& ...args);
 
+	std::weak_ptr<AbstractCollider> GetCollider(void) const;
 protected:
 	// ゲームオブジェクトの基礎データ
 	Transform2D transform_;
+
+	// コライダー
+	std::shared_ptr<AbstractCollider> collider_;
 
 	void Init_GameObject(void) override;
 	void Update_GameObject(void) override;
@@ -52,3 +60,8 @@ private:
 	void CalculateTransform2D(void);
 
 };
+
+template<typename T, typename ...Args>
+inline void GameObject2D::CreateCollider(const Vector2<float>& centerPos, Args && ...args) {
+	collider_ = std::make_shared<T>(centerPos, std::forward<Args>(args)...);
+}

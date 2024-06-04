@@ -34,7 +34,7 @@ void UI_Inventory::Init_UI(void) {
 	uiImage_->SetTransformData(
 		{ 0.0f, 0.0f },
 		0.0f,
-		{ 1.0f, 1.0f }
+		1.0f
 	);
 }
 

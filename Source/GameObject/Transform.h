@@ -24,11 +24,6 @@ public:
 	T localPos_;
 	T currentPos_;
 
-	// スケール値
-	T parentScl_;
-	T localScl_;
-	T currentScl_;
-
 	Transform(void) = default;
 	~Transform(void) = default;
 };

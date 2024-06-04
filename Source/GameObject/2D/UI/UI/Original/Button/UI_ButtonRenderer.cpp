@@ -8,21 +8,10 @@
 #include "../../../../../../Common/Handle/Graphic/Graphic.h"
 
 UI_ButtonRenderer::UI_ButtonRenderer(bool useLocalPos, const std::shared_ptr<UI_Button> uiButton) : 
-AbstractRenderer(useLocalPos),
-uiButton_(uiButton) {
-	imageRenderer_ = std::make_unique<UI_ImageRenderer>(true, uiButton_->GetUIImage().lock());
-	textRenderer_ = std::make_unique<UI_TextRenderer>(true, uiButton_->GetUIText().lock());
-}
-
-void UI_ButtonRenderer::Begin(void) {
-	// 元の描画用スクリーンを退避する
-	defaultScreenHadle_ = GetDrawScreen();
-
-	// UIの描画用キャンバスを取得
-	const auto& renderCanvas = uiButton_->GetRenderCanvas();
-
-	SetDrawScreen(renderCanvas.lock()->GetHandle());
-	ClearDrawScreen();
+AbstractUIRenderer(useLocalPos, uiButton) {
+	const auto _uiButton = std::dynamic_pointer_cast<UI_Button>(uiButton);
+	imageRenderer_ = std::make_unique<UI_ImageRenderer>(true, _uiButton->GetUIImage().lock());
+	textRenderer_ = std::make_unique<UI_TextRenderer>(true, _uiButton->GetUIText().lock());
 }
 
 void UI_ButtonRenderer::Render(void) {
@@ -38,58 +27,9 @@ void UI_ButtonRenderer::Render(void) {
 	DebugRender();
 }
 
-void UI_ButtonRenderer::End(void) {
-	// UIの基礎データを取得
-	const auto& transform = uiButton_->GetTransform();
-
-	// 親オブジェクトを取得
-	const auto& parent = uiButton_->GetParent();
-
-	// UIの描画用キャンバスを取得
-	const auto& renderCanvas = uiButton_->GetRenderCanvas();
-
-	SetDrawScreen(defaultScreenHadle_);
-
-	auto offset = uiButton_->GetCanvasRenderOffset();
-
-	/*renderCanvas.lock()->Draw(
-		(uiButton_->GetParent().lock() == nullptr) && uiButton_->IsChildUIClipped() ? transform.localPos_ + offset : transform.currentPos_ + offset,
-		true, 
-		nullptr
-	);*/
-
-	if (parent.lock() != nullptr) {
-		if (useLocalPos_) {
-			renderCanvas.lock()->Draw(
-				transform.localPos_ + offset,
-				1.0f,
-				transform.currentRot_,
-				nullptr
-			);
-		}
-		else {
-			renderCanvas.lock()->Draw(
-				transform.currentPos_ + offset,
-				1.0f,
-				transform.currentRot_,
-				nullptr
-			);
-		}
-	}
-	else {
-		renderCanvas.lock()->Draw(
-			transform.currentPos_ + offset,
-			1.0f,
-			transform.currentRot_,
-			nullptr
-		);
-	}
-
-}
-
 void UI_ButtonRenderer::DebugRender(void) {
 	// UIの描画用キャンバスを取得
-	const auto& renderCanvas = uiButton_->GetRenderCanvas();
+	const auto& renderCanvas = ui_->GetRenderCanvas();
 	
 	// デバッグ用のボックス
 	auto canvasSize = renderCanvas.lock()->GetSize();
