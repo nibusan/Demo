@@ -1,10 +1,12 @@
 #include "AbstractUI.h"
 #include "../../../../Common/Handle/Graphic/Graphic.h"
+#include "../../../../Common/Handle/Sound/Sound.h"
 #include "../../../../Managers/PixelShaderEventManager.h"
 #include "../../../../Managers/InputManager.h"
 
 AbstractUI::AbstractUI(void) : 
 isHighlighted_(false),
+preIsHighlighted_(false),
 renderCanvas_(nullptr),
 type_(UI::UI_TYPE::NONE),
 originType_(UI::UI_ORIGIN_TYPE::CENTER_CENTER),
@@ -21,6 +23,7 @@ AbstractUI::AbstractUI(
 	int usingPixelShaderEventID
 ) : 
 isHighlighted_(false),
+preIsHighlighted_(false),
 renderCanvas_(std::make_unique<Graphic>(MakeScreen(static_cast<int>(canvasSize.x), static_cast<int>(canvasSize.y), true))),
 type_(UI::UI_TYPE::NONE),
 originType_(originType),
@@ -32,6 +35,10 @@ usingPixelShaderEventID_(usingPixelShaderEventID) {
 	renderCanvas_->SetIsAutoDeleteHandle(true);
 }
 
+bool AbstractUI::IsHighlighted(void) const {
+	return isHighlighted_;
+}
+
 void AbstractUI::Init_GameObject2D(void) {
 	Init_UI();
 	SetHighlighted(false);
@@ -39,21 +46,27 @@ void AbstractUI::Init_GameObject2D(void) {
 }
 
 void AbstractUI::Update_GameObject2D(void) {
+	// 前回の状態を退避
+	preIsHighlighted_ = isHighlighted_;
+
 	auto& inputManager = InputManager::GetInstance();
+
+	// もしクリックできてなおかつコライダーが生成されてたらUIを選択してるかの処理をする
 	if (isClickable_) {
 		if (collider_ != nullptr) {
-			collider_->SetCenterPos(transform_.currentPos_ );
+			collider_->SetCenterPos(transform_.currentPos_ + (renderCanvas_->GetSize().ToVector2f() / 2.0f));
 			if (collider_->IsContains(inputManager.GetMousePos().ToVector2f())) {
 				isHighlighted_ = true;
-				transform_.localScl_ = 1.5f;
-				HighlightUpdate();
 			}
 			else {
 				isHighlighted_ = false;
-				transform_.localScl_ = 1.0f;
 			}
 		}
 	}
+
+	// カーソルがあった時に発生するトリガーで効果音を鳴らすか判定する
+	if ((!preIsHighlighted_ && isHighlighted_) && !selectSound_.expired()) selectSound_.lock()->Play(false);
+
 	Update_UI();
 }
 
@@ -92,6 +105,7 @@ void AbstractUI::OnClick(void) {
 Vector2<float> AbstractUI::GetCanvasRenderOffset(void) const {
 	// 描画用キャンバスのサイズを取得
 	const auto& canvasSize = renderCanvas_->GetSize().ToVector2f();
+	const auto scaleCanvasSize = canvasSize * transform_.currentScl_;
 	
 	// 計算結果格納用
 	Vector2<float> ret = {};
@@ -99,26 +113,26 @@ Vector2<float> AbstractUI::GetCanvasRenderOffset(void) const {
 	// 原点の種類によってオフセットを計算する
 	switch (originType_) {
 	case UI::UI_ORIGIN_TYPE::UP_LEFT: {
-		ret = canvasSize / 2.0f;
+		ret = scaleCanvasSize / 2.0f;
 		break;
 	}
 	case UI::UI_ORIGIN_TYPE::UP_CENTER: {
 		ret = {
 			0.0f,
-			canvasSize.y / 2.0f
+			scaleCanvasSize.y / 2.0f
 		};
 		break;
 	}
 	case UI::UI_ORIGIN_TYPE::UP_RIGHT: {
 		ret = {
-			-canvasSize.x / 2.0f,
-			canvasSize.y / 2.0f
+			-scaleCanvasSize.x / 2.0f,
+			scaleCanvasSize.y / 2.0f
 		};
 		break;
 	}
 	case UI::UI_ORIGIN_TYPE::CENTER_LEFT: {
 		ret = {
-			canvasSize.x / 2.0f,
+			scaleCanvasSize.x / 2.0f,
 			0.0f
 		};
 		break;
@@ -128,29 +142,29 @@ Vector2<float> AbstractUI::GetCanvasRenderOffset(void) const {
 	}
 	case UI::UI_ORIGIN_TYPE::CENTER_RIGHT: {
 		ret = {
-			-canvasSize.x / 2.0f,
+			-scaleCanvasSize.x / 2.0f,
 			0.0f
 		};
 		break;
 	}
 	case UI::UI_ORIGIN_TYPE::DOWN_LEFT: {
 		ret = {
-			canvasSize.x / 2.0f,
-			-canvasSize.y / 2.0f
+			scaleCanvasSize.x / 2.0f,
+			-scaleCanvasSize.y / 2.0f
 		};
 		break;
 	}
 	case UI::UI_ORIGIN_TYPE::DOWN_CENTER: {
 		ret = {
 			0.0f,
-			-canvasSize.y / 2.0f
+			-scaleCanvasSize.y / 2.0f
 		};
 		break;
 	}
 	case UI::UI_ORIGIN_TYPE::DOWN_RIGHT: {
 		ret = {
-			-canvasSize.x / 2.0f,
-			-canvasSize.y / 2.0f
+			-scaleCanvasSize.x / 2.0f,
+			-scaleCanvasSize.y / 2.0f
 		};
 		break;
 	}
@@ -170,6 +184,10 @@ int AbstractUI::GetUsingPixelShaderEventID(void) const {
 
 void AbstractUI::SetUsingPixelShaderEventID(int eventID) {
 	usingPixelShaderEventID_ = eventID;
+}
+
+void AbstractUI::SetSelectSound(std::weak_ptr<Sound> sound) { 
+	selectSound_ = sound;
 }
 
 std::weak_ptr<Graphic> AbstractUI::GetRenderCanvas(void) {

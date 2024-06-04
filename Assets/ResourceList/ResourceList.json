@@ -21,6 +21,12 @@
                 "Extension": ".png"
             },
             {
+                "Key": "IMAGE_UI_IMAGE_BACKGROUND",
+                "FilePath": "Scenes/UISystemScene/UI/Image/",
+                "FileName": "Image_BackGround",
+                "Extension": ".png"
+            },
+            {
                 "Key": "IMAGE_UI_ITEMS",
                 "FilePath": "Scenes/InventorySystemScene/UI/Item/",
                 "FileName": "Items",
@@ -33,7 +39,14 @@
                 "Extension": ".png"
             }
         ],
-        "Sound2D": null,
+        "Sound2D": [
+            {
+                "Key": "SOUND_UI_SELECT",
+                "FilePath": "Scenes/UISystemScene/Sound/",
+                "FileName": "UI_Select",
+                "Extension": ".ogg"
+            }
+        ],
         "Sound3D": null,
         "Model": null,
         "Font": [

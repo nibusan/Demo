@@ -7,6 +7,7 @@
 #include "UI_Info.h"
 
 class Graphic;
+class Sound;
 class PixelShader;
 /// @brief UIの抽象クラスです
 /// @note 2DのUIで使うことを前提に設計しているので3Dでは動きません
@@ -27,8 +28,12 @@ public:
 		int usingPixelShaderEventID
 	);
 
+	/// @brief 強調表示されてるかを返す
+	/// @param flag 強調表示されてるか
+	[[nodiscard]] bool IsHighlighted(void) const;
+
 	/// @brief 強調表示するかをセット
-	/// @param flag 強調表示するかのフラグ
+	/// @param flag 強調表示するか
 	void SetHighlighted(bool flag);
 
 	/// @brief このUIがクリックできるかを返す
@@ -70,9 +75,17 @@ public:
 	/// @brief ピクセルシェーダーの定数バッファが使うイベントIDをセットする 
 	/// @param イベントID
 	[[nodiscard]] void SetUsingPixelShaderEventID(int eventID);
+
+	/// @brief カーソルが合った際に鳴らす効果音
+	/// @brief あまり使わないためコンストラクタでは受け取らないです
+	/// @param sound 効果音
+	void SetSelectSound(std::weak_ptr<Sound> sound);
 protected:
 	// 強調表示されてるか
 	bool isHighlighted_;
+
+	// 強調表示されてるか(1フレーム前のやつ)
+	bool preIsHighlighted_;
 
 	// このUIはクリックできるか
 	bool isClickable_;
@@ -94,6 +107,9 @@ protected:
 
 	// 使用するピクセルシェーダの定数バッファが使うイベントID
 	int usingPixelShaderEventID_;
+
+	// カーソルが合った際に鳴らす音
+	std::weak_ptr<Sound> selectSound_;
 
 	// 外部から隠蔽するためにpublicにしない
 	void Init_GameObject2D(void) override;

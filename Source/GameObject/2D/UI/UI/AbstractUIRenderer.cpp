@@ -54,12 +54,27 @@ void AbstractUIRenderer::End(void) {
 		}
 	}
 	else {
-		pixelShader.lock()->SetUseTexture(0, renderCanvas.lock()->GetHandle());
+		if (pixelShader.lock() != nullptr) {
+			pixelShader.lock()->SetUseTexture(0, renderCanvas.lock()->GetHandle());
+		}
+		if (ui_->IsHighlighted()) SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
 		renderCanvas.lock()->Draw(
 			transform.currentPos_ + offset,
 			transform.currentScl_,
 			transform.currentRot_,
 			nullptr
 		);
+		if (ui_->IsHighlighted()) SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	}
+
+	auto collider = std::dynamic_pointer_cast<RectCollider>(ui_->GetCollider().lock());
+	if (collider == nullptr) return;
+	DrawBox(
+		collider->GetCenterPos().x - collider->GetSize().x,
+		collider->GetCenterPos().y - collider->GetSize().y,
+		collider->GetCenterPos().x + collider->GetSize().x,
+		collider->GetCenterPos().y + collider->GetSize().y,
+		0xFF0000,
+		false
+	);
 }

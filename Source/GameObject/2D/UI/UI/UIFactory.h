@@ -11,7 +11,7 @@ public:
 	THIS_CLASS_IS_STATIC_SINGLETON(UIFactory);
 
 	/// @brief UIのインスタンスを生成
-	std::shared_ptr<AbstractUI> CreateUI(const nlohmann::json& uiData) const;
+	std::shared_ptr<AbstractUI> CreateUI(const nlohmann::json& uiData, bool isCreateRenderer) const;
 private:
 
 	UIFactory(void) = default;
