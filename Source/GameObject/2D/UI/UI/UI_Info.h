@@ -37,4 +37,20 @@ namespace UI {
 		DOWN_RIGHT		// 下段 右
 	};
 
+	// UIがクリックされた際に呼ばれるコールバック関数を管理
+	static const std::unordered_map<int, std::function<void(void)>> ON_CLICK_EVENT_LIST = {
+		{
+			-1, nullptr
+		},
+		{ 
+			0,[]() {
+				int test = 0;
+			}
+		},
+		{ 
+			1,[]() {
+				int test = 0;
+			}
+		}
+	};
 }

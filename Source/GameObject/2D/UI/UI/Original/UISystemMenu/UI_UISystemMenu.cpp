@@ -8,14 +8,18 @@ UI_UISystemMenu::UI_UISystemMenu(void) {}
 
 UI_UISystemMenu::UI_UISystemMenu(
 	const Vector2<float> canvasSize, 
-	UI::UI_ORIGIN_TYPE originType, 
+	UI::UI_ORIGIN_TYPE originType,
+	bool isClickable,
+	const std::function<void(void)> onClickCallBack,
+	std::weak_ptr<PixelShader> usingPixelShader,
+	int usingPixelShaderEventID, 
 	const std::shared_ptr<UI_Image>& backGround, 
 	const std::shared_ptr<UI_Text>& title, 
 	const std::shared_ptr<UI_Button>& button1, 
 	const std::shared_ptr<UI_Button>& button2, 
 	const std::shared_ptr<UI_Button>& button3, 
 	const std::shared_ptr<UI_Button>& button4) : 
-AbstractUI(canvasSize, originType),
+AbstractUI(canvasSize, originType, isClickable, onClickCallBack, usingPixelShader, usingPixelShaderEventID),
 uiImage_BackGround_(backGround),
 uiText_Title_(title){
 	buttonList_[0] = button1;

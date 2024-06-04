@@ -20,7 +20,11 @@ public:
 	/// @param uiText ベースとなるテキストのUI
 	UI_UISystemMenu(
 		const Vector2<float> canvasSize, 
-		UI::UI_ORIGIN_TYPE originType, 
+		UI::UI_ORIGIN_TYPE originType,
+		bool isClickable,
+		const std::function<void(void)> onClickCallBack,
+		std::weak_ptr<PixelShader> usingPixelShader,
+		int usingPixelShaderEventID, 
 		const std::shared_ptr<UI_Image>& backGround, 
 		const std::shared_ptr<UI_Text>& title,
 		const std::shared_ptr<UI_Button>& button1,

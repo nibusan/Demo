@@ -20,7 +20,12 @@ void UI_ImageRenderer::Begin(void) {
 }
 
 void UI_ImageRenderer::Render(void) {
-	uiImage_->GetImage().lock()->Draw(Vector2<float>(0.0f, 0.0f), false, nullptr);
+	const auto pixelShader =  uiImage_->GetUsingPixelShader();
+	uiImage_->GetImage().lock()->Draw(
+		Vector2<float>(0.0f, 0.0f), 
+		false, 
+		pixelShader.lock()
+	);
 	
 	// デバッグ用
 	//DebugRender();
@@ -44,7 +49,7 @@ void UI_ImageRenderer::End(void) {
 		if (useLocalPos_) {
 			renderCanvas.lock()->Draw(
 				transform.localPos_ + offset,
-				1.0f,
+				10.0f,
 				transform.currentRot_,
 				nullptr
 			);
@@ -52,7 +57,7 @@ void UI_ImageRenderer::End(void) {
 		else {
 			renderCanvas.lock()->Draw(
 				transform.currentPos_ + offset,
-				1.0f,
+				10.0f,
 				transform.currentRot_,
 				nullptr
 			);
@@ -61,7 +66,7 @@ void UI_ImageRenderer::End(void) {
 	else {
 		renderCanvas.lock()->Draw(
 			transform.currentPos_ + offset,
-			1.0f,
+			10.0f,
 			transform.currentRot_,
 			nullptr
 		);

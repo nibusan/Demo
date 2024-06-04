@@ -5,6 +5,7 @@
 #include "../Scenes/InventorySystemScene/InventorySystemScene.h"
 #include "../Scenes/UISystemScene/UISystemScene.h"
 #include "ResourceManager.h"
+#include "PixelShaderEventManager.h"
 
 void SceneManager::ChangeScene(Scene::TYPE type) {
 	if (currentScene_ != nullptr) {
@@ -42,13 +43,18 @@ Scene::TYPE SceneManager::GetCurrentSceneType(void) {
 }
 
 void SceneManager::Init(void) {
+	PixelShaderEventManager::GetInstance().Init();
+
 	// 最初のシーンを設定
-	ChangeScene(Scene::TYPE::INVENTORY_SYSTEM);
+	ChangeScene(Scene::TYPE::UI_SYSTEM);
 }
 
 void SceneManager::Update(void) {
 	// シーンの更新
 	currentScene_->Update();
+
+	// ピクセルシェーダで使う定数バッファの更新処理
+	PixelShaderEventManager::GetInstance().Update();
 }
 
 void SceneManager::Release(void) {

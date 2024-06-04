@@ -33,6 +33,10 @@ public:
 	/// @param size 定数バッファのサイズ
 	void CreateConstantBuffer(int size);
 
+	/// @brief 定数バッファを返す
+	/// @return 定数バッファ
+	int GetConstantBuffer(void) const;
+
 private:
 	VERTEX2DSHADER vertex_[6];
 

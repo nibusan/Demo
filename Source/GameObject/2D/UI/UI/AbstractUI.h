@@ -7,6 +7,7 @@
 #include "UI_Info.h"
 
 class Graphic;
+class PixelShader;
 /// @brief UIの抽象クラスです
 /// @note 2DのUIで使うことを前提に設計しているので3Dでは動きません
 class AbstractUI : public GameObject2D {
@@ -17,7 +18,14 @@ public:
 	/// @brief コンストラクタ
 	/// @param canvasSize UIのキャンバスのサイズ
 	/// @param originType どこを原点にするか
-	AbstractUI(const Vector2<float>& canvasSize, UI::UI_ORIGIN_TYPE originType);
+	AbstractUI(
+		const Vector2<float>& canvasSize, 
+		UI::UI_ORIGIN_TYPE originType,
+		bool isClickable,
+		const std::function<void(void)> onClickCallBack,
+		std::weak_ptr<PixelShader> usingPixelShader,
+		int usingPixelShaderEventID
+	);
 
 	/// @brief 強調表示するかをセット
 	/// @param flag 強調表示するかのフラグ
@@ -54,6 +62,14 @@ public:
 	/// @brief 描画する際に使用するピクセルシェーダーを返す 
 	/// @return ピクセルシェーダー
 	[[nodiscard]] std::weak_ptr<PixelShader> GetUsingPixelShader(void) const;
+
+	/// @brief ピクセルシェーダーの定数バッファが使うイベントID返す 
+	/// @return イベントID
+	[[nodiscard]] int GetUsingPixelShaderEventID(void) const;
+
+	/// @brief ピクセルシェーダーの定数バッファが使うイベントIDをセットする 
+	/// @param イベントID
+	[[nodiscard]] void SetUsingPixelShaderEventID(int eventID);
 protected:
 	// 強調表示されてるか
 	bool isHighlighted_;
@@ -74,7 +90,10 @@ protected:
 	UI::UI_ORIGIN_TYPE originType_;
 
 	// 描画する際に使用するピクセルシェーダー
-	std::shared_ptr<PixelShader> usingPixelShader_;
+	std::weak_ptr<PixelShader> usingPixelShader_;
+
+	// 使用するピクセルシェーダの定数バッファが使うイベントID
+	int usingPixelShaderEventID_;
 
 	// 外部から隠蔽するためにpublicにしない
 	void Init_GameObject2D(void) override;

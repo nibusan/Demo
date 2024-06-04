@@ -93,3 +93,7 @@ void PixelShader::SetConstantValue(int index, float value) {
 void PixelShader::CreateConstantBuffer(int size) {
 	cbuff_ = CreateShaderConstantBuffer(size);
 }
+
+int PixelShader::GetConstantBuffer(void) const {
+	return cbuff_;
+}

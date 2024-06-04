@@ -16,7 +16,11 @@ public:
 	/// @param uiText ベースとなるテキストのUI
 	UI_Button(
 		const Vector2<float> canvasSize, 
-		UI::UI_ORIGIN_TYPE originType, 
+		UI::UI_ORIGIN_TYPE originType,
+		bool isClickable,
+		const std::function<void(void)> onClickCallBack,
+		std::weak_ptr<PixelShader> usingPixelShader,
+		int usingPixelShaderEventID, 
 		const std::shared_ptr<UI_Image>& uiImage, 
 		const std::shared_ptr<UI_Text>& uiText
 	);

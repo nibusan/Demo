@@ -15,6 +15,10 @@ public:
 	UI_Image(
 		const Vector2<float>& canvasSize, 
 		UI::UI_ORIGIN_TYPE originType,
+		bool isClickable,
+		const std::function<void(void)> onClickCallBack,
+		std::weak_ptr<PixelShader> usingPixelShader,
+		int usingPixelShaderEventID,
 		std::weak_ptr<Graphic> image
 	);
 

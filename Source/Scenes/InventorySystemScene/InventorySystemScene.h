@@ -20,7 +20,7 @@ public:
 	void Release(void) override;
 
 private:
-	std::shared_ptr<Inventory<Item>> inventory_;
+	/*std::shared_ptr<Inventory<Item>> inventory_;
 	std::shared_ptr<UI_Inventory> uiInventory_;
-	std::unique_ptr<UI_InventoryRenderer> inventoryRenderer_;
+	std::unique_ptr<UI_InventoryRenderer> inventoryRenderer_;*/
 };

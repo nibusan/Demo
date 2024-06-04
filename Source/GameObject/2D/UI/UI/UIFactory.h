@@ -1,59 +1,27 @@
 #pragma once
 #include <memory>
 #include "../../../../Common/StaticSingleton.h"
-#include "AbstractUI.h"
-#include "UI_Info.h"
-#include "../UI/Parts/Image/UI_Image.h"
-#include "../UI/Parts/Text/UI_Text.h"
-#include "../UI/Original/Button/UI_Button.h"
-#include "../UI/Original/Inventory/UI_Inventory.h"
-#include "../UI/Original/Item/UI_Item.h"
-#include "../UI/Original/UISystemMenu/UI_UISystemMenu.h"
+#include "../../../../Managers/RenderManager.h"
 
 class UIFactory : public StaticSingleton<UIFactory> {
 public:
 	~UIFactory(void) = default;
 	THIS_CLASS_IS_STATIC_SINGLETON(UIFactory);
-
-	template <typename... Args>
-	std::shared_ptr<AbstractUI> CreateUI(UI::UI_TYPE type, Args&&... args) const;
+	
+	/// @brief UIのインスタンスを生成
+	/// @tparam T 生成するUIのクラス
+	/// @tparam TRenderer 生成するUIのレンダラークラス
+	/// @tparam ...Args 各UIに渡す引数
+	/// @param ...args UIに渡す引数
+	/// @return 生成したUIのインスタンス
+	template <typename T, typename... Args>
+	std::shared_ptr<T> CreateUI(Args&&... args) const;
 private:
-
 
 	UIFactory(void) = default;
 };
 
-template<typename ...Args>
-inline std::shared_ptr<AbstractUI> UIFactory::CreateUI(UI::UI_TYPE type, Args && ...args) const {
-
-	// 種類によって生成するクラスを変える
-	switch (type) {
-	case UI::UI_TYPE::IMAGE: {
-		return std::make_shared<UI_Image>(std::forward<Args>(args)...);
-		break;
-	}
-	case UI::UI_TYPE::TEXT: {
-		return std::make_shared<UI_Text>(std::forward<Args>(args)...);
-		break;
-	}
-	case UI::UI_TYPE::BUTTON: {
-		return std::make_shared<UI_Button>(std::forward<Args>(args)...);
-		break;
-	}
-	case UI::UI_TYPE::UI_SYSTEM_MENU: {
-		return std::make_shared<UI_UISystemMenu>(std::forward<Args>(args)...);
-		break;
-	}
-	case UI::UI_TYPE::INVENTORY: {
-		return std::make_shared<UI_Inventory>(std::forward<Args>(args)...);
-		break;
-	}
-	case UI::UI_TYPE::ITEM: {
-		//createUI = std::make_shared<UI_Item>(std::forward<Args>(args)...);
-		break;
-	}
-	case UI::UI_TYPE::NONE:
-	default:
-		break;
-	}
+template<typename T, typename ...Args>
+inline std::shared_ptr<T> UIFactory::CreateUI(Args&& ...args) const {
+	return std::make_shared<T>(args...);;
 }

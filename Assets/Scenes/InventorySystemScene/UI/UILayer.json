@@ -7,7 +7,7 @@
             "Scl": { "X": 0.0, "Y": 0.0 },
             "CanvasSize": null,
             "IsClickable": false,
-            "OnClickID": -1,
+            "OnClickEventID": -1,
             "Attribute": {
                 "ImageResourceKey": "IMAGE_UI_IMAGE_TEST",
                 "PixelShaderResourceKey": "PIXELSHADER_RAINBOW",
@@ -22,7 +22,7 @@
             "Scl": { "X": 0.0, "Y": 0.0 },
             "CanvasSize": null,
             "IsClickable": false,
-            "OnClickID": -1,
+            "OnClickEventID": -1,
             "Attribute": {
                 "ImageResourceKey": "IMAGE_UI_IMAGE_TEST",
                 "PixelShaderResourceKey": null,

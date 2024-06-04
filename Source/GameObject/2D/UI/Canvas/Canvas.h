@@ -2,7 +2,7 @@
 #include <vector>
 #include <memory>
 
-class AbstractUILayer;
+class UILayer;
 /// @brief •¡”‚ÌUILayer‚ğŠÇ—‚·‚éƒNƒ‰ƒX
 class Canvas {
 public:
@@ -13,10 +13,10 @@ public:
 	void Update(void);
 	void Release(void);
 
-	void AddLayer(std::shared_ptr<AbstractUILayer> uiLayer);
+	void AddLayer(std::shared_ptr<UILayer> uiLayer);
 private:
 	// 
-	std::vector<std::shared_ptr<AbstractUILayer>> uiLayers_;
+	std::vector<std::shared_ptr<UILayer>> uiLayers_;
 
 };
 

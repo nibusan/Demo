@@ -3,11 +3,7 @@
 #include "../AbstractScene.h"
 
 /// @brief [Unknown Level & Detonation] UI‚Ìˆ—(‰ü—Ç”Å)
-class GameObject;
-class AbstractUI;
-class AbstractRenderer;
-class Graphic;
-class Font;
+class UILayer;
 class UISystemScene : public AbstractScene {
 public:
 	UISystemScene();
@@ -17,9 +13,6 @@ public:
 	void Update(void) override;
 	void Release(void) override;
 private:
-	std::shared_ptr<AbstractUI> uiImage_;
-	std::shared_ptr<AbstractRenderer> uiImageRenderer_;
-	std::weak_ptr<Graphic> graphic_;
-	std::shared_ptr<Font> font_;
+	std::unique_ptr<UILayer> uiLayer_;
 };
 

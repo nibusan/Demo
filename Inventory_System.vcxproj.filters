@@ -75,10 +75,7 @@
     <ClCompile Include="Source\GameObject\2D\UI\Canvas\Canvas.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameObject\2D\UI\UILayer\AbstractUILayer.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GameObject\2D\UI\UILayer\UILayer_MainMenu.cpp">
+    <ClCompile Include="Source\GameObject\2D\UI\UILayer\UILayer.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Source\Managers\JsonReader.cpp">
@@ -127,6 +124,9 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Source\GameObject\2D\UI\UI\Original\Inventory\UI_InventoryRenderer.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Managers\PixelShaderEventManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -212,10 +212,7 @@
     <ClInclude Include="Source\GameObject\2D\UI\Canvas\Canvas.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameObject\2D\UI\UILayer\AbstractUILayer.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GameObject\2D\UI\UILayer\UILayer_MainMenu.h">
+    <ClInclude Include="Source\GameObject\2D\UI\UILayer\UILayer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Source\Library\nlohmann-json\json.hpp">
@@ -275,10 +272,13 @@
     <ClInclude Include="Source\GameObject\2D\UI\UI\Original\Inventory\UI_InventoryRenderer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameObject\2D\UI\UILayer\UILayerType.h">
+    <ClInclude Include="Source\GameObject\2D\UI\UILayer\UILayerInfo.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Source\GameObject\2D\UI\UI\UIFactory.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Managers\PixelShaderEventManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

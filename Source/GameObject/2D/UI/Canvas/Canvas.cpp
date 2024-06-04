@@ -1,5 +1,5 @@
 #include "Canvas.h"
-#include "../UILayer/AbstractUILayer.h"
+#include "../UILayer/UILayer.h"
 
 void Canvas::Init(void) {
 	for (const auto& uiLayer : uiLayers_) {
@@ -19,6 +19,6 @@ void Canvas::Release(void) {
 	}
 }
 
-void Canvas::AddLayer(std::shared_ptr<AbstractUILayer> uiLayer) {
+void Canvas::AddLayer(std::shared_ptr<UILayer> uiLayer) {
 	uiLayers_.emplace_back(uiLayer);
 }
