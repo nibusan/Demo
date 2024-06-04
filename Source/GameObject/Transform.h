@@ -1,6 +1,7 @@
 #pragma once
 #include <concepts>
 #include "../Common/Vector2.h"
+#include "../Common/Vector3.h"
 
 /// @brief ゲームオブジェクトの基礎データを管理するクラス
 /// @note 角度は2D、3Dで要素数が変わるので派生クラスで定義してます
@@ -10,7 +11,7 @@
 template <typename T>
 concept VectorType_ = 
 	// 許容されている型かどうかを判定する
-	std::is_same_v<T, Vector2<float>>;
+	std::is_same_v<T, Vector2<float>> || std::is_same_v<T, Vector3<float>>;
 template <VectorType_ T>
 class Transform {
 public:

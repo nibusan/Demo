@@ -45,6 +45,23 @@ Scene::TYPE SceneManager::GetCurrentSceneType(void) {
 void SceneManager::Init(void) {
 	PixelShaderEventManager::GetInstance().Init();
 
+	// 背景色設定
+	SetBackgroundColor(40, 0, 0);
+
+	// Zバッファを有効にする
+	SetUseZBuffer3D(true);
+
+	// Zバッファへの書き込みを有効にする
+	SetWriteZBuffer3D(true);
+
+	// バックカリングを有効にする
+	SetUseBackCulling(true);
+
+	SetCameraNearFar(0.0001f, 5000.0f);
+
+	// ライトの設定
+	SetUseLighting(true);
+
 	// 最初のシーンを設定
 	ChangeScene(Scene::TYPE::UI_SYSTEM);
 }

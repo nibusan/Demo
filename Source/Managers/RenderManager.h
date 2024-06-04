@@ -3,6 +3,7 @@
 #include <memory>
 #include "../Common/StaticSingleton.h"
 
+class Camera;
 class AbstractRenderer;
 class RenderManager : public StaticSingleton<RenderManager> {
 public:
@@ -21,12 +22,18 @@ public:
 	/// @param renderer3D 3Dレンダラー
 	void AddRenderer3D(std::shared_ptr<AbstractRenderer> renderer3D);
 
+	/// @brief メインカメラをセット
+	/// @param mainCamera メインカメラ
+	void SetMainCamera(std::shared_ptr<Camera> mainCamera);
 private:
 	// 2Dのレンダラーを格納
 	std::vector<std::shared_ptr<AbstractRenderer>> renderer2D_;
 	
 	// 3Dのレンダラーを格納
 	std::vector<std::shared_ptr<AbstractRenderer>> renderer3D_;
+
+	// メインのカメラ
+	std::shared_ptr<Camera> mainCamera_;
 
 	RenderManager() = default;
 

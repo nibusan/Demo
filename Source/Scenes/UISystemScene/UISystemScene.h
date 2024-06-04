@@ -3,6 +3,7 @@
 #include "../AbstractScene.h"
 
 /// @brief [Unknown Level & Detonation] UI‚Ìˆ—(‰ü—Ç”Å)
+class Camera;
 class UILayer;
 class UISystemScene : public AbstractScene {
 public:
@@ -13,6 +14,7 @@ public:
 	void Update(void) override;
 	void Release(void) override;
 private:
+	std::shared_ptr<Camera> camera_;
 	std::unique_ptr<UILayer> uiLayer_;
 };
 

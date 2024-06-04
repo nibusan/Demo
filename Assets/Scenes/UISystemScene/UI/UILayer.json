@@ -4,7 +4,7 @@
             "Type": "Image",
             "Pos": { "X": 200.0, "Y": 400.0 },
             "Rot": 0.0,
-            "Scl": 10.0,
+            "Scl": 1.0,
             "OriginType": 0,
             "CanvasSize": null,
             "IsClickable": false,

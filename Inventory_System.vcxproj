@@ -147,9 +147,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Common\Quaternion.cpp" />
+    <ClCompile Include="Source\GameObject\3D\Camera\Camera.cpp" />
     <ClCompile Include="Source\GameObject\2D\Collider\RectCollider.cpp" />
     <ClCompile Include="Source\GameObject\2D\Collider\CircleCollider.cpp" />
     <ClCompile Include="Source\GameObject\2D\Collider\AbstractCollider.cpp" />
+    <ClCompile Include="Source\GameObject\3D\GameObject3D.cpp" />
     <ClCompile Include="Source\Managers\PixelShaderEventManager.cpp" />
     <ClCompile Include="Source\Managers\RenderManager.cpp" />
     <ClCompile Include="Source\Managers\ResourceManager.cpp" />
@@ -189,12 +192,18 @@
     <ClCompile Include="Source\GameObject\2D\UI\UI\Original\Item\UI_Item.cpp" />
     <ClCompile Include="Source\GameObject\2D\UI\UI\Original\Item\UI_ItemRenderer.cpp" />
     <ClCompile Include="Source\GameObject\2D\UI\UI\AbstractUIRenderer.cpp" />
+    <ClCompile Include="Source\Utility\Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Common\Quaternion.h" />
+    <ClInclude Include="Source\GameObject\3D\Camera\Camera.h" />
+    <ClInclude Include="Source\Common\Vector3.h" />
     <ClInclude Include="Source\GameObject\2D\Collider\Collider_Info.h" />
     <ClInclude Include="Source\GameObject\2D\Collider\RectCollider.h" />
     <ClInclude Include="Source\GameObject\2D\Collider\CircleCollider.h" />
     <ClInclude Include="Source\GameObject\2D\Collider\AbstractCollider.h" />
+    <ClInclude Include="Source\GameObject\3D\GameObject3D.h" />
+    <ClInclude Include="Source\GameObject\3D\Transform3D.h" />
     <ClInclude Include="Source\Managers\PixelShaderEventManager.h" />
     <ClInclude Include="Source\GameObject\2D\UI\UILayer\UILayerInfo.h" />
     <ClInclude Include="Source\Managers\RenderManager.h" />
@@ -246,6 +255,7 @@
     <ClInclude Include="Source\GameObject\2D\UI\UI\Original\Item\UI_ItemRenderer.h" />
     <ClInclude Include="Source\GameObject\2D\UI\UI\UIFactory.h" />
     <ClInclude Include="Source\GameObject\2D\UI\UI\AbstractUIRenderer.h" />
+    <ClInclude Include="Source\Utility\Utility.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Source\HLSL\Pixel\PS_Rainbow.hlsl">

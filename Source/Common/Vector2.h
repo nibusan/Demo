@@ -5,8 +5,8 @@
 
 //“ñŽŸŒ³ƒxƒNƒgƒ‹(int,float,double‚Ì‚Ý)
 template <typename T>
-concept ValidType = std::is_same_v<T, int> || std::is_same_v<T, float> || std::is_same_v<T, double>;
-template <ValidType T>
+concept ValidType_2 = std::is_same_v<T, int> || std::is_same_v<T, float> || std::is_same_v<T, double>;
+template <ValidType_2 T>
 struct Vector2 {
 	T x, y;
 
