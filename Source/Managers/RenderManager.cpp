@@ -11,16 +11,6 @@ void RenderManager::Render(void) {
 	// 3D -> 2D‚Ì‡”Ô‚Å•`‰æ‚·‚é
 	Render3D();
 	Render2D();
-
-	mainCamera_->SetBeforeDraw();
-	DrawSphere3D(
-		{},
-		1.0f,
-		16,
-		0xFF0000,
-		0xFF0000,
-		false
-	);
 }
 
 void RenderManager::Release(void) {
@@ -48,6 +38,16 @@ void RenderManager::Render2D(void) {
 }
 
 void RenderManager::Render3D(void) {
+	mainCamera_->SetBeforeDraw();
+	DrawSphere3D(
+		{},
+		1.0f,
+		16,
+		0xFF0000,
+		0xFF0000,
+		false
+	);
+
 	for (const auto& renderer3D : renderer3D_) {
 		renderer3D->Begin();
 		renderer3D->Render();

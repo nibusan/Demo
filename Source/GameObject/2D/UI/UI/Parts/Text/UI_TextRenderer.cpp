@@ -20,7 +20,18 @@ void UI_TextRenderer::Render(void) {
 void UI_TextRenderer::DebugRender(void) {
 	// UIの描画用キャンバスを取得
 	const auto& renderCanvas = ui_->GetRenderCanvas();
-	const auto collider = ui_->GetCollider();
+	const auto collider = std::dynamic_pointer_cast<RectCollider>(ui_->GetCollider().lock());
+	const auto centerPos = collider->GetCenterPos();
+	const auto size = collider->GetSize();
+
+	DrawBox(
+		centerPos.x - size.x,
+		centerPos.y - size.y,
+		centerPos.x + size.x,
+		centerPos.y + size.y,
+		0x0000FF,
+		true
+	);
 
 	// デバッグ用のボックス
 	auto canvasSize = renderCanvas.lock()->GetSize();

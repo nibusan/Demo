@@ -9,7 +9,7 @@ void UI_ImageRenderer::Render(void) {
 
 	// 描画処理
 	const auto uiImage = std::dynamic_pointer_cast<UI_Image>(ui_);
-	uiImage->GetImage().lock()->Draw(Vector2<float>(0.0f, 0.0f), false, ui_->GetUsingPixelShader().lock());
+	uiImage->GetImage().lock()->Draw(Vector2<float>(0.0f, 0.0f), false, nullptr);
 	
 	// デバッグ用
 	//DebugRender();

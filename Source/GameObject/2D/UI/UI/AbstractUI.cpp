@@ -1,6 +1,7 @@
 #include "AbstractUI.h"
 #include "../../../../Common/Handle/Graphic/Graphic.h"
 #include "../../../../Managers/PixelShaderEventManager.h"
+#include "../../../../Managers/InputManager.h"
 
 AbstractUI::AbstractUI(void) : 
 isHighlighted_(false),
@@ -34,12 +35,26 @@ usingPixelShaderEventID_(usingPixelShaderEventID) {
 void AbstractUI::Init_GameObject2D(void) {
 	Init_UI();
 	SetHighlighted(false);
-
+	PixelShaderEventManager::GetInstance().StartUpdateEvent(usingPixelShaderEventID_);
 }
 
 void AbstractUI::Update_GameObject2D(void) {
+	auto& inputManager = InputManager::GetInstance();
+	if (isClickable_) {
+		if (collider_ != nullptr) {
+			collider_->SetCenterPos(transform_.currentPos_ );
+			if (collider_->IsContains(inputManager.GetMousePos().ToVector2f())) {
+				isHighlighted_ = true;
+				transform_.localScl_ = 1.5f;
+				HighlightUpdate();
+			}
+			else {
+				isHighlighted_ = false;
+				transform_.localScl_ = 1.0f;
+			}
+		}
+	}
 	Update_UI();
-	PixelShaderEventManager::GetInstance().StartUpdateEvent(usingPixelShaderEventID_);
 }
 
 void AbstractUI::Release_GameObject2D(void) {

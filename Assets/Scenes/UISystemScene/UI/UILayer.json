@@ -7,14 +7,31 @@
             "Scl": 1.0,
             "OriginType": 0,
             "CanvasSize": null,
-            "IsClickable": false,
+            "IsClickable": true,
             "OnClickEventID": -1,
             "Attribute": {
                 "ImageResourceKey": "IMAGE_UI_IMAGE_TEST_1",
                 "PixelShaderResourceKey": "PIXELSHADER_RAINBOW",
                 "PixelShaderEventID": 0
             },
-            "Child": null
+            "Child": [
+                {
+                    "Type": "Image",
+                    "Pos": { "X": 200.0, "Y": 400.0 },
+                    "Rot": 0.0,
+                    "Scl": 1.0,
+                    "OriginType": 0,
+                    "CanvasSize": null,
+                    "IsClickable": true,
+                    "OnClickEventID": -1,
+                    "Attribute": {
+                        "ImageResourceKey": "IMAGE_UI_IMAGE_TEST_1",
+                        "PixelShaderResourceKey": "PIXELSHADER_RAINBOW",
+                        "PixelShaderEventID": 0
+                    },
+                    "Child": null
+                }
+            ]
         },
         {
             "Type": "Text",
@@ -23,7 +40,7 @@
             "Scl": 1.0,
             "OriginType": 0,
             "CanvasSize": null,
-            "IsClickable": false,
+            "IsClickable": true,
             "OnClickEventID": -1,
             "Attribute": {
                 "PixelShaderResourceKey": "PIXELSHADER_RAINBOW",
@@ -33,7 +50,47 @@
                 "TextColor": "0xffffff",
                 "TextID": 0
             },
-            "Child": null
+            "Child": [
+                {
+                    "Type": "Text",
+                    "Pos": { "X": 120.0, "Y": 120.0 },
+                    "Rot": 0.0,
+                    "Scl": 1.0,
+                    "OriginType": 0,
+                    "CanvasSize": null,
+                    "IsClickable": true,
+                    "OnClickEventID": -1,
+                    "Attribute": {
+                        "PixelShaderResourceKey": "PIXELSHADER_RAINBOW",
+                        "PixelShaderEventID": 0,
+                        "FontResourceKey": "FONT_REVAMPED",
+                        "TextSize": 120,
+                        "TextColor": "0xffffff",
+                        "TextID": 0
+                    },
+                    "Child": [
+                        {
+                            "Type": "Text",
+                            "Pos": { "X": 120.0, "Y": 120.0 },
+                            "Rot": 0.0,
+                            "Scl": 1.0,
+                            "OriginType": 0,
+                            "CanvasSize": null,
+                            "IsClickable": true,
+                            "OnClickEventID": -1,
+                            "Attribute": {
+                                "PixelShaderResourceKey": "PIXELSHADER_RAINBOW",
+                                "PixelShaderEventID": 0,
+                                "FontResourceKey": "FONT_REVAMPED",
+                                "TextSize": 120,
+                                "TextColor": "0xffffff",
+                                "TextID": 0
+                            },
+                            "Child": null
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

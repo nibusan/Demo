@@ -54,6 +54,7 @@ void AbstractUIRenderer::End(void) {
 		}
 	}
 	else {
+		pixelShader.lock()->SetUseTexture(0, renderCanvas.lock()->GetHandle());
 		renderCanvas.lock()->Draw(
 			transform.currentPos_ + offset,
 			transform.currentScl_,

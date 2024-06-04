@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\Common\Quaternion.cpp" />
+    <ClCompile Include="Source\GameObject\2D\UI\UI\UIFactory.cpp" />
     <ClCompile Include="Source\GameObject\3D\Camera\Camera.cpp" />
     <ClCompile Include="Source\GameObject\2D\Collider\RectCollider.cpp" />
     <ClCompile Include="Source\GameObject\2D\Collider\CircleCollider.cpp" />
