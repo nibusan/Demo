@@ -1,12 +1,13 @@
 #pragma once
 #include <string>
+#include <memory>
 #include "Common/StaticSingleton.h"
 
 class Application : public StaticSingleton<Application> {
 public:
 	// ウィンドウのサイズ
-	static constexpr int WINDOW_SIZE_WIDTH = 1920;
-	static constexpr int WINDOW_SIZE_HEIGHT = 1080;
+	static constexpr int WINDOW_SIZE_WIDTH = 800;
+	static constexpr int WINDOW_SIZE_HEIGHT = 600;
 
 	// 1秒あたりのフレーム数
 	static constexpr int FRAME_TIME = 60;

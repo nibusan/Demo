@@ -18,7 +18,7 @@
 #include "../../../../Managers/PixelShaderEventManager.h"
 #include "UIFactory.h"
 
-std::shared_ptr<AbstractUI> UIFactory::CreateUI(const nlohmann::json& uiData, bool isCreateRenderer) const {
+std::shared_ptr<AbstractUI> UIFactory::CreateUI(const nlohmann::json& uiData, bool shouldCreateRenderer, bool useLocalPos) const {
 	// リソースファイル取得用
 	auto& resourceManager = ResourceManager::GetInstance();
 
@@ -62,9 +62,9 @@ std::shared_ptr<AbstractUI> UIFactory::CreateUI(const nlohmann::json& uiData, bo
 		// コライダーの構築
 		createUI->CreateCollider<CircleCollider>(Vector2<float>(0.0f, 0.0f), 1.0f);
 		
-		if (isCreateRenderer) {
+		if (shouldCreateRenderer) {
 			// UIのレンダラーを生成
-			createUIRenderer = std::make_shared<UI_ImageRenderer>(false, std::dynamic_pointer_cast<UI_Image>(createUI));
+			createUIRenderer = std::make_shared<UI_ImageRenderer>(useLocalPos, std::dynamic_pointer_cast<UI_Image>(createUI));
 
 			// 生成したUIのレンダラーを登録する
 			RenderManager::GetInstance().AddRenderer2D(createUIRenderer);
@@ -75,9 +75,8 @@ std::shared_ptr<AbstractUI> UIFactory::CreateUI(const nlohmann::json& uiData, bo
 		// 使用するフォントの生成
 		std::shared_ptr<Font> font =
 			std::make_shared<Font>(
-				std::dynamic_pointer_cast<Font>(resourceManager.GetResourceFile(static_cast<std::string>(uiData["Attribute"]["FontResourceKey"])).lock()
-
-				)->GetFontName(),
+				std::dynamic_pointer_cast<Font>(
+					resourceManager.GetResourceFile(static_cast<std::string>(uiData["Attribute"]["FontResourceKey"])).lock())->GetFontName(),
 				static_cast<int>(uiData["Attribute"]["TextSize"])
 			);
 
@@ -103,9 +102,9 @@ std::shared_ptr<AbstractUI> UIFactory::CreateUI(const nlohmann::json& uiData, bo
 		// コライダーの構築
 		createUI->CreateCollider<RectCollider>(Vector2<float>(0.0f, 0.0f), Vector2<float>(100.0f, 100.0f));
 		
-		if (isCreateRenderer) {
+		if (shouldCreateRenderer) {
 			// UIのレンダラーを生成
-			createUIRenderer = std::make_shared<UI_TextRenderer>(false, std::dynamic_pointer_cast<UI_Text>(createUI));
+			createUIRenderer = std::make_shared<UI_TextRenderer>(useLocalPos, std::dynamic_pointer_cast<UI_Text>(createUI));
 
 			// 生成したUIのレンダラーを登録する
 			RenderManager::GetInstance().AddRenderer2D(createUIRenderer);
@@ -126,16 +125,16 @@ std::shared_ptr<AbstractUI> UIFactory::CreateUI(const nlohmann::json& uiData, bo
 			(UI::ON_CLICK_EVENT_LIST.find(static_cast<int>(uiData["OnClickEventID"])))->second,
 			pixelShader,
 			uiData["Attribute"]["PixelShaderEventID"],
-			std::dynamic_pointer_cast<UI_Image>(CreateUI(uiData["Attribute"]["UI_Image"], false)),
-			std::dynamic_pointer_cast<UI_Text>(CreateUI(uiData["Attribute"]["UI_Text"], false))
+			std::dynamic_pointer_cast<UI_Image>(CreateUI(uiData["Attribute"]["UI_Image"], false, true)),
+			std::dynamic_pointer_cast<UI_Text>(CreateUI(uiData["Attribute"]["UI_Text"], false, true))
 		);
 
 		// コライダーの構築
 		createUI->CreateCollider<RectCollider>(Vector2<float>(0.0f, 0.0f), Vector2<float>(100.0f, 100.0f));
 
-		if (isCreateRenderer) {
+		if (shouldCreateRenderer) {
 			// UIのレンダラーを生成
-			createUIRenderer = std::make_shared<UI_ButtonRenderer>(false, std::dynamic_pointer_cast<UI_Button>(createUI));
+			createUIRenderer = std::make_shared<UI_ButtonRenderer>(useLocalPos, std::dynamic_pointer_cast<UI_Button>(createUI));
 
 			// 生成したUIのレンダラーを登録する
 			RenderManager::GetInstance().AddRenderer2D(createUIRenderer);
@@ -161,7 +160,7 @@ std::shared_ptr<AbstractUI> UIFactory::CreateUI(const nlohmann::json& uiData, bo
 
 	// 子が存在する場合は子を生成してから自身の子として追加する
 	for (const auto& child : uiData["Child"]) {
-		auto childUI = CreateUI(child, true);
+		auto childUI = CreateUI(child, true, true);
 		createUI->AddChild(childUI);
 	}
 
@@ -174,9 +173,10 @@ std::shared_ptr<AbstractUI> UIFactory::CreateUI(const nlohmann::json& uiData, bo
 
 	// コライダーの構築
 	if (uiData["IsClickable"]) {
-		createUI->CreateCollider<RectCollider>({ uiData["Pos"]["X"], uiData["Pos"]["Y"] }, createUI->GetRenderCanvas().lock()->GetSize().ToVector2f() / 2.0f);
+		//createUI->CreateCollider<RectCollider>({ uiData["Pos"]["X"], uiData["Pos"]["Y"] }, createUI->GetRenderCanvas().lock()->GetSize().ToVector2f() / 2.0f);
 	}
 
+	// カーソルを合わせた際に鳴らす効果音をセット
 	if (uiData["Attribute"]["SelectSoundResourceKey"] != nullptr) {
 		createUI->SetSelectSound(
 			std::dynamic_pointer_cast<Sound>(resourceManager.GetResourceFile(uiData["Attribute"]["SelectSoundResourceKey"]).lock())

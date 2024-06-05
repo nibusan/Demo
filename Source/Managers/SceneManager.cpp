@@ -57,7 +57,7 @@ void SceneManager::Init(void) {
 	// バックカリングを有効にする
 	SetUseBackCulling(true);
 
-	SetCameraNearFar(0.0001f, 5000.0f);
+	//SetCameraNearFar(0.0001f, 5000.0f);
 
 	// ライトの設定
 	SetUseLighting(true);

@@ -54,9 +54,6 @@ void AbstractUIRenderer::End(void) {
 		}
 	}
 	else {
-		if (pixelShader.lock() != nullptr) {
-			pixelShader.lock()->SetUseTexture(0, renderCanvas.lock()->GetHandle());
-		}
 		if (ui_->IsHighlighted()) SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
 		renderCanvas.lock()->Draw(
 			transform.currentPos_ + offset,

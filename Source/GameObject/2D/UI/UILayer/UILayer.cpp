@@ -37,6 +37,6 @@ void UILayer::LoadUILayer(UILayerInfo::TYPE type) {
 	auto& uiFactory = UIFactory::GetInstance();
 
 	for (const auto& ui : uiLayerJson["UIs"]) {
-		uis_.emplace_back(uiFactory.CreateUI(ui, true));
+		uis_.emplace_back(uiFactory.CreateUI(ui, true, false));
 	}
 }

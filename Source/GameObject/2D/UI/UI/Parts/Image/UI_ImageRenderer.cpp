@@ -6,10 +6,12 @@
 UI_ImageRenderer::UI_ImageRenderer(bool useLocalPos, std::shared_ptr<UI_Image> uiImage) : AbstractUIRenderer(useLocalPos, uiImage) {}
 
 void UI_ImageRenderer::Render(void) {
+	// 使用するピクセルシェーダーを取得
+	const auto pixelShader = ui_->GetUsingPixelShader();
 
 	// 描画処理
 	const auto uiImage = std::dynamic_pointer_cast<UI_Image>(ui_);
-	uiImage->GetImage().lock()->Draw(Vector2<float>(0.0f, 0.0f), false, nullptr);
+	uiImage->GetImage().lock()->Draw(Vector2<float>(0.0f, 0.0f), false, pixelShader.lock());
 	
 	// デバッグ用
 	//DebugRender();

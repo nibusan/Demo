@@ -43,9 +43,9 @@ void UI_Button::Init_UI(void) {
 	
 	// 画像の子としてテキストをセットする
 	uiImage_->AddChild(uiText_);
-	const auto& imageCanvasSize = uiImage_->GetRenderCanvas().lock()->GetSize().ToVector2f();
+	//const auto& imageCanvasSize = uiImage_->GetRenderCanvas().lock()->GetSize().ToVector2f();
 	uiText_->SetTransformData(
-		imageCanvasSize / 2.0f,
+		buttonCanvasSize / 2.0f,
 		0.0f,
 		1.0f
 	);
@@ -65,6 +65,7 @@ void UI_Button::Update_UI(void) {
 			}
 		}
 	}
+	transform_.localPos_.x += 0.1f;
 }
 
 void UI_Button::Release_UI(void) {}

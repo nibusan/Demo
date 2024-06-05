@@ -179,7 +179,7 @@ void Graphic::Draw(const Vector2<float>& pos, float scale, float angle, const Sh
 
 		SetDrawScreen(beforeShaderScreen_);
 		ClearDrawScreen();
-		ps->SetUseTexture(0, afterShaderScreen_);
+		ps->SetUseTexture(0, afterShaderScreen_, Vector2<float>(-100.0f, 0.0f));
 		ps->Draw();
 
 		SetDrawScreen(defScreen);

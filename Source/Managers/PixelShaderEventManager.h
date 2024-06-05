@@ -43,6 +43,8 @@ private:
 	/// @param isActive 更新処理を行うか
 	/// @param size このイベントを実行するのに必要な定数バッファのサイズ
 	struct EVENT_DATA {
+		EVENT_DATA(void) : initFunction(nullptr), updateFunction(nullptr), isActive(false), size(0) {};
+		~EVENT_DATA(void) = default;
 		std::function<void(void)> initFunction;
 		std::function<void(void)> updateFunction;
 		bool isActive;

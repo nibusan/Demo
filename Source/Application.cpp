@@ -7,13 +7,13 @@
 
 bool Application::Init(void) {
 	// ウィンドウを初期化
-	Window_Init("Unkn0wn Level", WINDOW_SIZE_WIDTH, WINDOW_SIZE_HEIGHT, 32);
+	Window_Init("Demo", WINDOW_SIZE_WIDTH, WINDOW_SIZE_HEIGHT, 32);
 
 	// XAudioを使用できるようにする
 	SetEnableXAudioFlag(true);
 
 	// Log.txtを出さないようにする
-	SetOutApplicationLogValidFlag(false);
+	//SetOutApplicationLogValidFlag(false);
 
 	// シェーダーを使えるようにする
 	SetUseDirect3DVersion(DX_DIRECT3D_11);
@@ -70,6 +70,6 @@ void Application::Window_Init(std::string name, int screenWidth, int screenHeigh
 	
 	// 仮想フルスクリーンにするための処理
 	ChangeWindowMode(true);
-	GetDefaultState(&screenWidth, &screenHeight, &bitColor);
+	//GetDefaultState(&screenWidth, &screenHeight, &bitColor);
 	SetWindowSize(screenWidth, screenHeight);
 }

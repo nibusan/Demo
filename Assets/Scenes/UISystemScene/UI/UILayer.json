@@ -19,11 +19,11 @@
         },
         {
             "Type": "Button",
-            "Pos": { "X": 500.0, "Y": 500.0 },
+            "Pos": { "X": 50.0, "Y": 50.0 },
             "Rot": 0.0,
             "Scl": 1.0,
             "OriginType": 0,
-            "CanvasSize": null,
+            "CanvasSize": { "Width": 500.0, "Height": 500.0 },
             "IsClickable": true,
             "OnClickEventID": -1,
             "Attribute": {
@@ -39,12 +39,12 @@
                     "CanvasSize": null,
                     "IsClickable": false,
                     "OnClickEventID": -1,
-                    "Attribute": {
-                        "ImageResourceKey": "IMAGE_UI_BUTTON",
-                        "PixelShaderResourceKey": "PIXELSHADER_RAINBOW",
-                        "PixelShaderEventID": 0,
-                        "SelectSoundResourceKey": null
-                    },
+					"Attribute": {
+						"ImageResourceKey": "IMAGE_UI_BUTTON",
+						"PixelShaderResourceKey": "PIXELSHADER_RAINBOW",
+						"PixelShaderEventID": 0,
+						"SelectSoundResourceKey": null
+					},
                     "Child": null
                 },
                 "UI_Text": {
@@ -57,8 +57,8 @@
                     "IsClickable": false,
                     "OnClickEventID": -1,
                     "Attribute": {
-                        "PixelShaderResourceKey": "PIXELSHADER_RAINBOW",
-                        "PixelShaderEventID": 0,
+                        "PixelShaderResourceKey": null,
+                        "PixelShaderEventID": -1,
                         "SelectSoundResourceKey": null,
                         "FontResourceKey": "FONT_REVAMPED",
                         "TextSize": 32,
