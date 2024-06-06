@@ -9,11 +9,13 @@
             "CanvasSize": null,
             "IsClickable": false,
             "OnClickEventID": -1,
+            "Collider": null,
             "Attribute": {
                 "ImageResourceKey": "IMAGE_UI_IMAGE_BACKGROUND",
                 "PixelShaderResourceKey": null,
                 "PixelShaderEventID": -1,
-                "SelectSoundResourceKey": null
+                "SelectSoundResourceKey": null,
+                "ClickSoundResourceKey": null
             },
             "Child": null
         },
@@ -23,13 +25,15 @@
             "Rot": 0.0,
             "Scl": 1.0,
             "OriginType": 0,
-            "CanvasSize": { "Width": 500.0, "Height": 500.0 },
+            "CanvasSize": null,
             "IsClickable": true,
             "OnClickEventID": -1,
+            "Collider": { "Type": "Rect", "Attribute": { "Size": null } },
             "Attribute": {
                 "PixelShaderResourceKey": "PIXELSHADER_RAINBOW",
                 "PixelShaderEventID": 0,
                 "SelectSoundResourceKey": "SOUND_UI_SELECT",
+                "ClickSoundResourceKey": "SOUND_UI_ON_CLICK",
                 "UI_Image": {
                     "Type": "Image",
                     "Pos": { "X": 0.0, "Y": 0.0 },
@@ -39,11 +43,13 @@
                     "CanvasSize": null,
                     "IsClickable": false,
                     "OnClickEventID": -1,
+                    "Collider": null,
 					"Attribute": {
 						"ImageResourceKey": "IMAGE_UI_BUTTON",
 						"PixelShaderResourceKey": "PIXELSHADER_RAINBOW",
 						"PixelShaderEventID": 0,
-						"SelectSoundResourceKey": null
+						"SelectSoundResourceKey": null,
+                        "ClickSoundResourceKey": null
 					},
                     "Child": null
                 },
@@ -56,10 +62,12 @@
                     "CanvasSize": null,
                     "IsClickable": false,
                     "OnClickEventID": -1,
+                    "Collider": null,
                     "Attribute": {
                         "PixelShaderResourceKey": null,
                         "PixelShaderEventID": -1,
                         "SelectSoundResourceKey": null,
+                        "ClickSoundResourceKey": null,
                         "FontResourceKey": "FONT_REVAMPED",
                         "TextSize": 32,
                         "TextColor": "0xffffff",

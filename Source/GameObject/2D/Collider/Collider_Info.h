@@ -1,4 +1,6 @@
 #pragma once
+#include <string>
+#include <unordered_map>
 
 namespace Collider_Info {
 
@@ -7,5 +9,11 @@ namespace Collider_Info {
 		NONE = -1,
 		CIRCLE,
 		RECT
+	};
+
+	/// @brief jsonで使っているタグ(キー)をUI_TYPEに変換する連想配列
+	static const std::unordered_map<std::string, TYPE> TAG_TO_COLLIDER_TYPE {
+		{ "Circle",	TYPE::CIRCLE },
+		{ "Rect",	TYPE::RECT }
 	};
 }

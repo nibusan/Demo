@@ -4,6 +4,7 @@
 #include "Managers/InputManager.h"
 #include "Managers/ResourceManager.h"
 #include "Managers/RenderManager.h"
+#include "Debug/DebugLog.h"
 
 bool Application::Init(void) {
 	// ウィンドウを初期化
@@ -27,6 +28,7 @@ bool Application::Init(void) {
 	InputManager::GetInstance().Init();
 	ResourceManager::GetInstance().Init();
 	SceneManager::GetInstance().Init();
+	DebugLog::GetInstance().Init();
 
 	return true;
 }
@@ -39,6 +41,7 @@ void Application::Run(void) {
 		//各クラスの情報を更新
 		InputManager::GetInstance().Update();
 		SceneManager::GetInstance().Update();
+		DebugLog::GetInstance().Update();
 		
 		// 描画するスクリーンの設定 & そのスクリーンをクリア
 		SetDrawScreen(DX_SCREEN_BACK);	

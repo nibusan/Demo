@@ -26,6 +26,8 @@ public:
 		const std::shared_ptr<UI_Image>& uiImage
 	);
 
+	/// @brief 参照元のインベントリを返す 
+	/// @return インベントリ
 	std::weak_ptr<Inventory<Item>> GetInventory(void);
 
 	/// @brief 背景画像部分のUIを返す 

@@ -22,8 +22,16 @@ public:
 		unsigned int color
 	);
 
+	/// @brief 描画する際に使用するフォントを返す 
+	/// @return フォント
 	std::weak_ptr<Font> GetFont(void) const;
+
+	/// @brief 描画するテキストを返す 
+	/// @return テキスト
 	std::string GetText(void) const;
+
+	/// @brief 描画するテキストの色を返す 
+	/// @return 色
 	unsigned int GetTextColor(void) const;
 private:
 	// 使用するフォント

@@ -35,6 +35,9 @@ private:
 	// メインのカメラ
 	std::shared_ptr<Camera> mainCamera_;
 
+	// デバッグ用のログを格納
+	std::vector<std::string> debugLogs_;
+
 	RenderManager() = default;
 
 	/// @brief 登録されてる2Dのレンダラーを描画する 

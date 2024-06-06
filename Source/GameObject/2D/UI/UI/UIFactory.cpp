@@ -59,9 +59,6 @@ std::shared_ptr<AbstractUI> UIFactory::CreateUI(const nlohmann::json& uiData, bo
 			image
 		);
 
-		// コライダーの構築
-		createUI->CreateCollider<CircleCollider>(Vector2<float>(0.0f, 0.0f), 1.0f);
-		
 		if (shouldCreateRenderer) {
 			// UIのレンダラーを生成
 			createUIRenderer = std::make_shared<UI_ImageRenderer>(useLocalPos, std::dynamic_pointer_cast<UI_Image>(createUI));
@@ -99,9 +96,6 @@ std::shared_ptr<AbstractUI> UIFactory::CreateUI(const nlohmann::json& uiData, bo
 			0xFFFFFF
 		);
 
-		// コライダーの構築
-		createUI->CreateCollider<RectCollider>(Vector2<float>(0.0f, 0.0f), Vector2<float>(100.0f, 100.0f));
-		
 		if (shouldCreateRenderer) {
 			// UIのレンダラーを生成
 			createUIRenderer = std::make_shared<UI_TextRenderer>(useLocalPos, std::dynamic_pointer_cast<UI_Text>(createUI));
@@ -128,9 +122,6 @@ std::shared_ptr<AbstractUI> UIFactory::CreateUI(const nlohmann::json& uiData, bo
 			std::dynamic_pointer_cast<UI_Image>(CreateUI(uiData["Attribute"]["UI_Image"], false, true)),
 			std::dynamic_pointer_cast<UI_Text>(CreateUI(uiData["Attribute"]["UI_Text"], false, true))
 		);
-
-		// コライダーの構築
-		createUI->CreateCollider<RectCollider>(Vector2<float>(0.0f, 0.0f), Vector2<float>(100.0f, 100.0f));
 
 		if (shouldCreateRenderer) {
 			// UIのレンダラーを生成
@@ -173,13 +164,39 @@ std::shared_ptr<AbstractUI> UIFactory::CreateUI(const nlohmann::json& uiData, bo
 
 	// コライダーの構築
 	if (uiData["IsClickable"]) {
-		//createUI->CreateCollider<RectCollider>({ uiData["Pos"]["X"], uiData["Pos"]["Y"] }, createUI->GetRenderCanvas().lock()->GetSize().ToVector2f() / 2.0f);
+		auto b = Collider_Info::TAG_TO_COLLIDER_TYPE.find(static_cast<std::string>(uiData["Collider"]["Type"]));
+		switch (Collider_Info::TAG_TO_COLLIDER_TYPE.find(static_cast<std::string>(uiData["Collider"]["Type"]))->second) {
+		case Collider_Info::TYPE::CIRCLE:
+			createUI->CreateCollider<CircleCollider>(
+				Vector2<float>(uiData["Pos"]["X"], uiData["Pos"]["Y"]),
+				uiData["Collider"]["Attribute"]["Radius"]
+			);
+			break;
+		case Collider_Info::TYPE::RECT:
+			createUI->CreateCollider<RectCollider>(
+				Vector2<float>(uiData["Pos"]["X"], uiData["Pos"]["Y"]),
+				uiData["Collider"]["Attribute"]["Size"] == nullptr
+				? createUI->GetRenderCanvas().lock()->GetSize().ToVector2f() / 2.0f
+				: Vector2<float>(uiData["Collider"]["Attribute"]["Size"]["Width"], uiData["Collider"]["Attribute"]["Size"]["Height"])
+			);
+			break;
+		case Collider_Info::TYPE::NONE:
+		default:
+			break;
+		}
 	}
 
 	// カーソルを合わせた際に鳴らす効果音をセット
 	if (uiData["Attribute"]["SelectSoundResourceKey"] != nullptr) {
 		createUI->SetSelectSound(
 			std::dynamic_pointer_cast<Sound>(resourceManager.GetResourceFile(uiData["Attribute"]["SelectSoundResourceKey"]).lock())
+		);
+	}
+
+	// クリックした際に鳴らす効果音をセット
+	if (uiData["Attribute"]["ClickSoundResourceKey"] != nullptr) {
+		createUI->SetOnClickSound(
+			std::dynamic_pointer_cast<Sound>(resourceManager.GetResourceFile(uiData["Attribute"]["ClickSoundResourceKey"]).lock())
 		);
 	}
 

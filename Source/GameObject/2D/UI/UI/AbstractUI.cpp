@@ -3,6 +3,7 @@
 #include "../../../../Common/Handle/Sound/Sound.h"
 #include "../../../../Managers/PixelShaderEventManager.h"
 #include "../../../../Managers/InputManager.h"
+#include "../../../../Debug/DebugLog.h"
 
 AbstractUI::AbstractUI(void) : 
 isHighlighted_(false),
@@ -57,6 +58,12 @@ void AbstractUI::Update_GameObject2D(void) {
 			collider_->SetCenterPos(transform_.currentPos_ + (renderCanvas_->GetSize().ToVector2f() / 2.0f));
 			if (collider_->IsContains(inputManager.GetMousePos().ToVector2f())) {
 				isHighlighted_ = true;
+				if (inputManager.IsTrgMouseLeft()) {
+					if (!selectSound_.expired()) {
+						onClickSound_.lock()->Play(false);
+						DebugLog::GetInstance().AddLog( { 5.0f, "Button Clicked", 0xFF0000 });
+					}
+				}
 			}
 			else {
 				isHighlighted_ = false;
@@ -188,6 +195,10 @@ void AbstractUI::SetUsingPixelShaderEventID(int eventID) {
 
 void AbstractUI::SetSelectSound(std::weak_ptr<Sound> sound) { 
 	selectSound_ = sound;
+}
+
+void AbstractUI::SetOnClickSound(std::weak_ptr<Sound> sound) {
+	onClickSound_ = sound;
 }
 
 std::weak_ptr<Graphic> AbstractUI::GetRenderCanvas(void) {

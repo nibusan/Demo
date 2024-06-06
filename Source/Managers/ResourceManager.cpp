@@ -79,6 +79,7 @@ void ResourceManager::LoadSceneResourceFile(Scene::TYPE sceneType) {
 		}
 	}
 
+	// 読み込まれてないリソースファイルだけを読み込む
 	for (auto it = nextUsingResourceList.begin(); it != nextUsingResourceList.end(); ++it) {
 		currentUsingResourceFiles_[(*it)] = LoadResourceFile((*it));
 	}

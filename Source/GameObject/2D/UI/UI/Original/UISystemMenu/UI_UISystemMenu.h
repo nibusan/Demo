@@ -38,7 +38,7 @@ public:
 	std::weak_ptr<UI_Image> GetUIImage(void);
 
 	/// @brief タイトル部分のUIを返す 
-	/// @return タイト部分のUI
+	/// @return タイトル部分のUI
 	std::weak_ptr<UI_Text> GetUIText(void);
 
 	/// @brief テキスト部分のUIを返す

@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Debug\DebugLog.cpp" />
     <ClCompile Include="Source\Common\Quaternion.cpp" />
     <ClCompile Include="Source\GameObject\2D\UI\UI\UIFactory.cpp" />
     <ClCompile Include="Source\GameObject\3D\Camera\Camera.cpp" />
@@ -196,6 +197,7 @@
     <ClCompile Include="Source\Utility\Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Debug\DebugLog.h" />
     <ClInclude Include="Source\Common\Quaternion.h" />
     <ClInclude Include="Source\GameObject\3D\Camera\Camera.h" />
     <ClInclude Include="Source\Common\Vector3.h" />

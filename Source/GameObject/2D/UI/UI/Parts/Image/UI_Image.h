@@ -26,6 +26,8 @@ public:
 	void Update_UI(void) override;
 	void Release_UI(void) override;
 
+	/// @brief •`‰æ‚·‚é‰æ‘œ‚ð•Ô‚· 
+	/// @return ‰æ‘œ
 	std::weak_ptr<Graphic> GetImage(void);
 private:
 	// •`‰æ‚·‚é‰æ‘œ

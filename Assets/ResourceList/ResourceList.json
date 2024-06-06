@@ -45,6 +45,12 @@
                 "FilePath": "Scenes/UISystemScene/Sound/",
                 "FileName": "UI_Select",
                 "Extension": ".ogg"
+            },
+            {
+                "Key": "SOUND_UI_ON_CLICK",
+                "FilePath": "Scenes/UISystemScene/Sound/",
+                "FileName": "UI_OnClick",
+                "Extension": ".ogg"
             }
         ],
         "Sound3D": null,

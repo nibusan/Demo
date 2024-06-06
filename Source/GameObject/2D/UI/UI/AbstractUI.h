@@ -76,10 +76,15 @@ public:
 	/// @param イベントID
 	[[nodiscard]] void SetUsingPixelShaderEventID(int eventID);
 
-	/// @brief カーソルが合った際に鳴らす効果音
-	/// @brief あまり使わないためコンストラクタでは受け取らないです
+	/// @brief カーソルが合った際に鳴らす効果音をセットする
+	/// @brief どのUIでも使うわけではないのでコンストラクタでは受け取らないです
 	/// @param sound 効果音
 	void SetSelectSound(std::weak_ptr<Sound> sound);
+
+	/// @brief クリックした際に鳴らす効果音をセットする
+	/// @brief どのUIでも使うわけではないのでコンストラクタでは受け取らないです
+	/// @param sound 効果音
+	void SetOnClickSound(std::weak_ptr<Sound> sound);
 protected:
 	// 強調表示されてるか
 	bool isHighlighted_;
@@ -110,6 +115,9 @@ protected:
 
 	// カーソルが合った際に鳴らす音
 	std::weak_ptr<Sound> selectSound_;
+
+	// クリックした際に鳴らす音
+	std::weak_ptr<Sound> onClickSound_;
 
 	// 外部から隠蔽するためにpublicにしない
 	void Init_GameObject2D(void) override;
