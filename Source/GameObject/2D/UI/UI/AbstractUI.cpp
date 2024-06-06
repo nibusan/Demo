@@ -59,7 +59,8 @@ void AbstractUI::Update_GameObject2D(void) {
 
 	// コライダーの位置更新
 	if (collider_ != nullptr) {
-		collider_->SetCenterPos(transform_.currentPos_ + (renderCanvas_->GetSize().ToVector2f() / 2.0f));
+		if(parent_.expired()) collider_->SetCenterPos(transform_.currentPos_ + (renderCanvas_->GetSize().ToVector2f() / 2.0f));
+		else collider_->SetCenterPos(transform_.localPos_ + (renderCanvas_->GetSize().ToVector2f()));
 	}
 
 	// 入力検知用
@@ -67,7 +68,10 @@ void AbstractUI::Update_GameObject2D(void) {
 	auto& uiInputManager = UIInputManager::GetInstance();
 
 	// もしクリックできてなおかつコライダーが生成されてたらUIを選択してるかの処理をする
-	if (!isClickable_) return;
+	if (!isClickable_) {
+		Update_UI();
+		return;
+	};
 
 	if (collider_ != nullptr) {
 		// マウスカーソルがUIのコライダー内に入っていたら
@@ -80,10 +84,11 @@ void AbstractUI::Update_GameObject2D(void) {
 
 			}
 
-			// 既に選択しているUIが自身とは違うUIだったら選択状態を解除するをやめる
+			// 既に選択しているUIが自身とは違うUIだったら強調表示をやめる
 			if (!uiInputManager.IsSameUI(std::dynamic_pointer_cast<AbstractUI>(weak_from_this().lock()))) {
 				isSelect_ = false;
 				isHighlighted_ = false;
+				Update_UI();
 				return;
 			}
 
@@ -91,9 +96,12 @@ void AbstractUI::Update_GameObject2D(void) {
 			isHighlighted_ = true;
 
 			// ここで左クリックしたら設定されたコールバック関数を呼ぶ
-			if (inputManager.IsTrgMouseLeft()) {
-				OnClick();
-				DebugLog::GetInstance().AddLog({ 5.0f, "Button Clicked", 0xFF0000 });
+			if (!uiInputManager.IsClicked()) {
+				if (inputManager.IsTrgMouseLeft()) {
+					OnClick();
+					uiInputManager.SetClicked(true);
+					DebugLog::GetInstance().AddLog({ 5.0f, "Button Clicked", 0xFF0000 });
+				}
 			}
 		}
 		else {

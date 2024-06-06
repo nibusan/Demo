@@ -133,6 +133,34 @@ std::shared_ptr<AbstractUI> UIFactory::CreateUI(const nlohmann::json& uiData, bo
 		break;
 	}
 	case UI::UI_TYPE::UI_SYSTEM_MENU: {
+		// 画像を取得
+		std::weak_ptr<Graphic> image =
+			std::dynamic_pointer_cast<Graphic>(
+				resourceManager.GetResourceFile(static_cast<std::string>(uiData["Attribute"]["UI_Image"]["Attribute"]["ImageResourceKey"])).lock());
+
+		// UIの生成
+		createUI = std::make_shared<UI_UISystemMenu>(
+			uiData["CanvasSize"] == nullptr ? image.lock()->GetSize().ToVector2f() : Vector2<float>(uiData["CanvasSize"]["Width"], uiData["CanvasSize"]["Height"]),
+			static_cast<UI::UI_ORIGIN_TYPE>(uiData["OriginType"]),
+			uiData["IsClickable"],
+			(UI::ON_CLICK_EVENT_LIST.find(static_cast<int>(uiData["OnClickEventID"])))->second,
+			pixelShader,
+			uiData["Attribute"]["PixelShaderEventID"],
+			std::dynamic_pointer_cast<UI_Image>(CreateUI(uiData["Attribute"]["UI_Image"], false, true)),
+			std::dynamic_pointer_cast<UI_Text>(CreateUI(uiData["Attribute"]["UI_Text"], false, true)),
+			std::dynamic_pointer_cast<UI_Button>(CreateUI(uiData["Attribute"]["UI_Button_1"], false, true)),
+			std::dynamic_pointer_cast<UI_Button>(CreateUI(uiData["Attribute"]["UI_Button_2"], false, true)),
+			std::dynamic_pointer_cast<UI_Button>(CreateUI(uiData["Attribute"]["UI_Button_3"], false, true)),
+			std::dynamic_pointer_cast<UI_Button>(CreateUI(uiData["Attribute"]["UI_Button_4"], false, true))
+			);
+
+		if (shouldCreateRenderer) {
+			// UIのレンダラーを生成
+			createUIRenderer = std::make_shared<UI_UISystemMenuRenderer>(useLocalPos, std::dynamic_pointer_cast<UI_UISystemMenu>(createUI));
+
+			// 生成したUIのレンダラーを登録する
+			RenderManager::GetInstance().AddRenderer2D(createUIRenderer);
+		}
 		break;
 	}
 	case UI::UI_TYPE::INVENTORY: {

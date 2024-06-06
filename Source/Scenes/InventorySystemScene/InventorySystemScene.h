@@ -8,7 +8,7 @@ class UI_Inventory;
 class UI_InventoryRenderer;
 class Item;
 class ItemRenderer;
-
+class UILayer;
 /// @brief [Unknown Level] プレイヤーのインベントリの処理
 class InventorySystemScene : public AbstractScene {
 public:
@@ -20,6 +20,9 @@ public:
 	void Release(void) override;
 
 private:
+	// このシーンで使うベースのUIのレイヤー
+	//std::unique_ptr<UILayer> uiLayer_;
+
 	/*std::shared_ptr<Inventory<Item>> inventory_;
 	std::shared_ptr<UI_Inventory> uiInventory_;
 	std::unique_ptr<UI_InventoryRenderer> inventoryRenderer_;*/
