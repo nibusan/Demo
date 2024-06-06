@@ -3,6 +3,7 @@
 #include "../../../../Managers/RenderManager.h"
 #include "../../../../Managers/JsonReader.h"
 #include "../../../../Managers/PixelShaderEventManager.h"
+#include "../../../../Managers/UIInputManager.h"
 #include "../UI/UI_Info.h"
 #include "../UI/UIFactory.h"
 #include "../UI/AbstractUI.h"
@@ -16,6 +17,7 @@ void UILayer::Init(void) {
 }
 
 void UILayer::Update(void) {
+	UIInputManager::GetInstance().SetClicked(false);
 	for (const auto& ui : uis_) {
 		ui->Update();
 	}

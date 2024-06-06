@@ -100,7 +100,7 @@ void AbstractUI::Update_GameObject2D(void) {
 				if (inputManager.IsTrgMouseLeft()) {
 					OnClick();
 					uiInputManager.SetClicked(true);
-					DebugLog::GetInstance().AddLog({ 5.0f, "Button Clicked", 0xFF0000 });
+					DebugLog::GetInstance().AddLog({ 5.0f, "UI Clicked", 0xFF0000 });
 				}
 			}
 		}

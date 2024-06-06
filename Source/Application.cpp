@@ -42,8 +42,8 @@ void Application::Run(void) {
 
 		//各クラスの情報を更新
 		InputManager::GetInstance().Update();
-		UIInputManager::GetInstance().Update();
 		SceneManager::GetInstance().Update();
+		UIInputManager::GetInstance().Update();
 		DebugLog::GetInstance().Update();
 		
 		// 描画するスクリーンの設定 & そのスクリーンをクリア
