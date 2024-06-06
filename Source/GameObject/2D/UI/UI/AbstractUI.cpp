@@ -4,6 +4,7 @@
 #include "../../../../Managers/PixelShaderEventManager.h"
 #include "../../../../Managers/InputManager.h"
 #include "../../../../Managers/UIInputManager.h"
+#include "../../../../Managers/SceneManager.h"
 #include "../../../../Debug/DebugLog.h"
 
 AbstractUI::AbstractUI(void) : 
