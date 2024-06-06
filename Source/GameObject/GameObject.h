@@ -39,6 +39,10 @@ public:
 	/// @note 2Dと3Dで計算が変わるので必ず派生クラスで実装すること
 	virtual void AddChild(std::shared_ptr<GameObject> child) = 0;
 
+	/// @brief このオブジェクトが削除されたかを返す 
+	/// @return 削除されたか
+	bool IsDeleted(void) const;
+
 protected:
 	// アクティブかどうか
 	bool isActive_;
@@ -48,6 +52,10 @@ protected:
 	
 	// 子オブジェクトを格納した可変長配列
 	std::vector<std::shared_ptr<GameObject>> childs_;
+
+	// このオブジェクトが削除されたか(Release内でtrueにします)
+	// RenderManagerで使います
+	bool isDeleted_;
 
 	// 派生クラスで定義する関数
 	// 外部から隠蔽するためにpublicにしていません

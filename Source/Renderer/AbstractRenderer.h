@@ -32,6 +32,10 @@ public:
 	/// @brief 描画する際にローカル座標だけを参照するかをセット
 	/// @param flag 描画する際にローカル座標だけを参照するか
 	void SetUseLocalPos(bool flag);
+
+	/// @brief 描画対象のオブジェクトが削除されたかを返す 
+	/// @return 削除されたか
+	virtual bool IsDeleted(void) const = 0;
 protected:
 	// 元の描画用スクリーンのハンドルID(Begin()でここに退避してEnd()で元に戻す)
 	int defaultScreenHadle_;

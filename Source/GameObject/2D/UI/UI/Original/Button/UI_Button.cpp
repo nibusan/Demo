@@ -54,18 +54,7 @@ void UI_Button::Init_UI(void) {
 
 void UI_Button::Update_UI(void) {
 	auto& inputManager = InputManager::GetInstance();
-	if (isClickable_) {
-		if (collider_ != nullptr) {
-			collider_->SetCenterPos(transform_.currentPos_ + (renderCanvas_->GetSize().ToVector2f() / 2.0f));
-			if (collider_->IsContains(inputManager.GetMousePos().ToVector2f())) {
-				isHighlighted_ = true;
-			}
-			else {
-				isHighlighted_ = false;
-			}
-		}
-	}
-	transform_.localPos_.x += 0.1f;
+	
 }
 
 void UI_Button::Release_UI(void) {}

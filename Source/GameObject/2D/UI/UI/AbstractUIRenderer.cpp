@@ -75,3 +75,7 @@ void AbstractUIRenderer::End(void) {
 		false
 	);
 }
+
+bool AbstractUIRenderer::IsDeleted(void) const {
+	return ui_->IsDeleted();
+}

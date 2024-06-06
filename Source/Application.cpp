@@ -4,6 +4,7 @@
 #include "Managers/InputManager.h"
 #include "Managers/ResourceManager.h"
 #include "Managers/RenderManager.h"
+#include "Managers/UIInputManager.h"
 #include "Debug/DebugLog.h"
 
 bool Application::Init(void) {
@@ -27,6 +28,7 @@ bool Application::Init(void) {
 	RenderManager::GetInstance().Init();
 	InputManager::GetInstance().Init();
 	ResourceManager::GetInstance().Init();
+	UIInputManager::GetInstance().Init();
 	SceneManager::GetInstance().Init();
 	DebugLog::GetInstance().Init();
 
@@ -40,6 +42,7 @@ void Application::Run(void) {
 
 		//各クラスの情報を更新
 		InputManager::GetInstance().Update();
+		UIInputManager::GetInstance().Update();
 		SceneManager::GetInstance().Update();
 		DebugLog::GetInstance().Update();
 		

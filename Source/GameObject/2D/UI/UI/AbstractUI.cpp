@@ -3,6 +3,7 @@
 #include "../../../../Common/Handle/Sound/Sound.h"
 #include "../../../../Managers/PixelShaderEventManager.h"
 #include "../../../../Managers/InputManager.h"
+#include "../../../../Managers/UIInputManager.h"
 #include "../../../../Debug/DebugLog.h"
 
 AbstractUI::AbstractUI(void) : 
@@ -13,7 +14,8 @@ type_(UI::UI_TYPE::NONE),
 originType_(UI::UI_ORIGIN_TYPE::CENTER_CENTER),
 isClickable_(false),
 onClickCallBack_(nullptr),
-usingPixelShaderEventID_(-1) {}
+usingPixelShaderEventID_(-1),
+isSelect_(false) {}
 
 AbstractUI::AbstractUI(
 	const Vector2<float>& canvasSize, 
@@ -31,7 +33,8 @@ originType_(originType),
 isClickable_(isClickable),
 onClickCallBack_(onClickCallBack),
 usingPixelShader_(usingPixelShader),
-usingPixelShaderEventID_(usingPixelShaderEventID) {
+usingPixelShaderEventID_(usingPixelShaderEventID),
+isSelect_(false) {
 	// デストラクタが呼ばれたら自動で解放するようにする
 	renderCanvas_->SetIsAutoDeleteHandle(true);
 }
@@ -43,6 +46,7 @@ bool AbstractUI::IsHighlighted(void) const {
 void AbstractUI::Init_GameObject2D(void) {
 	Init_UI();
 	SetHighlighted(false);
+	isSelect_ = false;
 	PixelShaderEventManager::GetInstance().StartUpdateEvent(usingPixelShaderEventID_);
 }
 
@@ -50,29 +54,56 @@ void AbstractUI::Update_GameObject2D(void) {
 	// 前回の状態を退避
 	preIsHighlighted_ = isHighlighted_;
 
+	// 選択状態をリセットする
+	isSelect_ = false;
+
+	// コライダーの位置更新
+	if (collider_ != nullptr) {
+		collider_->SetCenterPos(transform_.currentPos_ + (renderCanvas_->GetSize().ToVector2f() / 2.0f));
+	}
+
+	// 入力検知用
 	auto& inputManager = InputManager::GetInstance();
+	auto& uiInputManager = UIInputManager::GetInstance();
 
 	// もしクリックできてなおかつコライダーが生成されてたらUIを選択してるかの処理をする
-	if (isClickable_) {
-		if (collider_ != nullptr) {
-			collider_->SetCenterPos(transform_.currentPos_ + (renderCanvas_->GetSize().ToVector2f() / 2.0f));
-			if (collider_->IsContains(inputManager.GetMousePos().ToVector2f())) {
-				isHighlighted_ = true;
-				if (inputManager.IsTrgMouseLeft()) {
-					if (!selectSound_.expired()) {
-						onClickSound_.lock()->Play(false);
-						DebugLog::GetInstance().AddLog( { 5.0f, "Button Clicked", 0xFF0000 });
-					}
-				}
+	if (!isClickable_) return;
+
+	if (collider_ != nullptr) {
+		// マウスカーソルがUIのコライダー内に入っていたら
+		if (collider_->IsContains(inputManager.GetMousePos().ToVector2f())) {
+			// 選択状態にして他のUIを選択できないようにする
+			if (!uiInputManager.IsSelected()) {
+
+				isSelect_ = true;
+				uiInputManager.SetSelectUI(std::dynamic_pointer_cast<AbstractUI>(weak_from_this().lock()));
+
 			}
-			else {
+
+			// 既に選択しているUIが自身とは違うUIだったら選択状態を解除するをやめる
+			if (!uiInputManager.IsSameUI(std::dynamic_pointer_cast<AbstractUI>(weak_from_this().lock()))) {
+				isSelect_ = false;
 				isHighlighted_ = false;
+				return;
 			}
+
+			// 強調表示状態にする
+			isHighlighted_ = true;
+
+			// ここで左クリックしたら設定されたコールバック関数を呼ぶ
+			if (inputManager.IsTrgMouseLeft()) {
+				OnClick();
+				DebugLog::GetInstance().AddLog({ 5.0f, "Button Clicked", 0xFF0000 });
+			}
+		}
+		else {
+			// 選択していなかったら強調表示しない
+			isHighlighted_ = false;
 		}
 	}
 
 	// カーソルがあった時に発生するトリガーで効果音を鳴らすか判定する
-	if ((!preIsHighlighted_ && isHighlighted_) && !selectSound_.expired()) selectSound_.lock()->Play(false);
+	if ((!preIsHighlighted_ && isHighlighted_) && isSelect_ && !selectSound_.expired()) selectSound_.lock()->Play(false);
 
 	Update_UI();
 }
@@ -104,6 +135,9 @@ void AbstractUI::OnClickUp(void) {}
 void AbstractUI::HighlightUpdate(void) {}
 
 void AbstractUI::OnClick(void) {
+	// クリック時の効果音を鳴らす
+	if(!onClickSound_.expired()) onClickSound_.lock()->Play(false);
+
 	// コールバック関数がセットされてる時だけ呼び出す
 	if (onClickCallBack_ == nullptr) return;
 	onClickCallBack_();
@@ -199,6 +233,14 @@ void AbstractUI::SetSelectSound(std::weak_ptr<Sound> sound) {
 
 void AbstractUI::SetOnClickSound(std::weak_ptr<Sound> sound) {
 	onClickSound_ = sound;
+}
+
+bool AbstractUI::IsSelect(void) const {
+	return isSelect_;
+}
+
+void AbstractUI::SetSelect(bool flag) {
+	isSelect_ = flag;
 }
 
 std::weak_ptr<Graphic> AbstractUI::GetRenderCanvas(void) {

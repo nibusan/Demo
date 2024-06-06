@@ -1,6 +1,8 @@
 #include "GameObject.h"
 
-GameObject::GameObject(void) : isActive_(true) {}
+GameObject::GameObject(void) : 
+isActive_(true),
+isDeleted_(false) {}
 
 void GameObject::Init(void) {
 	//‰Šú‰»ˆ—
@@ -39,6 +41,9 @@ void GameObject::Release(void) {
 	for (size_t i = 0; i < childCount; i++) {
 		childs_[i]->Release();
 	}
+
+	// íœ(‰ğ•ú)‚µ‚½‚±‚Æ‚É‚·‚é
+	isDeleted_ = true;
 }
 
 bool GameObject::IsActive(void) const {
@@ -55,4 +60,8 @@ std::weak_ptr<GameObject> GameObject::GetParent(void) const {
 
 const std::vector<std::shared_ptr<GameObject>> GameObject::GetChilds(void) const {
     return childs_;
+}
+
+bool GameObject::IsDeleted(void) const {
+	return isDeleted_;
 }

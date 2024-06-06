@@ -25,6 +25,9 @@ public:
 	/// @brief 描画処理(デバッグ用) 
 	virtual void DebugRender(void) = 0;
 
+	/// @brief 描画対象のオブジェクトが削除されたかを返す 
+	/// @return 削除されたか
+	bool IsDeleted(void) const override;
 protected:
 	// 描画するUI
 	std::shared_ptr<AbstractUI> ui_;

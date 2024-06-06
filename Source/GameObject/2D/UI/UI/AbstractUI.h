@@ -85,6 +85,14 @@ public:
 	/// @brief どのUIでも使うわけではないのでコンストラクタでは受け取らないです
 	/// @param sound 効果音
 	void SetOnClickSound(std::weak_ptr<Sound> sound);
+
+	/// @brief 現在このUIが選択されているかを返す
+	/// @return 選択されているか
+	bool IsSelect(void) const;
+
+	/// @brief 現在このUIが選択されてるかをセット
+	/// @param flag 選択されてるか
+	void SetSelect(bool flag);
 protected:
 	// 強調表示されてるか
 	bool isHighlighted_;
@@ -118,6 +126,9 @@ protected:
 
 	// クリックした際に鳴らす音
 	std::weak_ptr<Sound> onClickSound_;
+	
+	// 現在このUIが選択されてるか
+	bool isSelect_;
 
 	// 外部から隠蔽するためにpublicにしない
 	void Init_GameObject2D(void) override;

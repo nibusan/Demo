@@ -195,6 +195,7 @@
     <ClCompile Include="Source\GameObject\2D\UI\UI\Original\Item\UI_ItemRenderer.cpp" />
     <ClCompile Include="Source\GameObject\2D\UI\UI\AbstractUIRenderer.cpp" />
     <ClCompile Include="Source\Utility\Utility.cpp" />
+    <ClCompile Include="Source\Managers\UIInputManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Debug\DebugLog.h" />
@@ -259,6 +260,7 @@
     <ClInclude Include="Source\GameObject\2D\UI\UI\UIFactory.h" />
     <ClInclude Include="Source\GameObject\2D\UI\UI\AbstractUIRenderer.h" />
     <ClInclude Include="Source\Utility\Utility.h" />
+    <ClInclude Include="Source\Managers\UIInputManager.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Source\HLSL\Pixel\PS_Rainbow.hlsl">

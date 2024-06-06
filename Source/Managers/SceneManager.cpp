@@ -6,6 +6,7 @@
 #include "../Scenes/UISystemScene/UISystemScene.h"
 #include "ResourceManager.h"
 #include "PixelShaderEventManager.h"
+#include "UIInputManager.h"
 
 void SceneManager::ChangeScene(Scene::TYPE type) {
 	if (currentScene_ != nullptr) {
@@ -33,6 +34,9 @@ void SceneManager::ChangeScene(Scene::TYPE type) {
 
 	// 次のシーンで使うリソースファイルを読み込む
 	ResourceManager::GetInstance().LoadSceneResourceFile(type);
+
+	// UIが参照する入力情報の初期化
+	UIInputManager::GetInstance().Init();
 
 	// シーンの初期化
 	currentScene_->Init();

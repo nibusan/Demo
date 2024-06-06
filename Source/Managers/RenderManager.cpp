@@ -43,6 +43,7 @@ void RenderManager::SetMainCamera(std::shared_ptr<Camera> mainCamera) {
 
 void RenderManager::Render2D(void) {
 	for (const auto& renderer2D : renderer2D_) {
+		if (renderer2D->IsDeleted()) continue;
 		renderer2D->Begin();
 		renderer2D->Render();
 		renderer2D->End();
@@ -51,14 +52,14 @@ void RenderManager::Render2D(void) {
 
 void RenderManager::Render3D(void) {
 	mainCamera_->SetBeforeDraw();
-	DrawSphere3D(
+	/*DrawSphere3D(
 		{},
 		1.0f,
 		16,
 		0xFF0000,
 		0xFF0000,
 		false
-	);
+	);*/
 
 	for (const auto& renderer3D : renderer3D_) {
 		renderer3D->Begin();

@@ -9,6 +9,12 @@
                 "Extension": ".png"
             },
             {
+                "Key": "IMAGE_UI_BUTTON_RAINBOW",
+                "FilePath": "Scenes/UISystemScene/UI/Button/",
+                "FileName": "UI_Button_Rainbow",
+                "Extension": ".png"
+            },
+            {
                 "Key": "IMAGE_UI_IMAGE_TEST_1",
                 "FilePath": "Scenes/UISystemScene/UI/Image/",
                 "FileName": "ImageTest_1",
