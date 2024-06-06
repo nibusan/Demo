@@ -5,7 +5,7 @@
 #include "../../../../Managers/InputManager.h"
 #include "../../../../Managers/UIInputManager.h"
 #include "../../../../Managers/SceneManager.h"
-#include "../../../../Debug/DebugLog.h"
+//#include "../../../../Debug/DebugLog.h"
 
 AbstractUI::AbstractUI(void) : 
 isHighlighted_(false),
@@ -61,7 +61,7 @@ void AbstractUI::Update_GameObject2D(void) {
 	// コライダーの位置更新
 	if (collider_ != nullptr) {
 		if(parent_.expired()) collider_->SetCenterPos(transform_.currentPos_ + (renderCanvas_->GetSize().ToVector2f() / 2.0f));
-		else collider_->SetCenterPos(transform_.localPos_ + (renderCanvas_->GetSize().ToVector2f()));
+		else collider_->SetCenterPos(transform_.currentPos_);
 	}
 
 	// 入力検知用
@@ -101,7 +101,7 @@ void AbstractUI::Update_GameObject2D(void) {
 				if (inputManager.IsTrgMouseLeft()) {
 					OnClick();
 					uiInputManager.SetClicked(true);
-					DebugLog::GetInstance().AddLog({ 5.0f, "UI Clicked", 0xFF0000 });
+					//DebugLog::GetInstance().AddLog({ 5.0f, "UI Clicked", 0xFF0000 });
 				}
 			}
 		}

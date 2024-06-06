@@ -21,7 +21,7 @@
         },
         {
             "Type": "Image",
-            "Pos": { "X": 0.0, "Y": 0.0 },
+            "Pos": { "X": 100.0, "Y": 30.0 },
             "Rot": 0.0,
             "Scl": 1.0,
             "OriginType": 0,
@@ -29,52 +29,17 @@
             "IsClickable": false,
             "OnClickEventID": -1,
             "Collider": null,
-            "Attribute": {
-                "ImageResourceKey": "IMAGE_UI_IMAGE_BACKGROUND",
-                "PixelShaderResourceKey": null,
-                "PixelShaderEventID": -1,
-                "SelectSoundResourceKey": null,
+			"Attribute": {
+				"ImageResourceKey": "IMAGE_UI_UISYSTEMMENU",
+				"PixelShaderResourceKey": null,
+				"PixelShaderEventID": -1,
+				"SelectSoundResourceKey": null,
                 "ClickSoundResourceKey": null
-            },
-            "Child": null
-        },
-        {
-            "Type": "Button",
-            "Pos": { "X": 50.0, "Y": 50.0 },
-            "Rot": 0.0,
-            "Scl": 1.0,
-            "OriginType": 0,
-            "CanvasSize": null,
-            "IsClickable": true,
-            "OnClickEventID": 0,
-            "Collider": { "Type": "Rect", "Attribute": { "Size": null } },
-            "Attribute": {
-                "PixelShaderResourceKey": "PIXELSHADER_RAINBOW",
-                "PixelShaderEventID": 0,
-                "SelectSoundResourceKey": "SOUND_UI_SELECT",
-                "ClickSoundResourceKey": "SOUND_UI_ON_CLICK",
-                "UI_Image": {
-                    "Type": "Image",
-                    "Pos": { "X": 0.0, "Y": 0.0 },
-                    "Rot": 0.0,
-                    "Scl": 1.0,
-                    "OriginType": 4,
-                    "CanvasSize": null,
-                    "IsClickable": false,
-                    "OnClickEventID": -1,
-                    "Collider": null,
-					"Attribute": {
-						"ImageResourceKey": "IMAGE_UI_BUTTON",
-						"PixelShaderResourceKey": null,
-						"PixelShaderEventID": -1,
-						"SelectSoundResourceKey": null,
-                        "ClickSoundResourceKey": null
-					},
-                    "Child": null
-                },
-                "UI_Text": {
+			},
+            "Child": [
+                {
                     "Type": "Text",
-                    "Pos": { "X": 0.0, "Y": 0.0 },
+                    "Pos": { "X": 160.0, "Y": 50.0 },
                     "Rot": 0.0,
                     "Scl": 1.0,
                     "OriginType": 4,
@@ -90,320 +55,25 @@
                         "FontResourceKey": "FONT_REVAMPED",
                         "TextSize": 32,
                         "TextColor": "0xffffff",
-                        "TextID": 0
-                    },
-                    "Child": null
-                }
-            },
-            "Child": null
-        },
-        {
-            "Type": "Button",
-            "Pos": { "X": 50.0, "Y": 350.0 },
-            "Rot": 0.0,
-            "Scl": 1.0,
-            "OriginType": 0,
-            "CanvasSize": null,
-            "IsClickable": true,
-            "OnClickEventID": 1,
-            "Collider": { "Type": "Rect", "Attribute": { "Size": null } },
-            "Attribute": {
-                "PixelShaderResourceKey": "PIXELSHADER_RAINBOW",
-                "PixelShaderEventID": 0,
-                "SelectSoundResourceKey": "SOUND_UI_SELECT",
-                "ClickSoundResourceKey": "SOUND_UI_ON_CLICK",
-                "UI_Image": {
-                    "Type": "Image",
-                    "Pos": { "X": 0.0, "Y": 0.0 },
-                    "Rot": 0.0,
-                    "Scl": 1.0,
-                    "OriginType": 4,
-                    "CanvasSize": null,
-                    "IsClickable": false,
-                    "OnClickEventID": -1,
-                    "Collider": null,
-					"Attribute": {
-						"ImageResourceKey": "IMAGE_UI_BUTTON",
-						"PixelShaderResourceKey": "PIXELSHADER_RAINBOW",
-						"PixelShaderEventID": 0,
-						"SelectSoundResourceKey": null,
-                        "ClickSoundResourceKey": null
-					},
-                    "Child": null
-                },
-                "UI_Text": {
-                    "Type": "Text",
-                    "Pos": { "X": 0.0, "Y": 0.0 },
-                    "Rot": 0.0,
-                    "Scl": 1.0,
-                    "OriginType": 4,
-                    "CanvasSize": null,
-                    "IsClickable": false,
-                    "OnClickEventID": -1,
-                    "Collider": null,
-                    "Attribute": {
-                        "PixelShaderResourceKey": null,
-                        "PixelShaderEventID": -1,
-                        "SelectSoundResourceKey": null,
-                        "ClickSoundResourceKey": null,
-                        "FontResourceKey": "FONT_REVAMPED",
-                        "TextSize": 32,
-                        "TextColor": "0xffffff",
-                        "TextID": 0
-                    },
-                    "Child": null
-                }
-            },
-            "Child": null
-        },
-        {
-            "Type": "Button",
-            "Pos": { "X": 400.0, "Y": 50.0 },
-            "Rot": 0.0,
-            "Scl": 1.0,
-            "OriginType": 0,
-            "CanvasSize": null,
-            "IsClickable": true,
-            "OnClickEventID": 2,
-            "Collider": { "Type": "Rect", "Attribute": { "Size": null } },
-            "Attribute": {
-                "PixelShaderResourceKey": null,
-                "PixelShaderEventID": -1,
-                "SelectSoundResourceKey": "SOUND_UI_SELECT",
-                "ClickSoundResourceKey": "SOUND_UI_ON_CLICK",
-                "UI_Image": {
-                    "Type": "Image",
-                    "Pos": { "X": 0.0, "Y": 0.0 },
-                    "Rot": 0.0,
-                    "Scl": 1.0,
-                    "OriginType": 4,
-                    "CanvasSize": null,
-                    "IsClickable": false,
-                    "OnClickEventID": -1,
-                    "Collider": null,
-					"Attribute": {
-						"ImageResourceKey": "IMAGE_UI_BUTTON_RAINBOW",
-						"PixelShaderResourceKey": null,
-						"PixelShaderEventID": -1,
-						"SelectSoundResourceKey": null,
-                        "ClickSoundResourceKey": null
-					},
-                    "Child": null
-                },
-                "UI_Text": {
-                    "Type": "Text",
-                    "Pos": { "X": 0.0, "Y": 0.0 },
-                    "Rot": 0.0,
-                    "Scl": 1.0,
-                    "OriginType": 4,
-                    "CanvasSize": null,
-                    "IsClickable": false,
-                    "OnClickEventID": -1,
-                    "Collider": null,
-                    "Attribute": {
-                        "PixelShaderResourceKey": null,
-                        "PixelShaderEventID": -1,
-                        "SelectSoundResourceKey": null,
-                        "ClickSoundResourceKey": null,
-                        "FontResourceKey": "FONT_REVAMPED",
-                        "TextSize": 32,
-                        "TextColor": "0xffffff",
-                        "TextID": 0
-                    },
-                    "Child": null
-                }
-            },
-            "Child": null
-        },
-        {
-            "Type": "Button",
-            "Pos": { "X": 400.0, "Y": 350.0 },
-            "Rot": 0.0,
-            "Scl": 1.0,
-            "OriginType": 0,
-            "CanvasSize": null,
-            "IsClickable": true,
-            "OnClickEventID": 3,
-            "Collider": { "Type": "Rect", "Attribute": { "Size": null } },
-            "Attribute": {
-                "PixelShaderResourceKey": null,
-                "PixelShaderEventID": -1,
-                "SelectSoundResourceKey": "SOUND_UI_SELECT",
-                "ClickSoundResourceKey": "SOUND_UI_ON_CLICK",
-                "UI_Image": {
-                    "Type": "Image",
-                    "Pos": { "X": 0.0, "Y": 0.0 },
-                    "Rot": 0.0,
-                    "Scl": 1.0,
-                    "OriginType": 4,
-                    "CanvasSize": null,
-                    "IsClickable": false,
-                    "OnClickEventID": -1,
-                    "Collider": null,
-					"Attribute": {
-						"ImageResourceKey": "IMAGE_UI_BUTTON_RAINBOW",
-						"PixelShaderResourceKey": "PIXELSHADER_RAINBOW",
-						"PixelShaderEventID": 0,
-						"SelectSoundResourceKey": null,
-                        "ClickSoundResourceKey": null
-					},
-                    "Child": null
-                },
-                "UI_Text": {
-                    "Type": "Text",
-                    "Pos": { "X": 0.0, "Y": 0.0 },
-                    "Rot": 0.0,
-                    "Scl": 1.0,
-                    "OriginType": 4,
-                    "CanvasSize": null,
-                    "IsClickable": false,
-                    "OnClickEventID": -1,
-                    "Collider": null,
-                    "Attribute": {
-                        "PixelShaderResourceKey": null,
-                        "PixelShaderEventID": -1,
-                        "SelectSoundResourceKey": null,
-                        "ClickSoundResourceKey": null,
-                        "FontResourceKey": "FONT_REVAMPED",
-                        "TextSize": 32,
-                        "TextColor": "0xffffff",
-                        "TextID": 0
-                    },
-                    "Child": null
-                }
-            },
-            "Child": null
-        },
-        {
-            "Type": "Button",
-            "Pos": { "X": 250.0, "Y": 110.0 },
-            "Rot": 0.0,
-            "Scl": 1.0,
-            "OriginType": 0,
-            "CanvasSize": null,
-            "IsClickable": true,
-            "OnClickEventID": 4,
-            "Collider": { "Type": "Rect", "Attribute": { "Size": null } },
-            "Attribute": {
-                "PixelShaderResourceKey": null,
-                "PixelShaderEventID": -1,
-                "SelectSoundResourceKey": "SOUND_UI_SELECT",
-                "ClickSoundResourceKey": null,
-                "UI_Image": {
-                    "Type": "Image",
-                    "Pos": { "X": 0.0, "Y": 0.0 },
-                    "Rot": 0.0,
-                    "Scl": 1.0,
-                    "OriginType": 4,
-                    "CanvasSize": null,
-                    "IsClickable": false,
-                    "OnClickEventID": -1,
-                    "Collider": null,
-					"Attribute": {
-						"ImageResourceKey": "IMAGE_UI_BUTTON_RAINBOW",
-						"PixelShaderResourceKey": null,
-						"PixelShaderEventID": -1,
-						"SelectSoundResourceKey": null,
-                        "ClickSoundResourceKey": null
-					},
-                    "Child": null
-                },
-                "UI_Text": {
-                    "Type": "Text",
-                    "Pos": { "X": 0.0, "Y": 0.0 },
-                    "Rot": 0.0,
-                    "Scl": 1.0,
-                    "OriginType": 4,
-                    "CanvasSize": null,
-                    "IsClickable": false,
-                    "OnClickEventID": -1,
-                    "Collider": null,
-                    "Attribute": {
-                        "PixelShaderResourceKey": null,
-                        "PixelShaderEventID": -1,
-                        "SelectSoundResourceKey": null,
-                        "ClickSoundResourceKey": null,
-                        "FontResourceKey": "FONT_REVAMPED",
-                        "TextSize": 32,
-                        "TextColor": "0xffffff",
-                        "TextID": 0
-                    },
-                    "Child": null
-                }
-            },
-            "Child": null
-        },
-        {
-            "Type": "UISystemMenu",
-            "Pos": { "X": 250.0, "Y": 110.0 },
-            "Rot": 0.0,
-            "Scl": 1.0,
-            "OriginType": 0,
-            "CanvasSize": null,
-            "IsClickable": false,
-            "OnClickEventID": -1,
-            "Collider": { "Type": "Rect", "Attribute": { "Size": null } },
-            "Attribute": {
-                "PixelShaderResourceKey": null,
-                "PixelShaderEventID": -1,
-                "SelectSoundResourceKey": null,
-                "ClickSoundResourceKey": null,
-                "UI_Image": {
-                    "Type": "Image",
-                    "Pos": { "X": 0.0, "Y": 0.0 },
-                    "Rot": 0.0,
-                    "Scl": 1.0,
-                    "OriginType": 4,
-                    "CanvasSize": null,
-                    "IsClickable": false,
-                    "OnClickEventID": -1,
-                    "Collider": null,
-					"Attribute": {
-						"ImageResourceKey": "IMAGE_UI_UISYSTEMMENU",
-						"PixelShaderResourceKey": null,
-						"PixelShaderEventID": -1,
-						"SelectSoundResourceKey": null,
-                        "ClickSoundResourceKey": null
-					},
-                    "Child": null
-                },
-                "UI_Text": {
-                    "Type": "Text",
-                    "Pos": { "X": 0.0, "Y": 0.0 },
-                    "Rot": 0.0,
-                    "Scl": 1.0,
-                    "OriginType": 4,
-                    "CanvasSize": null,
-                    "IsClickable": false,
-                    "OnClickEventID": -1,
-                    "Collider": null,
-                    "Attribute": {
-                        "PixelShaderResourceKey": null,
-                        "PixelShaderEventID": -1,
-                        "SelectSoundResourceKey": null,
-                        "ClickSoundResourceKey": null,
-                        "FontResourceKey": "FONT_REVAMPED",
-                        "TextSize": 32,
-                        "TextColor": "0xffffff",
-                        "TextID": 0
+                        "TextID": 3
                     },
                     "Child": null
                 },
-                "UI_Button_1": {
+                {
                     "Type": "Button",
-                    "Pos": { "X": 0.0, "Y": 0.0 },
+                    "Pos": { "X": 160.0, "Y": 130.0 },
                     "Rot": 0.0,
                     "Scl": 1.0,
                     "OriginType": 4,
                     "CanvasSize": null,
                     "IsClickable": true,
-                    "OnClickEventID": 4,
+                    "OnClickEventID": 3,
                     "Collider": { "Type": "Rect", "Attribute": { "Size": null } },
                     "Attribute": {
                         "PixelShaderResourceKey": null,
                         "PixelShaderEventID": -1,
                         "SelectSoundResourceKey": "SOUND_UI_SELECT",
-                        "ClickSoundResourceKey": null,
+                        "ClickSoundResourceKey": "SOUND_UI_ON_CLICK",
                         "UI_Image": {
                             "Type": "Image",
                             "Pos": { "X": 0.0, "Y": 0.0 },
@@ -415,7 +85,7 @@
                             "OnClickEventID": -1,
                             "Collider": null,
                             "Attribute": {
-                                "ImageResourceKey": "IMAGE_UI_BUTTON_RAINBOW",
+                                "ImageResourceKey": "IMAGE_UI_BUTTON",
                                 "PixelShaderResourceKey": null,
                                 "PixelShaderEventID": -1,
                                 "SelectSoundResourceKey": null,
@@ -441,28 +111,28 @@
                                 "FontResourceKey": "FONT_REVAMPED",
                                 "TextSize": 32,
                                 "TextColor": "0xffffff",
-                                "TextID": 0
+                                "TextID": 2
                             },
                             "Child": null
                         }
                     },
                     "Child": null
                 },
-                "UI_Button_2": {
+                {
                     "Type": "Button",
-                    "Pos": { "X": 0.0, "Y": 0.0 },
+                    "Pos": { "X": 160.0, "Y": 230.0 },
                     "Rot": 0.0,
                     "Scl": 1.0,
                     "OriginType": 4,
                     "CanvasSize": null,
                     "IsClickable": true,
-                    "OnClickEventID": 4,
+                    "OnClickEventID": 3,
                     "Collider": { "Type": "Rect", "Attribute": { "Size": null } },
                     "Attribute": {
                         "PixelShaderResourceKey": null,
                         "PixelShaderEventID": -1,
                         "SelectSoundResourceKey": "SOUND_UI_SELECT",
-                        "ClickSoundResourceKey": null,
+                        "ClickSoundResourceKey": "SOUND_UI_ON_CLICK",
                         "UI_Image": {
                             "Type": "Image",
                             "Pos": { "X": 0.0, "Y": 0.0 },
@@ -474,7 +144,7 @@
                             "OnClickEventID": -1,
                             "Collider": null,
                             "Attribute": {
-                                "ImageResourceKey": "IMAGE_UI_BUTTON_RAINBOW",
+                                "ImageResourceKey": "IMAGE_UI_BUTTON",
                                 "PixelShaderResourceKey": null,
                                 "PixelShaderEventID": -1,
                                 "SelectSoundResourceKey": null,
@@ -500,28 +170,28 @@
                                 "FontResourceKey": "FONT_REVAMPED",
                                 "TextSize": 32,
                                 "TextColor": "0xffffff",
-                                "TextID": 0
+                                "TextID": 2
                             },
                             "Child": null
                         }
                     },
                     "Child": null
                 },
-                "UI_Button_3": {
+                {
                     "Type": "Button",
-                    "Pos": { "X": 0.0, "Y": 0.0 },
+                    "Pos": { "X": 160.0, "Y": 330.0 },
                     "Rot": 0.0,
                     "Scl": 1.0,
                     "OriginType": 4,
                     "CanvasSize": null,
                     "IsClickable": true,
-                    "OnClickEventID": 4,
+                    "OnClickEventID": 3,
                     "Collider": { "Type": "Rect", "Attribute": { "Size": null } },
                     "Attribute": {
                         "PixelShaderResourceKey": null,
                         "PixelShaderEventID": -1,
                         "SelectSoundResourceKey": "SOUND_UI_SELECT",
-                        "ClickSoundResourceKey": null,
+                        "ClickSoundResourceKey": "SOUND_UI_ON_CLICK",
                         "UI_Image": {
                             "Type": "Image",
                             "Pos": { "X": 0.0, "Y": 0.0 },
@@ -533,7 +203,7 @@
                             "OnClickEventID": -1,
                             "Collider": null,
                             "Attribute": {
-                                "ImageResourceKey": "IMAGE_UI_BUTTON_RAINBOW",
+                                "ImageResourceKey": "IMAGE_UI_BUTTON",
                                 "PixelShaderResourceKey": null,
                                 "PixelShaderEventID": -1,
                                 "SelectSoundResourceKey": null,
@@ -559,28 +229,28 @@
                                 "FontResourceKey": "FONT_REVAMPED",
                                 "TextSize": 32,
                                 "TextColor": "0xffffff",
-                                "TextID": 0
+                                "TextID": 2
                             },
                             "Child": null
                         }
                     },
                     "Child": null
                 },
-                "UI_Button_4": {
+                {
                     "Type": "Button",
-                    "Pos": { "X": 0.0, "Y": 0.0 },
+                    "Pos": { "X": 160.0, "Y": 430.0 },
                     "Rot": 0.0,
                     "Scl": 1.0,
                     "OriginType": 4,
                     "CanvasSize": null,
                     "IsClickable": true,
-                    "OnClickEventID": 0,
+                    "OnClickEventID": 3,
                     "Collider": { "Type": "Rect", "Attribute": { "Size": null } },
                     "Attribute": {
                         "PixelShaderResourceKey": null,
                         "PixelShaderEventID": -1,
                         "SelectSoundResourceKey": "SOUND_UI_SELECT",
-                        "ClickSoundResourceKey": null,
+                        "ClickSoundResourceKey": "SOUND_UI_ON_CLICK",
                         "UI_Image": {
                             "Type": "Image",
                             "Pos": { "X": 0.0, "Y": 0.0 },
@@ -592,7 +262,7 @@
                             "OnClickEventID": -1,
                             "Collider": null,
                             "Attribute": {
-                                "ImageResourceKey": "IMAGE_UI_BUTTON_RAINBOW",
+                                "ImageResourceKey": "IMAGE_UI_BUTTON",
                                 "PixelShaderResourceKey": null,
                                 "PixelShaderEventID": -1,
                                 "SelectSoundResourceKey": null,
@@ -618,15 +288,14 @@
                                 "FontResourceKey": "FONT_REVAMPED",
                                 "TextSize": 32,
                                 "TextColor": "0xffffff",
-                                "TextID": 0
+                                "TextID": 2
                             },
                             "Child": null
                         }
                     },
                     "Child": null
                 }
-            },
-            "Child": null
+            ]
         }
     ]
 }

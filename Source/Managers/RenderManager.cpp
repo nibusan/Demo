@@ -1,6 +1,6 @@
 #include "../GameObject/3D/Camera/Camera.h"
 #include "../Renderer/AbstractRenderer.h"
-#include "../Debug/DebugLog.h"
+//#include "../Debug/DebugLog.h"
 #include "RenderManager.h"
 
 void RenderManager::Init(void) {
@@ -14,7 +14,7 @@ void RenderManager::Render(void) {
 	Render2D();
 
 	// デバッグログの描画
-	const auto& logs = DebugLog::GetInstance().GetLogs();
+	/*const auto& logs = DebugLog::GetInstance().GetLogs();
 	for (int i = 0; i < logs.size(); i++) {
 		DrawString(
 			0,
@@ -22,7 +22,7 @@ void RenderManager::Render(void) {
 			logs[i].log.c_str(),
 			logs[i].logColor
 		);
-	}
+	}*/
 }
 
 void RenderManager::Release(void) {

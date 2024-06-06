@@ -70,6 +70,8 @@ void UI_UISystemMenu::Init_UI(void) {
 	}
 }
 
-void UI_UISystemMenu::Update_UI(void) {}
+void UI_UISystemMenu::Update_UI(void) {
+	transform_.localPos_.x+=0.01f;
+}
 
 void UI_UISystemMenu::Release_UI(void) {}

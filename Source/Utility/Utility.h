@@ -78,6 +78,7 @@ public:
 	static double AngleDeg(const Vector3<double>& from, const Vector3<double>& to);
 
 	// •¶Žš—ñ•ÏŠ·
-	static std::string WStringToString(std::wstring oWString);	//wstring‚ðstring‚Ö•ÏŠ·
+	static std::string WStringToString(const std::wstring& oWString);	//wstring‚ðstring‚Ö•ÏŠ·
+	static std::wstring StringToWString(const std::string& oString);	//string‚ðwstring‚Ö•ÏŠ·
 };
 

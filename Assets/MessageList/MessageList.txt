@@ -1,3 +1,4 @@
-0:インベントリシステムシーン
-1:UIシステムシーン
-2:他のプロジェクトにすぐに移植できるインベントリのコンテナクラスを紹介してます
+0:Inventory System Scene
+1:UI System Scene
+2:Button
+3:Menu

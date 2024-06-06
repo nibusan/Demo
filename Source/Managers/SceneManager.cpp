@@ -1,12 +1,13 @@
 #include <memory>
 #include <DxLib.h>
-#include "SceneManager.h"
 #include "../Scenes/AbstractScene.h"
 #include "../Scenes/InventorySystemScene/InventorySystemScene.h"
 #include "../Scenes/UISystemScene/UISystemScene.h"
 #include "ResourceManager.h"
 #include "PixelShaderEventManager.h"
 #include "UIInputManager.h"
+#include "../Data/MessageList/MessageList.h"
+#include "SceneManager.h"
 
 Scene::TYPE SceneManager::GetCurrentSceneType(void) {
 	return currentScene_->GetType();
@@ -17,6 +18,9 @@ void SceneManager::SetNextScene(Scene::TYPE type) {
 }
 
 void SceneManager::Init(void) {
+	// ゲーム内で使用するメッセージを全て読み込む
+	MessageList::GetInstance().Init();
+
 	PixelShaderEventManager::GetInstance().Init();
 
 	// 背景色設定

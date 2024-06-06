@@ -16,6 +16,8 @@
 #include "../../../../Common/Handle/PixelShader/PixelShader.h"
 #include "../../../../Managers/ResourceManager.h"
 #include "../../../../Managers/PixelShaderEventManager.h"
+#include "../../../../Data/MessageList/MessageList.h"
+#include "../../../../Utility/Utility.h"
 #include "UIFactory.h"
 
 std::shared_ptr<AbstractUI> UIFactory::CreateUI(const nlohmann::json& uiData, bool shouldCreateRenderer, bool useLocalPos) const {
@@ -77,7 +79,8 @@ std::shared_ptr<AbstractUI> UIFactory::CreateUI(const nlohmann::json& uiData, bo
 				static_cast<int>(uiData["Attribute"]["TextSize"])
 			);
 
-		std::string text = "aiueoooo";
+		// 描画するテキストを取得する
+		auto text = Utility::WStringToString(MessageList::GetInstance().GetMessage_(uiData["Attribute"]["TextID"]));
 
 		// UIの生成
 		createUI = std::make_shared<UI_Text>(
@@ -148,8 +151,8 @@ std::shared_ptr<AbstractUI> UIFactory::CreateUI(const nlohmann::json& uiData, bo
 			uiData["Attribute"]["PixelShaderEventID"],
 			std::dynamic_pointer_cast<UI_Image>(CreateUI(uiData["Attribute"]["UI_Image"], false, true)),
 			std::dynamic_pointer_cast<UI_Text>(CreateUI(uiData["Attribute"]["UI_Text"], false, true)),
-			std::dynamic_pointer_cast<UI_Button>(CreateUI(uiData["Attribute"]["UI_Button_1"], false, true)),
-			std::dynamic_pointer_cast<UI_Button>(CreateUI(uiData["Attribute"]["UI_Button_2"], false, true)),
+			std::dynamic_pointer_cast<UI_Button>(CreateUI(uiData["Attribute"]["UI_Button_1"], false, false)),
+			std::dynamic_pointer_cast<UI_Button>(CreateUI(uiData["Attribute"]["UI_Button_2"], false, false)),
 			std::dynamic_pointer_cast<UI_Button>(CreateUI(uiData["Attribute"]["UI_Button_3"], false, true)),
 			std::dynamic_pointer_cast<UI_Button>(CreateUI(uiData["Attribute"]["UI_Button_4"], false, true))
 			);
@@ -179,7 +182,7 @@ std::shared_ptr<AbstractUI> UIFactory::CreateUI(const nlohmann::json& uiData, bo
 
 	// 子が存在する場合は子を生成してから自身の子として追加する
 	for (const auto& child : uiData["Child"]) {
-		auto childUI = CreateUI(child, true, true);
+		auto childUI = CreateUI(child, true, false);
 		createUI->AddChild(childUI);
 	}
 
