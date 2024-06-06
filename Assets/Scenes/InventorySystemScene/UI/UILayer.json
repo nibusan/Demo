@@ -2,34 +2,63 @@
     "UIs": [
         {
             "Type": "Image",
-            "Pos": { "X": 0.0, "Y": 0.0 },
-            "Rot": { "X": 0.0, "Y": 0.0 },
-            "Scl": { "X": 0.0, "Y": 0.0 },
+            "Pos": { "X": 320.0, "Y": 420.0 },
+            "Rot": 0.0,
+            "Scl": 8.0,
+            "OriginType": 4,
             "CanvasSize": null,
             "IsClickable": false,
             "OnClickEventID": -1,
+            "Collider": null,
             "Attribute": {
-                "ImageResourceKey": "IMAGE_UI_IMAGE_TEST",
-                "PixelShaderResourceKey": "PIXELSHADER_RAINBOW",
-                "PixelShaderEventID": 0
+                "ImageResourceKey": "IMAGE_UI_INVENTORY",
+                "PixelShaderResourceKey": null,
+                "PixelShaderEventID": -1,
+                "SelectSoundResourceKey": null,
+                "ClickSoundResourceKey": null
             },
             "Child": null
         },
         {
-            "Type": "Button",
-            "Pos": { "X": 0.0, "Y": 0.0 },
-            "Rot": { "X": 0.0, "Y": 0.0 },
-            "Scl": { "X": 0.0, "Y": 0.0 },
+            "Type": "Text",
+            "Pos": { "X": 1024.0, "Y": 200.0 },
+            "Rot": 0.0,
+            "Scl": 1.0,
+            "OriginType": 5,
             "CanvasSize": null,
             "IsClickable": false,
             "OnClickEventID": -1,
+            "Collider": null,
             "Attribute": {
-                "ImageResourceKey": "IMAGE_UI_IMAGE_TEST",
                 "PixelShaderResourceKey": null,
                 "PixelShaderEventID": -1,
-                "FontResourceKey": "FONT_REVAMPED",
+                "SelectSoundResourceKey": null,
+                "ClickSoundResourceKey": null,
+                "FontResourceKey": "FONT_PIXELMPLUS12",
                 "TextSize": 32,
                 "TextColor": "0xffffff",
+                "TextID": 4
+            },
+            "Child": null
+        },
+        {
+            "Type": "Text",
+            "Pos": { "X": 1024.0, "Y": 0.0 },
+            "Rot": 0.0,
+            "Scl": 1.0,
+            "OriginType": 2,
+            "CanvasSize": null,
+            "IsClickable": false,
+            "OnClickEventID": -1,
+            "Collider": null,
+            "Attribute": {
+                "PixelShaderResourceKey": null,
+                "PixelShaderEventID": -1,
+                "SelectSoundResourceKey": null,
+                "ClickSoundResourceKey": null,
+                "FontResourceKey": "FONT_PIXELMPLUS12",
+                "TextSize": 48,
+                "TextColor": "0xff0000",
                 "TextID": 0
             },
             "Child": null

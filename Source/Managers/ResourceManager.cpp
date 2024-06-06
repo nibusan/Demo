@@ -48,16 +48,6 @@ void ResourceManager::LoadSceneResourceFile(Scene::TYPE sceneType) {
 	// 切り替え先のシーンで読み込むリソースファイルのリストをコピーする
 	auto nextUsingResourceList = sceneUsingResourceList_[static_cast<int>(sceneType)];
 
-	//for (const auto& [key, value] : currentUsingResourceFiles_) {
-	//	// キーがグローバルのリソースファイルのリストに登録されてる場合は何もしない
-	//	if (globalUsingResourceList_.find(key) != globalUsingResourceList_.end()) continue;
-
-	//	// キーが切り替え先のシーンのリソースファイルのリストに登録されてる場合は何もしない
-	//	if (usingResourceList.find(key) != usingResourceList.end()) continue;
-
-	//	currentUsingResourceFiles_.erase(key);
-	//}
-
 	// 不要なリソースファイルをアンロード(削除)する
 	for (auto it = currentUsingResourceFiles_.begin(); it != currentUsingResourceFiles_.end(); ) {
 		// キーがグローバルのリソースファイルのリストに登録されてる場合は何もしない

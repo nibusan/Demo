@@ -4,6 +4,15 @@
 /// @brief インベントリに格納するためのテスト用クラス
 class Item {
 public:
+	// アイテム画像の横の分割数
+	static constexpr int ITEM_NUM_X = 8;
+
+	// アイテム画像の縦の分割数
+	static constexpr int ITEM_NUM_Y = 8;
+
+	// アイテムIDの最大数
+	static constexpr int MAX_ITEM_ID = ITEM_NUM_X * ITEM_NUM_Y - 1;
+
 	Item(void);
 	~Item(void) = default;
 

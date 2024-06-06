@@ -58,16 +58,6 @@ void AbstractUI::Update_GameObject2D(void) {
 	// 選択状態をリセットする
 	isSelect_ = false;
 
-	// コライダーの位置更新
-	if (collider_ != nullptr) {
-		if(parent_.expired()) collider_->SetCenterPos(transform_.currentPos_ + (renderCanvas_->GetSize().ToVector2f() / 2.0f));
-		else collider_->SetCenterPos(transform_.currentPos_);
-	}
-
-	// 入力検知用
-	auto& inputManager = InputManager::GetInstance();
-	auto& uiInputManager = UIInputManager::GetInstance();
-
 	// もしクリックできてなおかつコライダーが生成されてたらUIを選択してるかの処理をする
 	if (!isClickable_) {
 		Update_UI();
@@ -75,11 +65,18 @@ void AbstractUI::Update_GameObject2D(void) {
 	};
 
 	if (collider_ != nullptr) {
+		// コライダーの位置更新
+		if(parent_.expired()) collider_->SetCenterPos(transform_.currentPos_ + (renderCanvas_->GetSize().ToVector2f() / 2.0f));
+		else collider_->SetCenterPos(transform_.currentPos_);
+
+		// 入力検知用
+		auto& inputManager = InputManager::GetInstance();
+		auto& uiInputManager = UIInputManager::GetInstance();
+
 		// マウスカーソルがUIのコライダー内に入っていたら
 		if (collider_->IsContains(inputManager.GetMousePos().ToVector2f())) {
 			// 選択状態にして他のUIを選択できないようにする
 			if (!uiInputManager.IsSelected()) {
-
 				isSelect_ = true;
 				uiInputManager.SetSelectUI(std::dynamic_pointer_cast<AbstractUI>(weak_from_this().lock()));
 
@@ -113,6 +110,13 @@ void AbstractUI::Update_GameObject2D(void) {
 
 	// カーソルがあった時に発生するトリガーで効果音を鳴らすか判定する
 	if ((!preIsHighlighted_ && isHighlighted_) && isSelect_ && !selectSound_.expired()) selectSound_.lock()->Play(false);
+
+	if (isHighlighted_) {
+		HighlightUpdate();
+	}
+	else {
+		transform_.localScl_ = 1.0f;
+	}
 
 	Update_UI();
 }

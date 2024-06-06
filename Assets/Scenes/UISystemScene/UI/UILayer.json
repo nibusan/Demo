@@ -53,7 +53,7 @@
                         "SelectSoundResourceKey": null,
                         "ClickSoundResourceKey": null,
                         "FontResourceKey": "FONT_REVAMPED",
-                        "TextSize": 32,
+                        "TextSize": 48,
                         "TextColor": "0xffffff",
                         "TextID": 3
                     },
@@ -244,7 +244,7 @@
                     "OriginType": 4,
                     "CanvasSize": null,
                     "IsClickable": true,
-                    "OnClickEventID": 3,
+                    "OnClickEventID": 4,
                     "Collider": { "Type": "Rect", "Attribute": { "Size": null } },
                     "Attribute": {
                         "PixelShaderResourceKey": null,
@@ -296,6 +296,28 @@
                     "Child": null
                 }
             ]
+        },
+        {
+            "Type": "Text",
+            "Pos": { "X": 1024.0, "Y": 0.0 },
+            "Rot": 0.0,
+            "Scl": 1.0,
+            "OriginType": 2,
+            "CanvasSize": null,
+            "IsClickable": false,
+            "OnClickEventID": -1,
+            "Collider": null,
+            "Attribute": {
+                "PixelShaderResourceKey": null,
+                "PixelShaderEventID": -1,
+                "SelectSoundResourceKey": null,
+                "ClickSoundResourceKey": null,
+                "FontResourceKey": "FONT_REVAMPED",
+                "TextSize": 32,
+                "TextColor": "0xff0000",
+                "TextID": 1
+            },
+            "Child": null
         }
     ]
 }

@@ -48,5 +48,8 @@ private:
 
 	/// @brief UIを離した時の処理 (isClickable_がtrueの時のみ使用できます)
 	virtual void OnClickUp(void) override;
+
+	/// @brief 強調表示されてる時の更新処理 
+	void HighlightUpdate(void) override;
 };
 

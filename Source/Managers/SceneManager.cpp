@@ -4,9 +4,15 @@
 #include "../Scenes/InventorySystemScene/InventorySystemScene.h"
 #include "../Scenes/UISystemScene/UISystemScene.h"
 #include "ResourceManager.h"
+#include "RenderManager.h"
 #include "PixelShaderEventManager.h"
+#include "InputManager.h"
 #include "UIInputManager.h"
 #include "../Data/MessageList/MessageList.h"
+#include "../Library/imgui/imgui.h"
+#include "../Library/imgui/backends/imgui_impl_dx11.h"
+#include "../Library/imgui/backends/imgui_impl_win32.h"
+#include "../Library/imgui/misc/cpp/imgui_stdlib.h"
 #include "SceneManager.h"
 
 Scene::TYPE SceneManager::GetCurrentSceneType(void) {
@@ -43,7 +49,16 @@ void SceneManager::Init(void) {
 	// 最初のシーンを設定
 	ChangeScene(Scene::TYPE::UI_SYSTEM);
 
+	// 次のシーンの設定
 	nextSceneType_ = Scene::TYPE::NONE;
+
+	// ImGuiの初期化
+	ImGui::DebugCheckVersionAndDataLayout("1.89.8 WIP", sizeof(ImGuiIO), sizeof(ImGuiStyle), sizeof(ImVec2), sizeof(ImVec4), sizeof(ImDrawVert), sizeof(ImDrawIdx));
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO();
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+	ImGui_ImplWin32_Init(DxLib::GetMainWindowHandle());
+	ImGui_ImplDX11_Init((ID3D11Device*)GetUseDirect3D11Device(), (ID3D11DeviceContext*)GetUseDirect3D11DeviceContext());
 }
 
 void SceneManager::Update(void) {
@@ -52,6 +67,14 @@ void SceneManager::Update(void) {
 		ChangeScene(nextSceneType_);
 		nextSceneType_ = Scene::TYPE::NONE;
 	}
+
+	// ImGuiの処理
+	ImGuiIO& io = ImGui::GetIO();
+	auto mousePos = InputManager::GetInstance().GetMousePos();
+	io.AddMousePosEvent(mousePos.x, mousePos.y);
+	ImGui_ImplDX11_NewFrame();
+	ImGui_ImplWin32_NewFrame();
+	ImGui::NewFrame();
 
 	// シーンの更新
 	currentScene_->Update();
@@ -66,6 +89,8 @@ void SceneManager::Release(void) {
 }
 
 void SceneManager::ChangeScene(Scene::TYPE type) {
+	// 登録されてるレンダラーを全て削除する
+	RenderManager::GetInstance().Init();
 
 	if (currentScene_ != nullptr) {
 		// 既にシーンがセットされている場合はそのシーンを解放する

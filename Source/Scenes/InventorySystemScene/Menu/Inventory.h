@@ -14,7 +14,7 @@ template <typename T>
 class Inventory {
 public:
 	// インベントリで保持できるアイテムスロットの数
-	static constexpr int MAX_ITEM_SLOT_COUNT = 9;
+	static constexpr int MAX_ITEM_SLOT_COUNT = 16;
 
 	Inventory(std::function<bool(const std::shared_ptr<T>&, const std::shared_ptr<T>&)> compare);
 	~Inventory(void) = default;

@@ -14,7 +14,7 @@ void UI_TextRenderer::Render(void) {
 	uiText->GetFont().lock()->Draw(Vector2<float>(0.0f, 0.0f), uiText->GetText(), uiText->GetTextColor());
 
 	// デバッグ用
-	DebugRender();
+	//DebugRender();
 }
 
 void UI_TextRenderer::DebugRender(void) {

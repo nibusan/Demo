@@ -60,12 +60,25 @@
             }
         ],
         "Sound3D": null,
-        "Model": null,
+        "Model": [
+            {
+                "Key": "MODEL_IA",
+                "FilePath": "Scenes/UISystemScene/Model/",
+                "FileName": "IA",
+                "Extension": ".mv1"
+            }
+        ],
         "Font": [
             {
                 "Key": "FONT_REVAMPED",
                 "FilePath": "Scenes/UISystemScene/Font/",
                 "FileName": "Revamped",
+                "Extension": ".ttf"
+            },
+            {
+                "Key": "FONT_PIXELMPLUS12",
+                "FilePath": "Scenes/InventorySystemScene/Font/",
+                "FileName": "PixelMplus12",
                 "Extension": ".ttf"
             }
         ],

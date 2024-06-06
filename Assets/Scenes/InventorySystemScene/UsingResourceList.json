@@ -7,7 +7,9 @@
         "Sound2D": null,
         "Sound3D": null,
         "Model": null,
-        "Font": null,
+        "Font": [
+            "FONT_PIXELMPLUS12"
+        ],
         "PixelShader": null,
         "VertexShader": null
     }

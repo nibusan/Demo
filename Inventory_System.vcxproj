@@ -147,6 +147,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\GameObject\3D\Actor\Actor.cpp" />
+    <ClCompile Include="Source\GameObject\3D\Object3DRenderer.cpp" />
     <ClCompile Include="Source\Data\MessageList\MessageList.cpp" />
     <ClCompile Include="Source\Common\Quaternion.cpp" />
     <ClCompile Include="Source\GameObject\2D\UI\UI\UIFactory.cpp" />
@@ -155,6 +157,15 @@
     <ClCompile Include="Source\GameObject\2D\Collider\CircleCollider.cpp" />
     <ClCompile Include="Source\GameObject\2D\Collider\AbstractCollider.cpp" />
     <ClCompile Include="Source\GameObject\3D\GameObject3D.cpp" />
+    <ClCompile Include="Source\Library\imgui\backends\imgui_impl_dx11.cpp" />
+    <ClCompile Include="Source\Library\imgui\backends\imgui_impl_win32.cpp" />
+    <ClCompile Include="Source\Library\imgui\imgui.cpp" />
+    <ClCompile Include="Source\Library\imgui\imgui_demo.cpp" />
+    <ClCompile Include="Source\Library\imgui\imgui_draw.cpp" />
+    <ClCompile Include="Source\Library\imgui\imgui_tables.cpp" />
+    <ClCompile Include="Source\Library\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="Source\Library\imgui\misc\cpp\imgui_stdlib.cpp" />
+    <ClCompile Include="Source\Library\imgui\misc\fonts\binary_to_compressed_c.cpp" />
     <ClCompile Include="Source\Managers\PixelShaderEventManager.cpp" />
     <ClCompile Include="Source\Managers\RenderManager.cpp" />
     <ClCompile Include="Source\Managers\ResourceManager.cpp" />
@@ -164,7 +175,6 @@
     <ClCompile Include="Source\GameObject\2D\UI\UI\AbstractUI.cpp" />
     <ClCompile Include="Source\Managers\InputManager.cpp" />
     <ClCompile Include="Source\Renderer\AbstractRenderer.cpp" />
-    <ClCompile Include="Source\Scenes\AnimationSystemScene\AnimationSystemScene.cpp" />
     <ClCompile Include="Source\GameObject\2D\GameObject2D.cpp" />
     <ClCompile Include="Source\GameObject\GameObject.cpp" />
     <ClCompile Include="Source\Common\Handle\Font\Font.cpp" />
@@ -187,17 +197,15 @@
     <ClCompile Include="Source\GameObject\2D\UI\UI\Parts\Text\UI_TextRenderer.cpp" />
     <ClCompile Include="Source\GameObject\2D\UI\UI\Original\Button\UI_Button.cpp" />
     <ClCompile Include="Source\GameObject\2D\UI\UI\Original\Button\UI_ButtonRenderer.cpp" />
-    <ClCompile Include="Source\GameObject\2D\UI\UI\Original\UISystemMenu\UI_UISystemMenu.cpp" />
-    <ClCompile Include="Source\GameObject\2D\UI\UI\Original\UISystemMenu\UI_UISystemMenuRenderer.cpp" />
     <ClCompile Include="Source\GameObject\2D\UI\UI\Original\Inventory\UI_Inventory.cpp" />
     <ClCompile Include="Source\GameObject\2D\UI\UI\Original\Inventory\UI_InventoryRenderer.cpp" />
-    <ClCompile Include="Source\GameObject\2D\UI\UI\Original\Item\UI_Item.cpp" />
-    <ClCompile Include="Source\GameObject\2D\UI\UI\Original\Item\UI_ItemRenderer.cpp" />
     <ClCompile Include="Source\GameObject\2D\UI\UI\AbstractUIRenderer.cpp" />
     <ClCompile Include="Source\Utility\Utility.cpp" />
     <ClCompile Include="Source\Managers\UIInputManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\GameObject\3D\Actor\Actor.h" />
+    <ClInclude Include="Source\GameObject\3D\Object3DRenderer.h" />
     <ClInclude Include="Source\Data\MessageList\MessageList.h" />
     <ClInclude Include="Source\Common\Quaternion.h" />
     <ClInclude Include="Source\GameObject\3D\Camera\Camera.h" />
@@ -208,6 +216,16 @@
     <ClInclude Include="Source\GameObject\2D\Collider\AbstractCollider.h" />
     <ClInclude Include="Source\GameObject\3D\GameObject3D.h" />
     <ClInclude Include="Source\GameObject\3D\Transform3D.h" />
+    <ClInclude Include="Source\Library\imgui\backends\imgui_impl_dx11.h" />
+    <ClInclude Include="Source\Library\imgui\backends\imgui_impl_win32.h" />
+    <ClInclude Include="Source\Library\imgui\imconfig.h" />
+    <ClInclude Include="Source\Library\imgui\imgui.h" />
+    <ClInclude Include="Source\Library\imgui\imgui_internal.h" />
+    <ClInclude Include="Source\Library\imgui\imstb_rectpack.h" />
+    <ClInclude Include="Source\Library\imgui\imstb_textedit.h" />
+    <ClInclude Include="Source\Library\imgui\imstb_truetype.h" />
+    <ClInclude Include="Source\Library\imgui\misc\cpp\imgui_stdlib.h" />
+    <ClInclude Include="Source\Library\imgui\misc\single_file\imgui_single_file.h" />
     <ClInclude Include="Source\Managers\PixelShaderEventManager.h" />
     <ClInclude Include="Source\GameObject\2D\UI\UILayer\UILayerInfo.h" />
     <ClInclude Include="Source\Managers\RenderManager.h" />
@@ -222,8 +240,6 @@
     <ClInclude Include="Source\GameObject\2D\UI\UI\AbstractUI.h" />
     <ClInclude Include="Source\Managers\InputManager.h" />
     <ClInclude Include="Source\Renderer\AbstractRenderer.h" />
-    <ClInclude Include="Source\Scenes\AnimationSystemScene\AnimationSystemScene.h" />
-    <ClInclude Include="Source\Scenes\AnimationSystemScene\Animation\Animation.h" />
     <ClInclude Include="Source\GameObject\2D\GameObject2D.h" />
     <ClInclude Include="Source\GameObject\GameObject.h" />
     <ClInclude Include="Source\Common\Handle\Font\Font.h" />
@@ -251,12 +267,8 @@
     <ClInclude Include="Source\GameObject\2D\UI\UI\Parts\Text\UI_TextRenderer.h" />
     <ClInclude Include="Source\GameObject\2D\UI\UI\Original\Button\UI_Button.h" />
     <ClInclude Include="Source\GameObject\2D\UI\UI\Original\Button\UI_ButtonRenderer.h" />
-    <ClInclude Include="Source\GameObject\2D\UI\UI\Original\UISystemMenu\UI_UISystemMenu.h" />
-    <ClInclude Include="Source\GameObject\2D\UI\UI\Original\UISystemMenu\UI_UISystemMenuRenderer.h" />
     <ClInclude Include="Source\GameObject\2D\UI\UI\Original\Inventory\UI_Inventory.h" />
     <ClInclude Include="Source\GameObject\2D\UI\UI\Original\Inventory\UI_InventoryRenderer.h" />
-    <ClInclude Include="Source\GameObject\2D\UI\UI\Original\Item\UI_Item.h" />
-    <ClInclude Include="Source\GameObject\2D\UI\UI\Original\Item\UI_ItemRenderer.h" />
     <ClInclude Include="Source\GameObject\2D\UI\UI\UIFactory.h" />
     <ClInclude Include="Source\GameObject\2D\UI\UI\AbstractUIRenderer.h" />
     <ClInclude Include="Source\Utility\Utility.h" />

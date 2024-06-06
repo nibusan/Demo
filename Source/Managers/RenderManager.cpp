@@ -1,6 +1,10 @@
 #include "../GameObject/3D/Camera/Camera.h"
 #include "../Renderer/AbstractRenderer.h"
 //#include "../Debug/DebugLog.h"
+#include "../Library/imgui/imgui.h"
+#include "../Library/imgui/backends/imgui_impl_dx11.h"
+#include "../Library/imgui/backends/imgui_impl_win32.h"
+#include "../Library/imgui/misc/cpp/imgui_stdlib.h"
 #include "RenderManager.h"
 
 void RenderManager::Init(void) {
@@ -12,6 +16,11 @@ void RenderManager::Render(void) {
 	// 3D -> 2Dの順番で描画する
 	Render3D();
 	Render2D();
+
+	// ImGuiの描画
+	ImGui::Render();
+	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+	RefreshDxLibDirect3DSetting();
 
 	// デバッグログの描画
 	/*const auto& logs = DebugLog::GetInstance().GetLogs();
@@ -54,15 +63,6 @@ void RenderManager::Render2D(void) {
 void RenderManager::Render3D(void) {
 	// メインカメラの設定
 	mainCamera_->SetBeforeDraw();
-	
-	DrawSphere3D(
-		{},
-		1.0f,
-		16,
-		0xFF0000,
-		0xFF0000,
-		false
-	);
 
 	for (const auto& renderer3D : renderer3D_) {
 		// 描画対象が削除されてなかったら描画する

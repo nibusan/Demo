@@ -11,7 +11,6 @@ namespace UI {
 		IMAGE,			// 画像
 		TEXT,			// テキスト
 		BUTTON,			// ボタン
-		UI_SYSTEM_MENU,	// UISystemSceneで使うメニュー
 		INVENTORY,		// インベントリ
 		ITEM			// アイテム
 	};
@@ -21,9 +20,7 @@ namespace UI {
 		{ "Image",			UI_TYPE::IMAGE },
 		{ "Text",			UI_TYPE::TEXT },
 		{ "Button",			UI_TYPE::BUTTON },
-		{ "UISystemMenu",	UI_TYPE::UI_SYSTEM_MENU },
-		{ "Inventory",		UI_TYPE::INVENTORY },
-		{ "Item",			UI_TYPE::ITEM },
+		{ "Inventory",		UI_TYPE::INVENTORY }
 	};
 
 	// UIのどこを原点として配置するか

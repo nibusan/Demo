@@ -66,3 +66,7 @@ void UI_Button::OnClickDown(void) {
 void UI_Button::OnClickUp(void) {
 	transform_.localScl_ = 1.0f;
 }
+
+void UI_Button::HighlightUpdate(void) {
+	transform_.localScl_ = 0.95f;
+}

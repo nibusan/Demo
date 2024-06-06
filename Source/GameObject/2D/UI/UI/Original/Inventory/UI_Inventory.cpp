@@ -23,7 +23,7 @@ std::weak_ptr<Inventory<Item>> UI_Inventory::GetInventory(void) {
 	return inventory_;
 }
 
-std::weak_ptr<UI_Image> UI_Inventory::GetUIImage(void) {
+std::weak_ptr<UI_Image> UI_Inventory::GetBackGround_UIImage(void) {
 	return uiImage_;
 }
 

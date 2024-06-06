@@ -12,7 +12,9 @@
             "SOUND_UI_ON_CLICK"
         ],
         "Sound3D": null,
-        "Model": null,
+        "Model": [
+            "MODEL_IA"
+        ],
         "Font": [
             "FONT_REVAMPED"
         ],

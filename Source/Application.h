@@ -6,8 +6,8 @@
 class Application : public StaticSingleton<Application> {
 public:
 	// ウィンドウのサイズ
-	static constexpr int WINDOW_SIZE_WIDTH = 800;
-	static constexpr int WINDOW_SIZE_HEIGHT = 600;
+	static constexpr int WINDOW_SIZE_WIDTH = 1024;
+	static constexpr int WINDOW_SIZE_HEIGHT = 768;
 
 	// 1秒あたりのフレーム数
 	static constexpr int FRAME_TIME = 60;

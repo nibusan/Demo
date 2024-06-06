@@ -32,7 +32,11 @@ public:
 
 	/// @brief 背景画像部分のUIを返す 
 	/// @return 背景画像部分のUI
-	std::weak_ptr<UI_Image> GetUIImage(void);
+	std::weak_ptr<UI_Image> GetBackGround_UIImage(void);
+
+	/// @brief アイテム画像部分のUIを返す 
+	/// @return アイテム画像部分のUI
+	std::weak_ptr<UI_Image> GetItem_UIImage(void);
 
 private:
 	// 参照元のインベントリ
