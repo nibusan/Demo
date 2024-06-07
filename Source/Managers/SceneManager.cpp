@@ -88,6 +88,8 @@ void SceneManager::Release(void) {
 	currentScene_->Release();
 }
 
+SceneManager::SceneManager() : nextSceneType_(Scene::TYPE::NONE) {}
+
 void SceneManager::ChangeScene(Scene::TYPE type) {
 	// “o˜^‚³‚ê‚Ä‚éƒŒƒ“ƒ_ƒ‰[‚ğ‘S‚Äíœ‚·‚é
 	RenderManager::GetInstance().Init();

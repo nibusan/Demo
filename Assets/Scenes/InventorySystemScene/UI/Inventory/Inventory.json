@@ -1,0 +1,42 @@
+{
+    "UIs": [
+        {
+            "Type": "Inventory",
+            "Pos": { "X": 320.0, "Y": 420.0 },
+            "Rot": 0.0,
+            "Scl": 8.0,
+            "OriginType": 4,
+            "CanvasSize": null,
+            "IsClickable": false,
+            "OnClickEventID": -1,
+            "Collider": null,
+            "Attribute": {
+                "PixelShaderResourceKey": null,
+                "PixelShaderEventID": -1,
+                "SelectSoundResourceKey": null,
+                "ClickSoundResourceKey": null,
+                "Items_ImageResourceKey": "IMAGE_UI_ITEMS",
+                "BackGround_UIImage": {
+                    "Type": "Image",
+                    "Pos": { "X": 0.0, "Y": 0.0 },
+                    "Rot": 0.0,
+                    "Scl": 1.0,
+                    "OriginType": 4,
+                    "CanvasSize": null,
+                    "IsClickable": false,
+                    "OnClickEventID": -1,
+                    "Collider": null,
+                    "Attribute": {
+                        "ImageResourceKey": "IMAGE_UI_INVENTORY",
+                        "PixelShaderResourceKey": null,
+                        "PixelShaderEventID": -1,
+                        "SelectSoundResourceKey": null,
+                        "ClickSoundResourceKey": null
+                    },
+                    "Child": null
+                }
+            },
+            "Child": null
+        }
+    ]
+}

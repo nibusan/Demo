@@ -5,7 +5,7 @@
 #include "Managers/ResourceManager.h"
 #include "Managers/RenderManager.h"
 #include "Managers/UIInputManager.h"
-//#include "Debug/DebugLog.h"
+#include "Debug/DebugLog.h"
 
 bool Application::Init(void) {
 	// ウィンドウを初期化
@@ -15,7 +15,7 @@ bool Application::Init(void) {
 	SetEnableXAudioFlag(true);
 
 	// Log.txtを出さないようにする
-	//SetOutApplicationLogValidFlag(false);
+	SetOutApplicationLogValidFlag(false);
 
 	// シェーダーを使えるようにする
 	SetUseDirect3DVersion(DX_DIRECT3D_11);
@@ -30,7 +30,7 @@ bool Application::Init(void) {
 	ResourceManager::GetInstance().Init();
 	UIInputManager::GetInstance().Init();
 	SceneManager::GetInstance().Init();
-	//DebugLog::GetInstance().Init();
+	DebugLog::GetInstance().Init();
 
 	return true;
 }
@@ -44,7 +44,7 @@ void Application::Run(void) {
 		InputManager::GetInstance().Update();
 		SceneManager::GetInstance().Update();
 		UIInputManager::GetInstance().Update();
-		//DebugLog::GetInstance().Update();
+		DebugLog::GetInstance().Update();
 		
 		// 描画するスクリーンの設定 & そのスクリーンをクリア
 		SetDrawScreen(DX_SCREEN_BACK);	

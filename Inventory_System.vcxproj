@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Debug\DebugLog.cpp" />
     <ClCompile Include="Source\GameObject\3D\Actor\Actor.cpp" />
     <ClCompile Include="Source\GameObject\3D\Object3DRenderer.cpp" />
     <ClCompile Include="Source\Data\MessageList\MessageList.cpp" />
@@ -202,8 +203,11 @@
     <ClCompile Include="Source\GameObject\2D\UI\UI\AbstractUIRenderer.cpp" />
     <ClCompile Include="Source\Utility\Utility.cpp" />
     <ClCompile Include="Source\Managers\UIInputManager.cpp" />
+    <ClCompile Include="Source\GameObject\2D\UI\UI\Original\Item\UI_Item.cpp" />
+    <ClCompile Include="Source\GameObject\2D\UI\UI\Original\Item\UI_ItemRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Debug\DebugLog.h" />
     <ClInclude Include="Source\GameObject\3D\Actor\Actor.h" />
     <ClInclude Include="Source\GameObject\3D\Object3DRenderer.h" />
     <ClInclude Include="Source\Data\MessageList\MessageList.h" />
@@ -273,6 +277,8 @@
     <ClInclude Include="Source\GameObject\2D\UI\UI\AbstractUIRenderer.h" />
     <ClInclude Include="Source\Utility\Utility.h" />
     <ClInclude Include="Source\Managers\UIInputManager.h" />
+    <ClInclude Include="Source\GameObject\2D\UI\UI\Original\Item\UI_Item.h" />
+    <ClInclude Include="Source\GameObject\2D\UI\UI\Original\Item\UI_ItemRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Source\HLSL\Pixel\PS_Rainbow.hlsl">

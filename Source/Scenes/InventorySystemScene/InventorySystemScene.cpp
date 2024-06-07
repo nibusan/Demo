@@ -69,10 +69,21 @@ void InventorySystemScene::Init(void) {
 
 void InventorySystemScene::Update(void) {
 	ImGui::Begin("InventoryMenu");
+	
+	if(ImGui::Button("DefaultPos")) ImGui::SetWindowPos({630.0f,220.0f});
 
-	uiLayer_->Update();
+	for (int i = 0; i < Inventory<Item>::MAX_ITEM_SLOT_COUNT; i++) {
+		auto item = inventory_->GetItem(i);
+		int itemID = item.expired() ? 0 : item.lock()->GetID();
+		int itemCount = item.expired() ? 0 : item.lock()->GetCount();
+		if (ImGui::InputInt(("Slot" + std::to_string(i)).c_str(), &itemID)) {
+			if(!item.expired()) inventory_->SetItem(std::make_shared<Item>(itemID, itemCount), i);
+		}
+	}
 
 	ImGui::End();
+
+	uiLayer_->Update();
 }
 
 void InventorySystemScene::Release(void) {

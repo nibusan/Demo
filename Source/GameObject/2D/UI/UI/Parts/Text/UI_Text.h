@@ -8,7 +8,7 @@ class Font;
 class UI_Text : public AbstractUI {
 public:
 	UI_Text(void);
-	~UI_Text(void) = default;
+	virtual ~UI_Text(void) override = default;
 
 	UI_Text(
 		const Vector2<float>& canvasSize, 

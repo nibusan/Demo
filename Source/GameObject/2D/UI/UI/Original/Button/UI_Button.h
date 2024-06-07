@@ -9,7 +9,7 @@ class UI_Text;
 class UI_Button : public AbstractUI {
 public:
 	UI_Button(void);
-	~UI_Button(void) = default;
+	virtual ~UI_Button(void) override = default;
 
 	/// @brief コンストラクタ
 	/// @param uiImage ベースとなる画像のUI

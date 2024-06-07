@@ -6,8 +6,8 @@
 #include "../UI/Original/Button/UI_ButtonRenderer.h"
 #include "../UI/Original/Inventory/UI_Inventory.h"
 #include "../UI/Original/Inventory/UI_InventoryRenderer.h"
-#include "../UI/Original/Item/UI_Item.h"
-#include "../UI/Original/Item/UI_ItemRenderer.h"
+//#include "../UI/Original/Item/UI_Item.h"
+//#include "../UI/Original/Item/UI_ItemRenderer.h"
 #include "../../../../Common/Handle/Graphic/Graphic.h"
 #include "../../../../Common/Handle/Sound/Sound.h"
 #include "../../../../Common/Handle/Font/Font.h"
@@ -84,7 +84,7 @@ std::shared_ptr<AbstractUI> UIFactory::CreateUI(const nlohmann::json& uiData, bo
 		createUI = std::make_shared<UI_Text>(
 			uiData["CanvasSize"] == nullptr
 			? Vector2<float>(
-				static_cast<float>(GetDrawStringWidthToHandle(text.c_str(), text.length(), font->GetHandle())),
+				static_cast<float>(GetDrawStringWidthToHandle(text.c_str(), static_cast<int>(text.length()), font->GetHandle())),
 				static_cast<float>(font->GetFontSize()))
 			: Vector2<float>(uiData["CanvasSize"]["Width"], uiData["CanvasSize"]["Height"]),
 			static_cast<UI::UI_ORIGIN_TYPE>(uiData["OriginType"]),
@@ -134,6 +134,31 @@ std::shared_ptr<AbstractUI> UIFactory::CreateUI(const nlohmann::json& uiData, bo
 		break;
 	}
 	case UI::UI_TYPE::INVENTORY: {
+		// アイテム画像を取得
+		std::weak_ptr<Graphic> image =
+			std::dynamic_pointer_cast<Graphic>(resourceManager.GetResourceFile(static_cast<std::string>(uiData["Attribute"]["Items_ImageResourceKey"])).lock());
+
+		// UIの生成
+		createUI = std::make_shared<UI_Inventory>(
+			uiData["CanvasSize"] == nullptr ? image.lock()->GetSize().ToVector2f() : Vector2<float>(uiData["CanvasSize"]["Width"], uiData["CanvasSize"]["Height"]),
+			static_cast<UI::UI_ORIGIN_TYPE>(uiData["OriginType"]),
+			uiData["IsClickable"],
+			(UI::ON_CLICK_EVENT_LIST.find(static_cast<int>(uiData["OnClickEventID"])))->second,
+			pixelShader,
+			uiData["Attribute"]["PixelShaderEventID"],
+			nullptr,
+			std::dynamic_pointer_cast<UI_Image>(CreateUI(uiData["Attribute"]["BackGround_UIImage"], false, true)),
+			image
+		);
+
+		if (shouldCreateRenderer) {
+			// UIのレンダラーを生成
+			createUIRenderer = std::make_shared<UI_InventoryRenderer>(useLocalPos, std::dynamic_pointer_cast<UI_Inventory>(createUI));
+
+			// 生成したUIのレンダラーを登録する
+			RenderManager::GetInstance().AddRenderer2D(createUIRenderer);
+		}
+		break;
 		break;
 	}
 	case UI::UI_TYPE::ITEM: {

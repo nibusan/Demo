@@ -1,6 +1,6 @@
 #include "../GameObject/3D/Camera/Camera.h"
 #include "../Renderer/AbstractRenderer.h"
-//#include "../Debug/DebugLog.h"
+#include "../Debug/DebugLog.h"
 #include "../Library/imgui/imgui.h"
 #include "../Library/imgui/backends/imgui_impl_dx11.h"
 #include "../Library/imgui/backends/imgui_impl_win32.h"
@@ -23,7 +23,7 @@ void RenderManager::Render(void) {
 	RefreshDxLibDirect3DSetting();
 
 	// デバッグログの描画
-	/*const auto& logs = DebugLog::GetInstance().GetLogs();
+	const auto& logs = DebugLog::GetInstance().GetLogs();
 	for (int i = 0; i < logs.size(); i++) {
 		DrawString(
 			0,
@@ -31,7 +31,7 @@ void RenderManager::Render(void) {
 			logs[i].log.c_str(),
 			logs[i].logColor
 		);
-	}*/
+	}
 }
 
 void RenderManager::Release(void) {

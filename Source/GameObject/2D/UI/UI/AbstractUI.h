@@ -14,7 +14,7 @@ class PixelShader;
 class AbstractUI : public GameObject2D {
 public:
 	AbstractUI(void);
-	~AbstractUI(void) = default;
+	virtual ~AbstractUI(void) override = default;
 
 	/// @brief コンストラクタ
 	/// @param canvasSize UIのキャンバスのサイズ

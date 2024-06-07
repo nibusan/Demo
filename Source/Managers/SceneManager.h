@@ -27,7 +27,7 @@ private:
 	// 次のシーンの種類を格納
 	Scene::TYPE nextSceneType_;
 
-	SceneManager() = default;
+	SceneManager();
 
 	/// @brief シーンを切り替える
 	/// @param シーンの種類

@@ -7,7 +7,7 @@ class Graphic;
 class UI_Image : public AbstractUI {
 public:
 	UI_Image(void);
-	~UI_Image(void) = default;
+	virtual ~UI_Image(void) override = default;
 
 	/// @brief コンストラクタ
 	/// @param canvasSize UIのキャンバスのサイズ
@@ -29,7 +29,7 @@ public:
 	/// @brief 描画する画像を返す 
 	/// @return 画像
 	std::weak_ptr<Graphic> GetImage(void);
-private:
+protected:
 	// 描画する画像
 	std::weak_ptr<Graphic> image_;
 

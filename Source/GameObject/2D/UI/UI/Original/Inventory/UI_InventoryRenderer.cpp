@@ -3,13 +3,14 @@
 #include "../../Parts/Image/UI_Image.h"
 #include "../../Parts/Image/UI_ImageRenderer.h"
 #include "../../../../../../Common/Handle/Graphic/Graphic.h"
+#include "UI_Inventory.h"
 #include "UI_InventoryRenderer.h"
 
 
 UI_InventoryRenderer::UI_InventoryRenderer(bool useLocalPos, std::shared_ptr<UI_Inventory> uiInventory) :
 AbstractUIRenderer(useLocalPos, uiInventory) {
 	const auto _uiInventory = std::dynamic_pointer_cast<UI_Inventory>(uiInventory);
-	imageRenderer_ = std::make_unique<UI_ImageRenderer>(true, _uiInventory->GetUIImage().lock());
+	imageRenderer_ = std::make_unique<UI_ImageRenderer>(true, _uiInventory->GetBackGround_UIImage().lock());
 }
 
 void UI_InventoryRenderer::Render(void) {

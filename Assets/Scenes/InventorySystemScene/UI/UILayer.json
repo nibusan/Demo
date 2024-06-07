@@ -1,25 +1,6 @@
 {
     "UIs": [
         {
-            "Type": "Image",
-            "Pos": { "X": 320.0, "Y": 420.0 },
-            "Rot": 0.0,
-            "Scl": 8.0,
-            "OriginType": 4,
-            "CanvasSize": null,
-            "IsClickable": false,
-            "OnClickEventID": -1,
-            "Collider": null,
-            "Attribute": {
-                "ImageResourceKey": "IMAGE_UI_INVENTORY",
-                "PixelShaderResourceKey": null,
-                "PixelShaderEventID": -1,
-                "SelectSoundResourceKey": null,
-                "ClickSoundResourceKey": null
-            },
-            "Child": null
-        },
-        {
             "Type": "Text",
             "Pos": { "X": 1024.0, "Y": 200.0 },
             "Rot": 0.0,
