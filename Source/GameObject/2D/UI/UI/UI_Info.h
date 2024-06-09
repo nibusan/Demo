@@ -66,6 +66,12 @@ namespace UI {
 				SceneManager::GetInstance().SetNextScene(Scene::TYPE::INVENTORY_SYSTEM);
 				DebugLog::GetInstance().AddLog({3.0f,"SceneChanged", 0x0000FF});
 			}
+		},
+		{
+			5,[]() {
+				SceneManager::GetInstance().SetNextScene(Scene::TYPE::UI_SYSTEM);
+				DebugLog::GetInstance().AddLog({3.0f,"SceneChanged", 0x0000FF});
+			}
 		}
 	};
 }

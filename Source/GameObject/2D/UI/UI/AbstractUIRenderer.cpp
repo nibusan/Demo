@@ -68,7 +68,7 @@ void AbstractUIRenderer::End(void) {
 		if (ui_->IsHighlighted()) SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	}
 
-	auto collider = std::dynamic_pointer_cast<RectCollider>(ui_->GetCollider().lock());
+	/*auto collider = std::dynamic_pointer_cast<RectCollider>(ui_->GetCollider().lock());
 	if (collider == nullptr) return;
 	DrawBox(
 		collider->GetCenterPos().x - collider->GetSize().x,
@@ -77,7 +77,7 @@ void AbstractUIRenderer::End(void) {
 		collider->GetCenterPos().y + collider->GetSize().y,
 		0xFF0000,
 		false
-	);
+	);*/
 }
 
 bool AbstractUIRenderer::IsDeleted(void) const {

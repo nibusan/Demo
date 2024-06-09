@@ -50,7 +50,7 @@ void UI_InventoryRenderer::Render(void) {
 	imageRenderer_->End();
 
 	// デバッグ用
-	DebugRender();
+	//DebugRender();
 }
 
 void UI_InventoryRenderer::DebugRender(void) {

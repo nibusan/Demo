@@ -1,10 +1,17 @@
 {
     "ResourceList": {
-        "Image": null,
-        "Sound2D": null,
+        "Image": [
+            "IMAGE_UI_BUTTON"
+        ],
+        "Sound2D": [
+            "SOUND_UI_SELECT",
+            "SOUND_UI_ON_CLICK"
+        ],
         "Sound3D": null,
         "Model": null,
-        "Font": null,
+        "Font": [
+            "FONT_REVAMPED"
+        ],
         "PixelShader": null,
         "VertexShader": null
     }

@@ -99,12 +99,12 @@ void AbstractUI::Update_GameObject2D(void) {
 				if (inputManager.IsTrgMouseLeft()) {
 					OnClick();
 					uiInputManager.SetClicked(true);
-					//DebugLog::GetInstance().AddLog({ 2.0f, "UI Clicked", 0xFF0000 });
+					DebugLog::GetInstance().AddLog({ 2.0f, "UI Clicked", 0xFF0000 });
 				}
 				else if (inputManager.IsClickMouseLeft()) {
 					OnClickDown();
 					uiInputManager.SetClicked(true);
-					DebugLog::GetInstance().AddLog({ 1.0f, "UI ClickDown", 0xFF0000 });
+					//DebugLog::GetInstance().AddLog({ 1.0f, "UI ClickDown", 0xFF0000 });
 				}
 			}
 		}

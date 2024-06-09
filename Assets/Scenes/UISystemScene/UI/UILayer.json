@@ -109,9 +109,9 @@
                                 "SelectSoundResourceKey": null,
                                 "ClickSoundResourceKey": null,
                                 "FontResourceKey": "FONT_REVAMPED",
-                                "TextSize": 32,
+                                "TextSize": 20,
                                 "TextColor": "0xffffff",
-                                "TextID": 2
+                                "TextID": 6
                             },
                             "Child": null
                         }
@@ -168,9 +168,9 @@
                                 "SelectSoundResourceKey": null,
                                 "ClickSoundResourceKey": null,
                                 "FontResourceKey": "FONT_REVAMPED",
-                                "TextSize": 32,
+                                "TextSize": 20,
                                 "TextColor": "0xffffff",
-                                "TextID": 2
+                                "TextID": 7
                             },
                             "Child": null
                         }
@@ -227,9 +227,9 @@
                                 "SelectSoundResourceKey": null,
                                 "ClickSoundResourceKey": null,
                                 "FontResourceKey": "FONT_REVAMPED",
-                                "TextSize": 32,
+                                "TextSize": 20,
                                 "TextColor": "0xffffff",
-                                "TextID": 2
+                                "TextID": 8
                             },
                             "Child": null
                         }
@@ -288,7 +288,7 @@
                                 "FontResourceKey": "FONT_REVAMPED",
                                 "TextSize": 32,
                                 "TextColor": "0xffffff",
-                                "TextID": 2
+                                "TextID": 5
                             },
                             "Child": null
                         }
@@ -321,7 +321,7 @@
         },
         {
             "Type": "Image",
-            "Pos": { "X": 300.0, "Y": 100.0 },
+            "Pos": { "X": 600.0, "Y": 200.0 },
             "Rot": 0.0,
             "Scl": 2.0,
             "OriginType": 0,
@@ -336,7 +336,107 @@
                 "SelectSoundResourceKey": null,
                 "ClickSoundResourceKey": null
             },
-            "Child": null
+            "Child": [
+                {
+                    "Type": "Image",
+                    "Pos": { "X": 30.0, "Y": 10.0 },
+                    "Rot": 0.1,
+                    "Scl": 1.25,
+                    "OriginType": 0,
+                    "CanvasSize": null,
+                    "IsClickable": false,
+                    "OnClickEventID": -1,
+                    "Collider": null,
+                    "Attribute": {
+                        "ImageResourceKey": "IMAGE_UI_IMAGE_TEST_1",
+                        "PixelShaderResourceKey": null,
+                        "PixelShaderEventID": -1,
+                        "SelectSoundResourceKey": null,
+                        "ClickSoundResourceKey": null
+                    },
+                    "Child": [
+                        {
+                            "Type": "Image",
+                            "Pos": { "X": 30.0, "Y": 10.0 },
+                            "Rot": 0.1,
+                            "Scl": 1.25,
+                            "OriginType": 0,
+                            "CanvasSize": null,
+                            "IsClickable": false,
+                            "OnClickEventID": -1,
+                            "Collider": null,
+                            "Attribute": {
+                                "ImageResourceKey": "IMAGE_UI_IMAGE_TEST_1",
+                                "PixelShaderResourceKey": "PIXELSHADER_RAINBOW",
+                                "PixelShaderEventID": 0,
+                                "SelectSoundResourceKey": null,
+                                "ClickSoundResourceKey": null
+                            },
+                            "Child": [
+                                {
+                                    "Type": "Image",
+                                    "Pos": { "X": 30.0, "Y": 10.0 },
+                                    "Rot": 0.1,
+                                    "Scl": 1.25,
+                                    "OriginType": 0,
+                                    "CanvasSize": null,
+                                    "IsClickable": false,
+                                    "OnClickEventID": -1,
+                                    "Collider": null,
+                                    "Attribute": {
+                                        "ImageResourceKey": "IMAGE_UI_IMAGE_TEST_1",
+                                        "PixelShaderResourceKey": null,
+                                        "PixelShaderEventID": -1,
+                                        "SelectSoundResourceKey": null,
+                                        "ClickSoundResourceKey": null
+                                    },
+                                    "Child": [
+                                        {
+                                            "Type": "Image",
+                                            "Pos": { "X": 30.0, "Y": 10.0 },
+                                            "Rot": 0.1,
+                                            "Scl": 1.25,
+                                            "OriginType": 0,
+                                            "CanvasSize": null,
+                                            "IsClickable": false,
+                                            "OnClickEventID": -1,
+                                            "Collider": null,
+                                            "Attribute": {
+                                                "ImageResourceKey": "IMAGE_UI_IMAGE_TEST_1",
+                                                "PixelShaderResourceKey": "PIXELSHADER_RAINBOW",
+                                                "PixelShaderEventID": 0,
+                                                "SelectSoundResourceKey": null,
+                                                "ClickSoundResourceKey": null
+                                            },
+                                            "Child": [
+                                                {
+                                                    "Type": "Image",
+                                                    "Pos": { "X": 30.0, "Y": 10.0 },
+                                                    "Rot": 0.1,
+                                                    "Scl": 1.25,
+                                                    "OriginType": 0,
+                                                    "CanvasSize": null,
+                                                    "IsClickable": false,
+                                                    "OnClickEventID": -1,
+                                                    "Collider": null,
+                                                    "Attribute": {
+                                                        "ImageResourceKey": "IMAGE_UI_IMAGE_TEST_1",
+                                                        "PixelShaderResourceKey": null,
+                                                        "PixelShaderEventID": -1,
+                                                        "SelectSoundResourceKey": null,
+                                                        "ClickSoundResourceKey": null
+                                                    },
+                                                    "Child": null
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }
