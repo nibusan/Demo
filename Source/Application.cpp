@@ -5,7 +5,7 @@
 #include "Managers/ResourceManager.h"
 #include "Managers/RenderManager.h"
 #include "Managers/UIInputManager.h"
-#include "Debug/DebugLog.h"
+#include "DebugTools/DebugLog.h"
 
 bool Application::Init(void) {
 	// ウィンドウを初期化

@@ -39,6 +39,8 @@ void PixelShaderEventManager::RegisterConstantBuffer(int eventID, int constantBu
 }
 
 void PixelShaderEventManager::RegisterEvent(void) {
+	// 各IDに対応したイベントを登録
+#pragma region -1
 	eventList_[-1].initFunction = [this](void) {
 		// 何もしない
 	};
@@ -47,7 +49,8 @@ void PixelShaderEventManager::RegisterEvent(void) {
 	};
 	eventList_[-1].isActive = false;
 	eventList_[-1].size = 0;
-
+#pragma endregion
+#pragma region 0
 	eventList_[0].initFunction = [this](void) {
 		// 定数バッファを取得
 		auto constantBuffer = constantBufferList_[0];
@@ -62,9 +65,30 @@ void PixelShaderEventManager::RegisterEvent(void) {
 		float* constantBufferF = static_cast<float*>(GetBufferShaderConstantBuffer(constantBuffer));
 
 		// 値のセット
-		const float addValue = 0.01f;
+		const float addValue = 0.001f;
 		constantBufferF[0] += addValue;
 	};
 	eventList_[0].isActive = false;
 	eventList_[0].size = sizeof(float) * 4;
+#pragma endregion
+#pragma region 1
+	eventList_[1].initFunction = [this](void) {
+		// 定数バッファを取得
+		auto constantBuffer = constantBufferList_[1];
+		float* constantBufferF = static_cast<float*>(GetBufferShaderConstantBuffer(constantBuffer));
+
+		// 値のセット
+		constantBufferF[0] = 1.0f;
+		};
+	eventList_[1].updateFunction = [this](void) {
+		// 定数バッファを取得
+		auto constantBuffer = constantBufferList_[1];
+		float* constantBufferF = static_cast<float*>(GetBufferShaderConstantBuffer(constantBuffer));
+
+		// 値のセット
+		//constantBufferF[0] = 1.0f;
+		};
+	eventList_[1].isActive = false;
+	eventList_[1].size = sizeof(float) * 4;
+#pragma endregion
 }

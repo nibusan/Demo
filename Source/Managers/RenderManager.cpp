@@ -1,6 +1,6 @@
 #include "../GameObject/3D/Camera/Camera.h"
 #include "../Renderer/AbstractRenderer.h"
-#include "../Debug/DebugLog.h"
+#include "../DebugTools/DebugLog.h"
 #include "../Library/imgui/imgui.h"
 #include "../Library/imgui/backends/imgui_impl_dx11.h"
 #include "../Library/imgui/backends/imgui_impl_win32.h"

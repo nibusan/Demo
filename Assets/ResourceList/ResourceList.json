@@ -33,6 +33,12 @@
                 "Extension": ".png"
             },
             {
+                "Key": "IMAGE_PS_SOFT_SHADOW",
+                "FilePath": "Scenes/UISystemScene/Shader/Pixel/SoftMask/",
+                "FileName": "SoftMask",
+                "Extension": ".png"
+            },
+            {
                 "Key": "IMAGE_UI_ITEMS",
                 "FilePath": "Scenes/InventorySystemScene/UI/Item/",
                 "FileName": "Items",
@@ -85,8 +91,14 @@
         "PixelShader": [
             {
                 "Key": "PIXELSHADER_RAINBOW",
-                "FilePath": "Scenes/UISystemScene/Shader/Pixel/",
+                "FilePath": "Scenes/UISystemScene/Shader/Pixel/Rainbow/",
                 "FileName": "PS_Rainbow",
+                "Extension": ".cso"
+            },
+            {
+                "Key": "PIXELSHADER_SOFTMASK",
+                "FilePath": "Scenes/UISystemScene/Shader/Pixel/SoftMask/",
+                "FileName": "PS_SoftMask",
                 "Extension": ".cso"
             }
         ],

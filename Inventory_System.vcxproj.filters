@@ -180,13 +180,13 @@
     <ClCompile Include="Source\Library\imgui\misc\fonts\binary_to_compressed_c.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Debug\DebugLog.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Source\GameObject\2D\UI\UI\Original\Item\UI_Item.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Source\GameObject\2D\UI\UI\Original\Item\UI_ItemRenderer.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DebugTools\DebugLog.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -398,18 +398,19 @@
     <ClInclude Include="Source\Library\imgui\misc\single_file\imgui_single_file.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Debug\DebugLog.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Source\GameObject\2D\UI\UI\Original\Item\UI_Item.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Source\GameObject\2D\UI\UI\Original\Item\UI_ItemRenderer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Source\DebugTools\DebugLog.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Source\HLSL\Pixel\PS_Rainbow.hlsl" />
+    <FxCompile Include="Source\HLSL\Pixel\PS_SoftMask.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\HLSL\Pixel\PixelShader_Header.hlsli" />

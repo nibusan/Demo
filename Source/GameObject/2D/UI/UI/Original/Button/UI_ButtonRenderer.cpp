@@ -24,7 +24,7 @@ void UI_ButtonRenderer::Render(void) {
 	textRenderer_->End();
 	
 	// デバッグ用
-	//DebugRender();
+	DebugRender();
 }
 
 void UI_ButtonRenderer::DebugRender(void) {

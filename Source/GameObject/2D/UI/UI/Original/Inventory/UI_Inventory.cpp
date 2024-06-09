@@ -42,6 +42,10 @@ std::weak_ptr<UI_Image> UI_Inventory::GetBackGround_UIImage(void) {
 	return uiImage_;
 }
 
+std::weak_ptr<Graphic> UI_Inventory::GetItemsImage(void) {
+	return itemsImage_;
+}
+
 std::weak_ptr<UI_Item> UI_Inventory::GetUIItem(void) {
 	return uiItem_;
 }
@@ -49,16 +53,16 @@ std::weak_ptr<UI_Item> UI_Inventory::GetUIItem(void) {
 void UI_Inventory::Init_UI(void) {
 	// このインベントリの子として画像をセットする
 	AddChild(uiImage_);
-	const auto& buttonCanvasSize = renderCanvas_->GetSize().ToVector2f();
+	const auto& inventoryCanvasSize = renderCanvas_->GetSize().ToVector2f();
 	uiImage_->SetTransformData(
-		{ 0.0f, 0.0f },
+		inventoryCanvasSize / 2.0f,
 		0.0f,
 		1.0f
 	);
 }
 
 void UI_Inventory::Update_UI(void) {
-	
+
 }
 
 void UI_Inventory::Release_UI(void) {}

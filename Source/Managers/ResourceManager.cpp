@@ -9,6 +9,8 @@
 #include "../Common/Handle/PixelShader/PixelShader.h"
 #include "../Common/Handle/VertexShader/VertexShader.h"
 
+#define AIUEO a;
+
 const std::filesystem::path ResourceManager::BASE_ASSETS_PATH = "Assets/";
 const std::filesystem::path ResourceManager::RESOURCE_LIST_PATH =  ResourceManager::BASE_ASSETS_PATH / "ResourceList/ResourceList.json";
 const std::array<std::string, static_cast<int>(Resource::RESOURCE_FILE_TYPE::MAX)> ResourceFileTag = {
@@ -23,7 +25,7 @@ const std::array<std::string, static_cast<int>(Resource::RESOURCE_FILE_TYPE::MAX
 
 void ResourceManager::Init(void) {
 	// リソースファイルリスト(json)の読み込み
-	const auto resourceListJson = JsonReader::GetInstance().Parse("Assets/ResourceList/ResourceList.json");
+	const auto resourceListJson = JsonReader::GetInstance().Parse(RESOURCE_LIST_PATH);
 	
 	// 各リソースファイルの情報を登録
 	RegisterResourceFileInfo(resourceListJson);

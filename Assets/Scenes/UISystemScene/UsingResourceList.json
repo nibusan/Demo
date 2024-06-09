@@ -19,7 +19,8 @@
             "FONT_REVAMPED"
         ],
         "PixelShader": [
-            "PIXELSHADER_RAINBOW"
+            "PIXELSHADER_RAINBOW",
+            "PIXELSHADER_SOFTMASK"
         ],
         "VertexShader": null
     }

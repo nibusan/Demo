@@ -1,17 +1,22 @@
 #include <DxLib.h>
 #include "../SceneType.h"
 #include "Menu/Inventory.h"
+#include "../../GameObject/2D/UI/UI/Parts/Image/UI_Image.h"
+#include "../../GameObject/2D/UI/UI/Parts/Image/UI_ImageRenderer.h"
 #include "../../GameObject/2D/UI/UI/Original/Inventory/UI_Inventory.h"
+#include "../../GameObject/2D/UI/UI/Original/Inventory/UI_InventoryRenderer.h"
+#include "../../GameObject/2D/UI/UI/UI_Info.h"
 #include "Item/Item.h"
+//#include "Item/ItemRenderer.h"
 #include "../../Managers/ResourceManager.h"
+#include "../../Managers/RenderManager.h"
 #include "../../GameObject/2D/UI/UILayer/UILayer.h"
 #include "../../GameObject/2D/UI/UILayer/UILayerInfo.h"
-#include "InventorySystemScene.h"
 #include "../../Library/imgui/imgui.h"
 #include "../../Library/imgui/backends/imgui_impl_dx11.h"
 #include "../../Library/imgui/backends/imgui_impl_win32.h"
 #include "../../Library/imgui/misc/cpp/imgui_stdlib.h"
-//#include "Item/ItemRenderer.h"
+#include "InventorySystemScene.h"
 
 InventorySystemScene::InventorySystemScene(void) {
 	// このシーンの種類をセット
@@ -23,66 +28,114 @@ void InventorySystemScene::Init(void) {
 	uiLayer_->LoadUILayer(UILayerInfo::TYPE::INVENTORY_SYSTEM_MENU);
 	uiLayer_->Init();
 
-	//auto& resourceManager = ResourceManager::GetInstance();
-
 	// コンストラクタ経由でアイテム同士が同じかを比較する関数オブジェクトを渡す
 	inventory_ = std::make_shared<Inventory<Item>>(&Item::Equal);
 	inventory_->Init();
 
 	// アイテムをセット
-	inventory_->AddItem(std::make_shared<Item>(0, 100));
-	inventory_->AddItem(std::make_shared<Item>(3, 100));
-	inventory_->AddItem(std::make_shared<Item>(6, 100));
-	inventory_->AddItem(std::make_shared<Item>(12, 100));
-	inventory_->AddItem(std::make_shared<Item>(98, 100));
-	inventory_->AddItem(std::make_shared<Item>(4, 100));
-	inventory_->AddItem(std::make_shared<Item>(56, 100));
-	inventory_->AddItem(std::make_shared<Item>(23, 100));
-	inventory_->AddItem(std::make_shared<Item>(8, 100));
+	inventory_->AddItem(std::make_shared<Item>(0, 1));
+	inventory_->AddItem(std::make_shared<Item>(1, 1));
+	inventory_->AddItem(std::make_shared<Item>(2, 1));
+	inventory_->AddItem(std::make_shared<Item>(3, 1));
+	inventory_->AddItem(std::make_shared<Item>(4, 1));
+	inventory_->AddItem(std::make_shared<Item>(5, 1));
+	inventory_->AddItem(std::make_shared<Item>(6, 1));
+	inventory_->AddItem(std::make_shared<Item>(7, 1));
+	inventory_->AddItem(std::make_shared<Item>(8, 1));
+	inventory_->AddItem(std::make_shared<Item>(9, 1));
+	inventory_->AddItem(std::make_shared<Item>(10, 1));
+	inventory_->AddItem(std::make_shared<Item>(11, 1));
+	inventory_->AddItem(std::make_shared<Item>(12, 1));
+	inventory_->AddItem(std::make_shared<Item>(13, 1));
+	inventory_->AddItem(std::make_shared<Item>(14, 1));
+	inventory_->AddItem(std::make_shared<Item>(15, 1));
 
-	//std::weak_ptr<Graphic> inventoryImage = std::dynamic_pointer_cast<Graphic>(resourceManager.GetResourceFile("IMAGE_UI_INVENTORY").lock());
+	addItem_ = std::make_unique<Item>(0, 0);
+	addItemID_ = 0;
 
-	//uiInventory_ = std::make_shared<UI_Inventory>(
-	//	inventoryImage.lock()->GetSize().ToVector2f(),
-	//	UI::UI_ORIGIN_TYPE::UP_LEFT,
-	//	inventory_,
-	//	std::make_shared<UI_Image>(
-	//		inventoryImage.lock()->GetSize().ToVector2f(),
-	//		UI::UI_ORIGIN_TYPE::UP_LEFT,
-	//		inventoryImage
-	//	)
-	//);
-	//uiInventory_->Init();
-	//uiInventory_->SetTransformData(
-	//	{ 500.0f, 400.0f },
-	//	0.0f,
-	//	{ 1.0f, 1.0f }
-	//);
+	// リソースファイル取得用
+	auto& resourceManager = ResourceManager::GetInstance();
 
-	//RenderManager::GetInstance().AddRenderer2D(
-	//	std::make_shared<UI_InventoryRenderer>(
-	//		false, 
-	//		std::dynamic_pointer_cast<UI_Inventory>(uiInventory_)
-	//	)
-	//);
+	// インベントリのUIを生成
+	std::weak_ptr<Graphic> image_Inventory = std::dynamic_pointer_cast<Graphic>(resourceManager.GetResourceFile("IMAGE_UI_INVENTORY").lock());
+	std::weak_ptr<Graphic> image_Item = std::dynamic_pointer_cast<Graphic>(resourceManager.GetResourceFile("IMAGE_UI_ITEMS").lock());
+	uiInventory_ = std::make_shared<UI_Inventory>(
+		image_Inventory.lock()->GetSize().ToVector2f(),
+		UI::UI_ORIGIN_TYPE::CENTER_CENTER,
+		false,
+		nullptr,
+		std::weak_ptr<PixelShader>(),
+		-1,
+		inventory_,
+		std::make_shared<UI_Image>(
+			image_Inventory.lock()->GetSize().ToVector2f(),
+			UI::UI_ORIGIN_TYPE::CENTER_CENTER,
+			false,
+			nullptr,
+			std::weak_ptr<PixelShader>(),
+			-1,
+			image_Inventory
+		),
+		image_Item
+	);
+	uiInventory_->SetTransformData(
+		{ 320.0f, 400.0f },
+		0.0f,
+		8.0f
+	);
+	uiInventory_->Init();
+
+	// 生成したUIを描画できるようにする
+	RenderManager::GetInstance().AddRenderer2D(
+		std::make_shared<UI_InventoryRenderer>(
+			false,
+			uiInventory_
+		)
+	);
+	
 }
 
 void InventorySystemScene::Update(void) {
 	ImGui::Begin("InventoryMenu");
 	
+	// ImGuiのウィンドウの位置を初期化
 	if(ImGui::Button("DefaultPos")) ImGui::SetWindowPos({630.0f,220.0f});
 
+	// 各スロットの情報を編集できるようにする
 	for (int i = 0; i < Inventory<Item>::MAX_ITEM_SLOT_COUNT; i++) {
-		auto item = inventory_->GetItem(i);
-		int itemID = item.expired() ? 0 : item.lock()->GetID();
-		int itemCount = item.expired() ? 0 : item.lock()->GetCount();
-		if (ImGui::InputInt(("Slot" + std::to_string(i)).c_str(), &itemID)) {
-			if(!item.expired()) inventory_->SetItem(std::make_shared<Item>(itemID, itemCount), i);
+		if (ImGui::TreeNode(("Slot" + std::to_string(i)).c_str())) {
+			auto item = inventory_->GetItem(i);
+			int itemID = item.expired() ? 0 : item.lock()->GetID();
+			int itemCount = item.expired() ? 0 : item.lock()->GetCount();
+			if (ImGui::InputInt("ItemID", &itemID)) {
+				//if (!item.expired()) inventory_->SetItem(std::make_shared<Item>(itemID, itemCount), i);
+			}
+			if (ImGui::InputInt("ItemCount", &itemCount)) {
+				//if (!item.expired()) inventory_->SetItem(std::make_shared<Item>(itemID, itemCount), i);
+			}
+			if (ImGui::Button("Delete")) {
+				inventory_->DeleteItem(i);
+			}
+			ImGui::TreePop();
 		}
+	}
+
+	if (ImGui::InputInt("AddItemID", &addItemID_)) {
+		
+	}
+	if (ImGui::Button("AddItem")) {
+		// 指定されたアイテムをインベントリに追加
+		inventory_->AddItem(std::make_shared<Item>(addItemID_, 1));
 	}
 
 	ImGui::End();
 
+	uiInventory_->SetTransformData(
+		{ 310.0f, 400.0f },
+		0.0f,
+		8.0f
+	);
+	uiInventory_->Update();
 	uiLayer_->Update();
 }
 

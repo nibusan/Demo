@@ -147,7 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Debug\DebugLog.cpp" />
+    <ClCompile Include="Source\DebugTools\DebugLog.cpp" />
     <ClCompile Include="Source\GameObject\3D\Actor\Actor.cpp" />
     <ClCompile Include="Source\GameObject\3D\Object3DRenderer.cpp" />
     <ClCompile Include="Source\Data\MessageList\MessageList.cpp" />
@@ -207,7 +207,7 @@
     <ClCompile Include="Source\GameObject\2D\UI\UI\Original\Item\UI_ItemRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Debug\DebugLog.h" />
+    <ClInclude Include="Source\DebugTools\DebugLog.h" />
     <ClInclude Include="Source\GameObject\3D\Actor\Actor.h" />
     <ClInclude Include="Source\GameObject\3D\Object3DRenderer.h" />
     <ClInclude Include="Source\Data\MessageList\MessageList.h" />
@@ -282,6 +282,12 @@
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Source\HLSL\Pixel\PS_Rainbow.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Source\HLSL\Pixel\PS_SoftMask.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>

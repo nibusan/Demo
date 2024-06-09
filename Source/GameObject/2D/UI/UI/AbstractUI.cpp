@@ -5,7 +5,7 @@
 #include "../../../../Managers/InputManager.h"
 #include "../../../../Managers/UIInputManager.h"
 #include "../../../../Managers/SceneManager.h"
-#include "../../../../Debug/DebugLog.h"
+#include "../../../../DebugTools/DebugLog.h"
 
 AbstractUI::AbstractUI(void) : 
 isHighlighted_(false),
@@ -36,7 +36,7 @@ onClickCallBack_(onClickCallBack),
 usingPixelShader_(usingPixelShader),
 usingPixelShaderEventID_(usingPixelShaderEventID),
 isSelect_(false) {
-	// デストラクタが呼ばれたら自動で解放するようにする
+	// デストラクタが呼ばれたら自動で描画用キャンバスを解放するようにする
 	renderCanvas_->SetIsAutoDeleteHandle(true);
 }
 
@@ -58,12 +58,13 @@ void AbstractUI::Update_GameObject2D(void) {
 	// 選択状態をリセットする
 	isSelect_ = false;
 
-	// もしクリックできてなおかつコライダーが生成されてたらUIを選択してるかの処理をする
+	// クリック出来なかったらそのままUI側の更新処理を行う
 	if (!isClickable_) {
 		Update_UI();
 		return;
 	};
 
+	// もしクリックできてなおかつコライダーが生成されてたらUIを選択してるかの処理をする
 	if (collider_ != nullptr) {
 		// コライダーの位置更新
 		if(parent_.expired()) collider_->SetCenterPos(transform_.currentPos_ + (renderCanvas_->GetSize().ToVector2f() / 2.0f));
@@ -98,7 +99,12 @@ void AbstractUI::Update_GameObject2D(void) {
 				if (inputManager.IsTrgMouseLeft()) {
 					OnClick();
 					uiInputManager.SetClicked(true);
-					DebugLog::GetInstance().AddLog({ 2.0f, "UI Clicked", 0xFF0000 });
+					//DebugLog::GetInstance().AddLog({ 2.0f, "UI Clicked", 0xFF0000 });
+				}
+				else if (inputManager.IsClickMouseLeft()) {
+					OnClickDown();
+					uiInputManager.SetClicked(true);
+					DebugLog::GetInstance().AddLog({ 1.0f, "UI ClickDown", 0xFF0000 });
 				}
 			}
 		}

@@ -54,7 +54,7 @@ void UI_Button::Init_UI(void) {
 
 void UI_Button::Update_UI(void) {
 	auto& inputManager = InputManager::GetInstance();
-	
+
 }
 
 void UI_Button::Release_UI(void) {}

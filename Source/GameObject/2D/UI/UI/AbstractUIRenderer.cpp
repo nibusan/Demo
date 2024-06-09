@@ -31,15 +31,19 @@ void AbstractUIRenderer::End(void) {
 	// 使用するピクセルシェーダーを取得
 	const auto pixelShader = ui_->GetUsingPixelShader();
 
+	// 原点の種類の応じて使用
+	auto offset = ui_->GetCanvasRenderOffset();
+	
+	// 描画スクリーンの設定
 	SetDrawScreen(defaultScreenHadle_);
 
-	auto offset = ui_->GetCanvasRenderOffset();
-
+	// 親UIがいるかどうか描画する座標とスケール値を変える
 	if (parent.lock() != nullptr) {
+		// ローカル座標を使用する場合はスケール値は1.0で固定する(親UIのスクリーンでスケーリングする可能性があるため)
 		if (useLocalPos_) {
 			renderCanvas.lock()->Draw(
 				transform.localPos_ + offset,
-				transform.currentScl_,
+				1.0f,
 				transform.currentRot_,
 				nullptr
 			);

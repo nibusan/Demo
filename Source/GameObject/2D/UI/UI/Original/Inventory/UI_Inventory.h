@@ -36,6 +36,10 @@ public:
 	/// @return ”wŒi‰æ‘œ•”•ª‚ÌUI
 	std::weak_ptr<UI_Image> GetBackGround_UIImage(void);
 
+	/// @brief ”wŒi‰æ‘œ•”•ª‚ÌUI‚ğ•Ô‚· 
+	/// @return ”wŒi‰æ‘œ•”•ª‚ÌUI
+	std::weak_ptr<Graphic> GetItemsImage(void);
+
 	/// @brief ƒAƒCƒeƒ€•”•ª‚ÌUI‚ğ•Ô‚· 
 	/// @return ƒAƒCƒeƒ€•”•ª‚ÌUI
 	std::weak_ptr<UI_Item> GetUIItem(void);

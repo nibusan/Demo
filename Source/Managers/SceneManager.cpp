@@ -86,6 +86,11 @@ void SceneManager::Update(void) {
 void SceneManager::Release(void) {
 	// ƒV[ƒ“‚Ì‰ð•ú
 	currentScene_->Release();
+
+	// ImGui‚Ì‰ð•ú
+	ImGui_ImplDX11_Shutdown();
+	ImGui_ImplWin32_Shutdown();
+	ImGui::DestroyContext();
 }
 
 SceneManager::SceneManager() : nextSceneType_(Scene::TYPE::NONE) {}

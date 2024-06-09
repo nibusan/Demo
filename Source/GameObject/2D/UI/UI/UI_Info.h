@@ -2,7 +2,7 @@
 #include <string>
 #include <unordered_map>
 #include "../../../../Managers/SceneManager.h"
-//#include "../../../../Debug/DebugLog.h"
+#include "../../../../DebugTools/DebugLog.h"
 
 namespace UI {
 	// UI‚ÌŽí—Þ
@@ -43,28 +43,28 @@ namespace UI {
 		},
 		{ 
 			0,[]() {
-				//DebugLog::GetInstance().AddLog({3.0f,"OnClick : 0", 0x00FF00});
+				DebugLog::GetInstance().AddLog({3.0f,"OnClick : 0", 0x00FF00});
 			}
 		},
 		{ 
 			1,[]() {
-				//DebugLog::GetInstance().AddLog({3.0f,"OnClick : 1", 0x00FF00});
+				DebugLog::GetInstance().AddLog({3.0f,"OnClick : 1", 0x00FF00});
 			}
 		},
 		{ 
 			2,[]() {
-				//DebugLog::GetInstance().AddLog({3.0f,"OnClick : 2", 0x00FF00});
+				DebugLog::GetInstance().AddLog({3.0f,"OnClick : 2", 0x00FF00});
 			}
 		},
 		{ 
 			3,[]() {
-				//DebugLog::GetInstance().AddLog({3.0f,"OnClick : 3", 0x00FF00});
+				DebugLog::GetInstance().AddLog({3.0f,"OnClick : 3", 0x00FF00});
 			}
 		},
 		{
 			4,[]() {
 				SceneManager::GetInstance().SetNextScene(Scene::TYPE::INVENTORY_SYSTEM);
-				//DebugLog::GetInstance().AddLog({3.0f,"SceneChanged", 0x0000FF});
+				DebugLog::GetInstance().AddLog({3.0f,"SceneChanged", 0x0000FF});
 			}
 		}
 	};
