@@ -1,3 +1,4 @@
+#include <DxLib.h>
 #include "../GameObject/3D/Camera/Camera.h"
 #include "../Renderer/AbstractRenderer.h"
 #include "../DebugTools/DebugLog.h"
@@ -27,7 +28,7 @@ void RenderManager::Render(void) {
 	for (int i = 0; i < logs.size(); i++) {
 		DrawString(
 			0,
-			16 * i,
+			DEFAULT_FONT_SIZE * i,
 			logs[i].log.c_str(),
 			logs[i].logColor
 		);

@@ -28,8 +28,8 @@ void Model::Draw(
 	VECTOR rot,
 	VECTOR localRot,
 	VECTOR scl,
-	Shared_VertexShader vs = nullptr,
-	Shared_PixelShader ps = nullptr
+	std::shared_ptr<VertexShader> vs = nullptr,
+	std::shared_ptr<PixelShader> ps = nullptr
 ) {
 
 	// シェーダーがセットされているかを判定

@@ -44,9 +44,6 @@ private:
 	// アイテムスロットを格納した配列
 	std::array<std::shared_ptr<T>, MAX_ITEM_SLOT_COUNT> itemSlot_;
 
-	// 現在選択しているアイテムスロットのインデックス
-	int selectingSlotIndex_;
-
 	// 同じアイテムか比較するための関数オブジェクト
 	std::function<bool(const std::shared_ptr<T>&, const std::shared_ptr<T>&)> compare_;
 
@@ -61,8 +58,6 @@ template <typename T>
 void Inventory<T>::Init(void) {
 	// インベントリをリセットする
 	ClearAllItemSlot();
-
-	selectingSlotIndex_ = 0;
 }
 
 template<typename T>

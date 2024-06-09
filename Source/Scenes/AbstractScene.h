@@ -14,10 +14,11 @@ public:
 	/// @brief このシーンの種類を返す
 	/// @return シーンの種類
 	Scene::TYPE GetType(void) const;
-private:
 
 protected:
 	// このシーンの種類
 	Scene::TYPE type_;
+
+private:
 
 };

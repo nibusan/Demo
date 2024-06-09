@@ -56,7 +56,7 @@ void PixelShader::SetUseTexture(int stageIndex, int graphicHandle) {
 	}
 }
 
-void PixelShader::SetUseTexture(int stageIndex, int graphicHandle, Vector2<float> pos) {
+void PixelShader::SetUseTexture(int stageIndex, int graphicHandle, const Vector2<float>& pos) {
 	SetUseTextureToShader(stageIndex, graphicHandle);
 
 	if (stageIndex == 0) {

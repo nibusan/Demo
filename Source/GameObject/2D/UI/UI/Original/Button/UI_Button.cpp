@@ -43,7 +43,6 @@ void UI_Button::Init_UI(void) {
 	
 	// 画像の子としてテキストをセットする
 	uiImage_->AddChild(uiText_);
-	//const auto& imageCanvasSize = uiImage_->GetRenderCanvas().lock()->GetSize().ToVector2f();
 	uiText_->SetTransformData(
 		buttonCanvasSize / 2.0f,
 		0.0f,

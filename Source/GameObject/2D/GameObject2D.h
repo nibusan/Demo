@@ -32,6 +32,11 @@ public:
 		float localScl
 	);
 
+	/// @brief コライダーを生成する
+	/// @tparam T 生成するコライダーのクラス
+	/// @tparam ...Args コライダーに与える引数
+	/// @param centerPos 中心座標
+	/// @param ...args コライダーに与える引数
 	template <typename T, typename ...Args>
 	void CreateCollider(const Vector2<float>& centerPos, Args&& ...args);
 

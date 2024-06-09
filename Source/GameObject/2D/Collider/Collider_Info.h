@@ -7,8 +7,8 @@ namespace Collider_Info {
 	/// @brief コライダーの種類
 	enum class TYPE {
 		NONE = -1,
-		CIRCLE,
-		RECT
+		CIRCLE,		// 円
+		RECT		// 矩形
 	};
 
 	/// @brief jsonで使っているタグ(キー)をUI_TYPEに変換する連想配列

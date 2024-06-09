@@ -12,7 +12,7 @@ public:
 	bool IsContains(const Vector2<float>& point) const override;
 private:
 	// ”¼Œa
-	float radius_;;
+	float radius_;
 
 };
 

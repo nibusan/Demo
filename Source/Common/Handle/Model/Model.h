@@ -3,8 +3,6 @@
 #include <string>
 #include <DxLib.h>
 #include "../HandleBase.h"
-#include "../VertexShader/VertexShader.h"
-#include "../PixelShader/PixelShader.h"
 
 class VertexShader;
 class PixelShader;
@@ -31,11 +29,7 @@ public:
 		VECTOR rot, 
 		VECTOR localRot, 
 		VECTOR scl, 
-		Shared_VertexShader vs,
-		Shared_PixelShader ps
+		std::shared_ptr<VertexShader> vs,
+		std::shared_ptr<PixelShader> ps
 	);
 };
-
-using Unique_Model = std::unique_ptr<Model>;
-using Shared_Model = std::shared_ptr<Model>;
-using Weak_Model = std::weak_ptr<Model>;

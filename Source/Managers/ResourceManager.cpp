@@ -51,29 +51,29 @@ void ResourceManager::LoadSceneResourceFile(Scene::TYPE sceneType) {
 	auto nextUsingResourceList = sceneUsingResourceList_[static_cast<int>(sceneType)];
 
 	// 不要なリソースファイルをアンロード(削除)する
-	for (auto it = currentUsingResourceFiles_.begin(); it != currentUsingResourceFiles_.end(); ) {
+	for (auto itr = currentUsingResourceFiles_.begin(); itr != currentUsingResourceFiles_.end(); ) {
 		// キーがグローバルのリソースファイルのリストに登録されてる場合は何もしない
-		if (globalUsingResourceList_.find(it->first) != globalUsingResourceList_.end()) {
-			++it;
+		if (globalUsingResourceList_.find(itr->first) != globalUsingResourceList_.end()) {
+			++itr;
 			continue;
 		}
 
 		// キーが切り替え先のシーンのリソースファイルのリストに登録されてる場合は何もしない
-		if (nextUsingResourceList.find(it->first) != nextUsingResourceList.end()) {
+		if (nextUsingResourceList.find(itr->first) != nextUsingResourceList.end()) {
 			// 次のシーンで読みこまなくていいのでリソースファイルのリストから削除する
-			nextUsingResourceList.erase(it->first);
-			++it;
+			nextUsingResourceList.erase(itr->first);
+			++itr;
 			continue;
 		}
 		else {
 			// 存在しない場合は削除する
-			it = currentUsingResourceFiles_.erase(it);
+			itr = currentUsingResourceFiles_.erase(itr);
 		}
 	}
 
 	// 読み込まれてないリソースファイルだけを読み込む
-	for (auto it = nextUsingResourceList.begin(); it != nextUsingResourceList.end(); ++it) {
-		currentUsingResourceFiles_[(*it)] = LoadResourceFile((*it));
+	for (auto itr = nextUsingResourceList.begin(); itr != nextUsingResourceList.end(); ++itr) {
+		currentUsingResourceFiles_[(*itr)] = LoadResourceFile((*itr));
 	}
 
 }

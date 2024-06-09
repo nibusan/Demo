@@ -32,12 +32,12 @@ void UILayer::Release(void) {
 void UILayer::LoadUILayer(UILayerInfo::TYPE type) {
 	// リソースファイルリスト(json)の読み込み
 	const auto uiLayerListJson = JsonReader::GetInstance().Parse(ResourceManager::BASE_ASSETS_PATH / "UILayerList/UILayerList.json");
-	
 	std::string uiLayerPath = uiLayerListJson["UILayerListPath"][static_cast<int>(type)];
 	const auto uiLayerJson = JsonReader::GetInstance().Parse(ResourceManager::BASE_ASSETS_PATH / uiLayerPath);
 
 	auto& uiFactory = UIFactory::GetInstance();
 
+	// UIの生成
 	for (const auto& ui : uiLayerJson["UIs"]) {
 		uis_.emplace_back(uiFactory.CreateUI(ui, true, false));
 	}

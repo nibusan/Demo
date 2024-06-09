@@ -28,7 +28,3 @@ public:
 	void Draw(const Vector2<float>& pos, const std::string& text, unsigned int textColor);
 
 };
-
-using Unique_Font = std::unique_ptr<Font>;
-using Shared_Font = std::shared_ptr<Font>;
-using Weak_Font = std::weak_ptr<Font>;

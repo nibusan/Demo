@@ -27,24 +27,11 @@ void SceneManager::Init(void) {
 	// ゲーム内で使用するメッセージを全て読み込む
 	MessageList::GetInstance().Init();
 
+	// 定数バッファに関する処理の初期化
 	PixelShaderEventManager::GetInstance().Init();
 
-	// 背景色設定
-	SetBackgroundColor(40, 0, 0);
-
-	// Zバッファを有効にする
-	SetUseZBuffer3D(true);
-
-	// Zバッファへの書き込みを有効にする
-	SetWriteZBuffer3D(true);
-
-	// バックカリングを有効にする
-	SetUseBackCulling(true);
-
-	SetCameraNearFar(0.0001f, 5000.0f);
-
-	// ライトの設定
-	SetUseLighting(true);
+	// 3D関係の初期化
+	Init3D();
 
 	// 最初のシーンを設定
 	ChangeScene(Scene::TYPE::UI_SYSTEM);
@@ -130,4 +117,23 @@ void SceneManager::ChangeScene(Scene::TYPE type) {
 
 	// シーンの初期化
 	currentScene_->Init();
+}
+
+void SceneManager::Init3D(void) {
+	// 背景色設定
+	SetBackgroundColor(40, 0, 0);
+
+	// Zバッファを有効にする
+	SetUseZBuffer3D(true);
+
+	// Zバッファへの書き込みを有効にする
+	SetWriteZBuffer3D(true);
+
+	// バックカリングを有効にする
+	SetUseBackCulling(true);
+
+	SetCameraNearFar(0.0001f, 5000.0f);
+
+	// ライトの設定
+	SetUseLighting(true);
 }

@@ -15,7 +15,3 @@ public:
 private:
 	
 };
-
-using Unique_VertexShader = std::unique_ptr<VertexShader>;
-using Shared_VertexShader = std::shared_ptr<VertexShader>;
-using Weak_VertexShader = std::weak_ptr<VertexShader>;

@@ -24,6 +24,7 @@ InventorySystemScene::InventorySystemScene(void) {
 }
 
 void InventorySystemScene::Init(void) {
+	// UILayerの読み込み & 初期化
 	uiLayer_ = std::make_unique<UILayer>();
 	uiLayer_->LoadUILayer(UILayerInfo::TYPE::INVENTORY_SYSTEM_MENU);
 	uiLayer_->Init();
@@ -49,8 +50,6 @@ void InventorySystemScene::Init(void) {
 	inventory_->AddItem(std::make_shared<Item>(13, 1));
 	inventory_->AddItem(std::make_shared<Item>(14, 1));
 	inventory_->AddItem(std::make_shared<Item>(15, 1));
-
-	addItem_ = std::make_unique<Item>(0, 0);
 	addItemID_ = 0;
 
 	// リソースファイル取得用
@@ -79,7 +78,7 @@ void InventorySystemScene::Init(void) {
 		image_Item
 	);
 	uiInventory_->SetTransformData(
-		{ 320.0f, 400.0f },
+		{ 310.0f, 400.0f },
 		0.0f,
 		8.0f
 	);
@@ -104,15 +103,16 @@ void InventorySystemScene::Update(void) {
 	// 各スロットの情報を編集できるようにする
 	for (int i = 0; i < Inventory<Item>::MAX_ITEM_SLOT_COUNT; i++) {
 		if (ImGui::TreeNode(("Slot" + std::to_string(i)).c_str())) {
+			// アイテムの情報を取得
 			auto item = inventory_->GetItem(i);
 			int itemID = item.expired() ? 0 : item.lock()->GetID();
 			int itemCount = item.expired() ? 0 : item.lock()->GetCount();
-			if (ImGui::InputInt("ItemID", &itemID)) {
-				//if (!item.expired()) inventory_->SetItem(std::make_shared<Item>(itemID, itemCount), i);
-			}
-			if (ImGui::InputInt("ItemCount", &itemCount)) {
-				//if (!item.expired()) inventory_->SetItem(std::make_shared<Item>(itemID, itemCount), i);
-			}
+			
+			// IDと個数を描画
+			ImGui::Text(("ItemID : " + std::to_string(itemID)).c_str());
+			ImGui::Text(("ItemCount : " + std::to_string(itemCount)).c_str());
+			
+			// アイテムの削除
 			if (ImGui::Button("Delete")) {
 				inventory_->DeleteItem(i);
 			}
@@ -130,11 +130,6 @@ void InventorySystemScene::Update(void) {
 
 	ImGui::End();
 
-	uiInventory_->SetTransformData(
-		{ 310.0f, 400.0f },
-		0.0f,
-		8.0f
-	);
 	uiInventory_->Update();
 	uiLayer_->Update();
 }

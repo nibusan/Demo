@@ -53,7 +53,3 @@ private:
 	// 2D‚©3D‚©
 	DIMENSION_TYPE dimensionType_;
 };
-
-using Unique_Sound = std::unique_ptr<Sound>;
-using Shared_Sound = std::shared_ptr<Sound>;
-using Weak_Sound = std::weak_ptr<Sound>;

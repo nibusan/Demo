@@ -6,8 +6,6 @@
 #include "../UI/Original/Button/UI_ButtonRenderer.h"
 #include "../UI/Original/Inventory/UI_Inventory.h"
 #include "../UI/Original/Inventory/UI_InventoryRenderer.h"
-//#include "../UI/Original/Item/UI_Item.h"
-//#include "../UI/Original/Item/UI_ItemRenderer.h"
 #include "../../../../Common/Handle/Graphic/Graphic.h"
 #include "../../../../Common/Handle/Sound/Sound.h"
 #include "../../../../Common/Handle/Font/Font.h"

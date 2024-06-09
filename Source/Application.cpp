@@ -25,6 +25,7 @@ bool Application::Init(void) {
 		return false;
 	}
 
+	// 各シングルトンクラスの初期化
 	RenderManager::GetInstance().Init();
 	InputManager::GetInstance().Init();
 	ResourceManager::GetInstance().Init();

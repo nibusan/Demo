@@ -14,6 +14,7 @@ UISystemScene::UISystemScene(void) {
 }
 
 void UISystemScene::Init(void) {
+	// メインカメラの設定
 	camera_ = std::make_shared<Camera>();
 	camera_->Init();
 	camera_->SetTransformData(
@@ -21,8 +22,11 @@ void UISystemScene::Init(void) {
 		{ 0.0f, 0.0f, 0.0f },
 		{ 0.0f, 0.0f, 0.0f }
 	);
+
+	// メインカメラをセット
 	RenderManager::GetInstance().SetMainCamera(camera_);
 
+	// UILayerの読み込み & 初期化
 	uiLayer_ = std::make_unique<UILayer>();
 	uiLayer_->LoadUILayer(UILayerInfo::TYPE::UI_SYSTEM_MENU);
 	uiLayer_->Init();

@@ -21,6 +21,7 @@ void GameObject2D::Release_GameObject(void) {
 
 void GameObject2D::CalculateTransform2D(void) {
 	if (parent_.lock() != nullptr) {
+		// 親オブジェクトが存在する場合の計算処理
 		const std::weak_ptr<GameObject2D>& parent_GameObject2D = std::dynamic_pointer_cast<GameObject2D>(parent_.lock());
 		const auto& parentTransform = parent_GameObject2D.lock()->GetTransform();
 		transform_.parentPos_ = parentTransform.currentPos_;
@@ -31,6 +32,7 @@ void GameObject2D::CalculateTransform2D(void) {
 		transform_.currentScl_ = transform_.parentScl_ * transform_.localScl_;
 	}
 	else {
+		// 親オブジェクトが存在しない場合の計算処理
 		transform_.localPos_ = transform_.parentPos_ + transform_.localPos_;
 		transform_.localRot_ = transform_.parentRot_ + transform_.localRot_;
 		transform_.localScl_ = transform_.parentScl_ + transform_.localScl_;
@@ -46,8 +48,7 @@ void GameObject2D::CalculateTransform2D(void) {
 void GameObject2D::SetParent(std::weak_ptr<GameObject> parent) {
 	parent_ = parent;
 
-	//CalculateTransform2D();
-
+	// 親をセットした際に座標などがバグらないように計算する
 	const std::weak_ptr<GameObject2D>& parent_GameObject2D = std::dynamic_pointer_cast<GameObject2D>(parent_.lock());
 	const auto& parentTransform = parent_GameObject2D.lock()->GetTransform();
 	transform_.parentPos_ = parentTransform.currentPos_;
@@ -59,6 +60,7 @@ void GameObject2D::SetParent(std::weak_ptr<GameObject> parent) {
 	transform_.currentScl_ = transform_.parentScl_ * transform_.localScl_;
 	CalculateTransform2D();
 
+	// 子オブジェクトが存在する場合は子オブジェクトの親の値を更新する
 	for (const auto& child : childs_) {
 		auto& childTransform = std::dynamic_pointer_cast<GameObject2D>(child)->GetTransform();
 		childTransform.parentPos_ = transform_.currentPos_;

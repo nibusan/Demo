@@ -1,6 +1,7 @@
 #include <filesystem>
 #include <DxLib.h>
 #include "../../Vector2.h"
+#include "../PixelShader/PixelShader.h"
 #include "Graphic.h"
 
 Graphic::Graphic(void) {
@@ -29,7 +30,7 @@ Graphic::~Graphic(void) {
 	}
 }
 
-void Graphic::Draw(const Vector2<float>& pos, bool isCenterDraw, const Shared_PixelShader& ps = nullptr) {
+void Graphic::Draw(const Vector2<float>& pos, bool isCenterDraw, const std::shared_ptr<PixelShader>& ps = nullptr) {
 	if (ps == nullptr) {
 		if (isCenterDraw) {
 			DrawRotaGraph(pos.x, pos.y, 1.0f, 0.0f, handle_, true);
@@ -61,7 +62,7 @@ void Graphic::Draw(const Vector2<float>& pos, bool isCenterDraw, const Shared_Pi
 	}
 }
 
-void Graphic::Draw(const Vector2<float>& pos, bool isCenterDraw, int divX, int divY, int numX, int numY, const Shared_PixelShader& ps) {
+void Graphic::Draw(const Vector2<float>& pos, bool isCenterDraw, int divX, int divY, int numX, int numY, const std::shared_ptr<PixelShader>& ps) {
 	Vector2<int> gDiv = { size_.x / divX, size_.y / divY };
 	Vector2<int> gStartPos = { gDiv.x * numX, gDiv.y * numY };
 
@@ -96,7 +97,7 @@ void Graphic::Draw(const Vector2<float>& pos, bool isCenterDraw, int divX, int d
 	}
 }
 
-void Graphic::Draw(const Vector2<float>& pos, float scale, float angle, int divX, int divY, int numX, int numY, const Shared_PixelShader& ps) {
+void Graphic::Draw(const Vector2<float>& pos, float scale, float angle, int divX, int divY, int numX, int numY, const std::shared_ptr<PixelShader>& ps) {
 	Vector2<int> gDiv = { size_.x / divX, size_.y / divY };
 	Vector2<int> gStartPos = { gDiv.x * numX, gDiv.y * numY };
 
@@ -121,7 +122,7 @@ void Graphic::Draw(const Vector2<float>& pos, float scale, float angle, int divX
 	}
 }
 
-void Graphic::Draw(const Vector2<float>& pos1, const Vector2<float>& pos2, const Shared_PixelShader& ps = nullptr) {
+void Graphic::Draw(const Vector2<float>& pos1, const Vector2<float>& pos2, const std::shared_ptr<PixelShader>& ps = nullptr) {
 	if (ps == nullptr) {
 		DrawExtendGraph(pos1.x, pos1.y, pos2.x, pos2.y, handle_, true);
 	}
@@ -143,7 +144,7 @@ void Graphic::Draw(const Vector2<float>& pos1, const Vector2<float>& pos2, const
 	}
 }
 
-void Graphic::Draw(const Vector2<float>& pos1, const Vector2<float>& pos2, const Vector2<float>& pos3, const Shared_PixelShader& ps = nullptr) {
+void Graphic::Draw(const Vector2<float>& pos1, const Vector2<float>& pos2, const Vector2<float>& pos3, const std::shared_ptr<PixelShader>& ps = nullptr) {
 	if (ps == nullptr) {
 		DrawExtendGraph(pos1.x - pos3.x, pos1.y - pos3.y, pos2.x - pos3.x, pos2.y - pos3.y, handle_, true);
 	}
@@ -165,7 +166,7 @@ void Graphic::Draw(const Vector2<float>& pos1, const Vector2<float>& pos2, const
 	}
 }
 
-void Graphic::Draw(const Vector2<float>& pos, float scale, float angle, const Shared_PixelShader& ps = nullptr) {
+void Graphic::Draw(const Vector2<float>& pos, float scale, float angle, const std::shared_ptr<PixelShader>& ps = nullptr) {
 	if (ps == nullptr) {
 		DrawRotaGraph(pos.x, pos.y, scale, angle, handle_, true);
 	}

@@ -102,6 +102,7 @@ void AbstractUI::Update_GameObject2D(void) {
 					DebugLog::GetInstance().AddLog({ 2.0f, "UI Clicked", 0xFF0000 });
 				}
 				else if (inputManager.IsClickMouseLeft()) {
+					// 長押し
 					OnClickDown();
 					uiInputManager.SetClicked(true);
 					//DebugLog::GetInstance().AddLog({ 1.0f, "UI ClickDown", 0xFF0000 });
@@ -117,6 +118,7 @@ void AbstractUI::Update_GameObject2D(void) {
 	// カーソルがあった時に発生するトリガーで効果音を鳴らすか判定する
 	if ((!preIsHighlighted_ && isHighlighted_) && isSelect_ && !selectSound_.expired()) selectSound_.lock()->Play(false);
 
+	// 強調表示だったら専用の更新処理を呼ぶ
 	if (isHighlighted_) {
 		HighlightUpdate();
 	}

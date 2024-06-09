@@ -22,7 +22,7 @@ public:
 	/// @param stageIndex スロットID
 	/// @param graphicHandle テクスチャのグラフィックハンドル
 	void SetUseTexture(int stageIndex, int graphicHandle);
-	void SetUseTexture(int stageIndex, int graphicHandle, Vector2<float> pos);
+	void SetUseTexture(int stageIndex, int graphicHandle, const Vector2<float>& pos);
 
 	/// @brief 定数バッファに定数をセット
 	/// @param index スロットID
@@ -46,7 +46,3 @@ private:
 	// 定数バッファ
 	int cbuff_;
 };
-
-using Unique_PixelShader = std::unique_ptr<PixelShader>;
-using Shared_PixelShader = std::shared_ptr<PixelShader>;
-using Weak_PixelShader = std::weak_ptr<PixelShader>;

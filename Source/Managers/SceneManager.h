@@ -32,4 +32,7 @@ private:
 	/// @brief シーンを切り替える
 	/// @param シーンの種類
 	void ChangeScene(Scene::TYPE type);
+
+	// 3D関係のものの初期化処理
+	void Init3D(void);
 };

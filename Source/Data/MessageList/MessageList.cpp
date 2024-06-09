@@ -18,10 +18,14 @@ MessageList::~MessageList(void) {
 
 
 void MessageList::Init(void) {
+	// メッセージリストの読み込み
 	std::string path = ResourceManager::BASE_ASSETS_PATH.string() + "MessageList/MessageList.txt";
 	std::ifstream ifs(path);
 	std::string buf;
+	
+	// 行ごとに分割して読み込む
 	while (std::getline(ifs, buf)) {
+		// IDとメッセージの部分で分けて格納する
 		messageTable_[
 			std::stoi(buf.substr(0, buf.find(":")))
 		] = 
