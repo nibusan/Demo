@@ -4,6 +4,7 @@
 
 class UILayer;
 /// @brief 複数のUILayerを管理するクラス
+/// @brief 今回は使用してません
 class Canvas {
 public:
 	Canvas(void) = default;
