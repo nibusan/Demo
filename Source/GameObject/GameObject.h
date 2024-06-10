@@ -32,7 +32,7 @@ public:
 
 	/// @brief 子オブジェクトを格納した配列を返す 
 	/// @return 子オブジェクトを格納した配列
-	[[nodiscard]] const std::vector<std::shared_ptr<GameObject>> GetChilds(void) const;
+	[[nodiscard]] const std::vector<std::shared_ptr<GameObject>>& GetChilds(void) const;
 	
 	/// @brief 子オブジェクトを追加する
 	/// @param child 子オブジェクト

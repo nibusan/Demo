@@ -59,44 +59,44 @@ void InventorySystemScene::Init(void) {
 	auto& resourceManager = ResourceManager::GetInstance();
 
 	// ÉCÉìÉxÉìÉgÉäÇÃUIÇê∂ê¨
-	//std::weak_ptr<Graphic> image_Inventory = std::dynamic_pointer_cast<Graphic>(resourceManager.GetResourceFile("IMAGE_UI_INVENTORY").lock());
-	//std::weak_ptr<Graphic> image_Item = std::dynamic_pointer_cast<Graphic>(resourceManager.GetResourceFile("IMAGE_UI_ITEMS").lock());
-	//uiInventory_ = std::make_shared<UI_Inventory>(
-	//	image_Inventory.lock()->GetSize().ToVector2f(),
-	//	UI::UI_ORIGIN_TYPE::CENTER_CENTER,
-	//	false,
-	//	nullptr,
-	//	std::weak_ptr<PixelShader>(),
-	//	-1,
-	//	inventory_,
-	//	std::make_shared<UI_Image>(
-	//		image_Inventory.lock()->GetSize().ToVector2f(),
-	//		UI::UI_ORIGIN_TYPE::CENTER_CENTER,
-	//		false,
-	//		nullptr,
-	//		std::weak_ptr<PixelShader>(),
-	//		-1,
-	//		image_Inventory
-	//	),
-	//	image_Item
-	//);
-	//uiInventory_->SetTransformData(
-	//	{ 310.0f, 400.0f },
-	//	0.0f,
-	//	8.0f
-	//);
-	//uiInventory_->Init();
+	std::weak_ptr<Graphic> image_Inventory = std::dynamic_pointer_cast<Graphic>(resourceManager.GetResourceFile("IMAGE_UI_INVENTORY").lock());
+	std::weak_ptr<Graphic> image_Item = std::dynamic_pointer_cast<Graphic>(resourceManager.GetResourceFile("IMAGE_UI_ITEMS").lock());
+	uiInventory_ = std::make_shared<UI_Inventory>(
+		image_Inventory.lock()->GetSize().ToVector2f(),
+		UI::UI_ORIGIN_TYPE::CENTER_CENTER,
+		false,
+		nullptr,
+		std::weak_ptr<PixelShader>(),
+		-1,
+		inventory_,
+		std::make_shared<UI_Image>(
+			image_Inventory.lock()->GetSize().ToVector2f(),
+			UI::UI_ORIGIN_TYPE::CENTER_CENTER,
+			false,
+			nullptr,
+			std::weak_ptr<PixelShader>(),
+			-1,
+			image_Inventory
+		),
+		image_Item
+	);
+	uiInventory_->SetTransformData(
+		{ 310.0f, 400.0f },
+		0.0f,
+		8.0f
+	);
+	uiInventory_->Init();
 
-	//// ê∂ê¨ÇµÇΩUIÇï`âÊÇ≈Ç´ÇÈÇÊÇ§Ç…Ç∑ÇÈ
-	//RenderManager::GetInstance().AddRenderer2D(
-	//	std::make_shared<UI_InventoryRenderer>(
-	//		false,
-	//		uiInventory_
-	//	)
-	//);
+	// ê∂ê¨ÇµÇΩUIÇï`âÊÇ≈Ç´ÇÈÇÊÇ§Ç…Ç∑ÇÈ
+	RenderManager::GetInstance().AddRenderer2D(
+		std::make_shared<UI_InventoryRenderer>(
+			false,
+			uiInventory_
+		)
+	);
 	
 
-	//uiLayer_->AddUI(uiInventory_);
+	uiLayer_->AddUI(uiInventory_);
 }
 
 void InventorySystemScene::Update(void) {
@@ -139,7 +139,6 @@ void InventorySystemScene::Update(void) {
 
 	ImGui::End();
 
-	//uiInventory_->Update();
 	uiLayer_->Update();
 }
 

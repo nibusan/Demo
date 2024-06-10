@@ -24,8 +24,8 @@ private:
 
 	// インベントリ関係
 	std::shared_ptr<Inventory<Item>> inventory_;
-	//std::shared_ptr<UI_Inventory> uiInventory_;
-	//std::unique_ptr<UI_InventoryRenderer> inventoryRenderer_;
+	std::shared_ptr<UI_Inventory> uiInventory_;
+	std::unique_ptr<UI_InventoryRenderer> inventoryRenderer_;
 
 	// 追加するアイテムを格納(ImGui用)
 	int addItemID_;

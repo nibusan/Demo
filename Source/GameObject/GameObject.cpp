@@ -60,7 +60,7 @@ std::weak_ptr<GameObject> GameObject::GetParent(void) const {
 	return parent_;
 }
 
-const std::vector<std::shared_ptr<GameObject>> GameObject::GetChilds(void) const {
+const std::vector<std::shared_ptr<GameObject>>& GameObject::GetChilds(void) const {
     return childs_;
 }
 
