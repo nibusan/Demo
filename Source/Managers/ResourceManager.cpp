@@ -9,8 +9,6 @@
 #include "../Common/Handle/PixelShader/PixelShader.h"
 #include "../Common/Handle/VertexShader/VertexShader.h"
 
-#define AIUEO a;
-
 const std::filesystem::path ResourceManager::BASE_ASSETS_PATH = "Assets/";
 const std::filesystem::path ResourceManager::RESOURCE_LIST_PATH =  ResourceManager::BASE_ASSETS_PATH / "ResourceList/ResourceList.json";
 const std::array<std::string, static_cast<int>(Resource::RESOURCE_FILE_TYPE::MAX)> ResourceFileTag = {
@@ -36,6 +34,13 @@ void ResourceManager::Init(void) {
 	// 各シーンの使用するリソースファイルを登録したリストを読み込む
 	RegisterUsingResourceList(resourceListJson);
 
+}
+
+void ResourceManager::Release(void) {
+	resourceFileInfoList_.clear();
+	globalUsingResourceList_.clear();
+	for(auto& usingResourceList : sceneUsingResourceList_) usingResourceList.clear();
+	currentUsingResourceFiles_.clear();
 }
 
 std::weak_ptr<HandleBase> ResourceManager::GetResourceFile(const std::string& key) {

@@ -61,6 +61,7 @@ void Application::Run(void) {
 
 void Application::Release(void) {
 	SceneManager::GetInstance().Release();
+	ResourceManager::GetInstance().Release();
 	DxLib_End();
 }
 

@@ -17,6 +17,10 @@ public:
 	/// @brief w’è‚³‚ê‚½UILayer‚ğ“Ç‚İ‚Ş
 	/// @param type UILayer‚Ìí—Ş
 	void LoadUILayer(UILayerInfo::TYPE type);
+
+	/// @brief UI‚ğ’Ç‰Á‚·‚é
+	/// @param ui UI
+	void AddUI(const std::shared_ptr<AbstractUI> ui);
 private:
 	// ‚±‚ÌƒŒƒCƒ„[‚É“o˜^‚³‚ê‚½UI
 	std::vector<std::shared_ptr<AbstractUI>> uis_;

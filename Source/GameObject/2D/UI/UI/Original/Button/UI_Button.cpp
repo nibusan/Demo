@@ -56,7 +56,10 @@ void UI_Button::Update_UI(void) {
 
 }
 
-void UI_Button::Release_UI(void) {}
+void UI_Button::Release_UI(void) {
+	uiImage_ = nullptr;
+	uiText_ = nullptr;
+}
 
 void UI_Button::OnClickDown(void) {
 	transform_.localScl_ = 1.5f;

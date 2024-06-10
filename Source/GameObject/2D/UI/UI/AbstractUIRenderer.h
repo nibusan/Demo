@@ -6,7 +6,7 @@ class AbstractUI;
 class AbstractUIRenderer : public AbstractRenderer {
 public:
 	AbstractUIRenderer(void) = default;
-	~AbstractUIRenderer(void) = default;
+	virtual ~AbstractUIRenderer(void) override = default;
 
 	/// @brief コンストラクタ
 	/// @param useLocalPos 描画する際にローカル座標だけを参照するか

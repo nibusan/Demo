@@ -36,3 +36,7 @@ void MessageList::Init(void) {
 const std::wstring& MessageList::GetMessage_(int id) const {
 	return messageTable_.at(id);
 }
+
+void MessageList::Release(void) {
+	messageTable_.clear();
+}

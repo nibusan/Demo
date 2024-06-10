@@ -18,6 +18,8 @@ public:
 	/// @return メッセージの文字列
 	[[nodiscard]] const std::wstring& GetMessage_(int id) const;
 
+	/// @brief 解放処理 
+	void Release(void);
 private:
 	// 読み込んだメッセージを管理(キー:ID, 値:読み込んだテキスト(wstring))
 	std::unordered_map<int, std::wstring> messageTable_;

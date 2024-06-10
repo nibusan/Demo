@@ -11,7 +11,7 @@ class UI_TextRenderer;
 class UI_ButtonRenderer : public AbstractUIRenderer {
 public:
 	UI_ButtonRenderer(void) = default;
-	~UI_ButtonRenderer(void) = default;
+	virtual ~UI_ButtonRenderer(void) override = default;
 
 	/// @brief コンストラクタ
 	/// @param uiButton 描画するボタンのUI

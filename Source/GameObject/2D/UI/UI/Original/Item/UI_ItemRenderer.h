@@ -7,7 +7,7 @@ class UI_Item;
 class UI_ItemRenderer : public AbstractUIRenderer {
 public:
 	UI_ItemRenderer(void) = default;
-	~UI_ItemRenderer(void) = default;
+	virtual ~UI_ItemRenderer(void) override = default;
 
 	/// @brief コンストラクタ
 	/// @param uiInventory 描画するアイテムのUI

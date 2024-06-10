@@ -65,7 +65,7 @@ void PixelShaderEventManager::RegisterEvent(void) {
 		float* constantBufferF = static_cast<float*>(GetBufferShaderConstantBuffer(constantBuffer));
 
 		// 値のセット
-		const float addValue = 0.001f;
+		const float addValue = 0.01f;
 		constantBufferF[0] += addValue;
 	};
 	eventList_[0].isActive = false;

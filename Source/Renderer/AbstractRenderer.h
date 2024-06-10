@@ -7,7 +7,7 @@
 class AbstractRenderer : std::enable_shared_from_this<AbstractRenderer> {
 public:
 	AbstractRenderer(void);
-	virtual ~AbstractRenderer(void) = default;
+	virtual ~AbstractRenderer(void) = default ;
 	
 	/// @brief コンストラクタ
 	/// @param useLocalPos 描画する際にローカル座標だけを参照するか

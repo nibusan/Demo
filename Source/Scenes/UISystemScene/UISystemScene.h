@@ -8,7 +8,7 @@ class UILayer;
 class UISystemScene : public AbstractScene {
 public:
 	UISystemScene();
-	~UISystemScene() override = default;
+	virtual ~UISystemScene() override = default;
 
 	void Init(void) override;
 	void Update(void) override;
