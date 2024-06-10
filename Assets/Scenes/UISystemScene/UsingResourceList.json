@@ -8,9 +8,7 @@
         ],
         "Sound2D": null,
         "Sound3D": null,
-        "Model": [
-            "MODEL_IA"
-        ],
+        "Model": null,
         "Font": null,
         "PixelShader": [
             "PIXELSHADER_RAINBOW",

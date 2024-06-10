@@ -66,14 +66,7 @@
             }
         ],
         "Sound3D": null,
-        "Model": [
-            {
-                "Key": "MODEL_IA",
-                "FilePath": "Scenes/UISystemScene/Model/",
-                "FileName": "IA",
-                "Extension": ".mv1"
-            }
-        ],
+        "Model": null,
         "Font": [
             {
                 "Key": "FONT_REVAMPED",
