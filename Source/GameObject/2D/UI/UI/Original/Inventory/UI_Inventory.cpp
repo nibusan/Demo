@@ -65,7 +65,11 @@ void UI_Inventory::Update_UI(void) {
 
 }
 
-void UI_Inventory::Release_UI(void) {}
+void UI_Inventory::Release_UI(void) {
+	inventory_ = nullptr;
+	uiImage_ = nullptr;
+	uiItem_ = nullptr;
+}
 
 void UI_Inventory::OnClickDown(void) {}
 

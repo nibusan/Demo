@@ -31,6 +31,9 @@ public:
 	/// @brief 初期化処理 
 	void Init(void);
 
+	/// @brief 解放処理 
+	void Release(void);
+
 	/// @brief 登録されているリソースファイルのデータを返す
 	/// @param key 取得したいリソースファイルのキー
 	/// @return キーに対応したリソースファイルのデータ

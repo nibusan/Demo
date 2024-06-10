@@ -1,5 +1,4 @@
 #include <numbers>
-#include "UISystemScene.h"
 #include "../../GameObject/2D/GameObject2D.h"
 #include "../../GameObject/2D/UI/UILayer/UILayerInfo.h"
 #include "../../GameObject/2D/UI/UILayer/UILayer.h"
@@ -7,10 +6,15 @@
 #include "../../GameObject/3D/Camera/Camera.h"
 #include "../../Managers/RenderManager.h"
 #include "../../Managers/InputManager.h"
+#include "../../Managers/SceneManager.h"
+#include "../../DebugTools/DebugLog.h"
+#include "UISystemScene.h"
 
 UISystemScene::UISystemScene(void) {
 	// このシーンの種類をセット
 	type_ = Scene::TYPE::UI_SYSTEM;
+
+	DebugLog::GetInstance().AddLog({1.0f,"UISystemScene", 0x00FFFF});
 }
 
 void UISystemScene::Init(void) {
@@ -33,6 +37,10 @@ void UISystemScene::Init(void) {
 }
 
 void UISystemScene::Update(void) {
+	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_SPACE)) {
+		SceneManager::GetInstance().SetNextScene(Scene::TYPE::INVENTORY_SYSTEM);
+	}
+
 	camera_->Update();
 	uiLayer_->Update();
 }

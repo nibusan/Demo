@@ -42,3 +42,7 @@ void UILayer::LoadUILayer(UILayerInfo::TYPE type) {
 		uis_.emplace_back(uiFactory.CreateUI(ui, true, false));
 	}
 }
+
+void UILayer::AddUI(const std::shared_ptr<AbstractUI> ui) {
+	uis_.emplace_back(ui);
+}

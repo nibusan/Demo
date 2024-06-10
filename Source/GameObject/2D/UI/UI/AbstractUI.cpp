@@ -131,6 +131,11 @@ void AbstractUI::Update_GameObject2D(void) {
 
 void AbstractUI::Release_GameObject2D(void) {
 	Release_UI();
+
+	renderCanvas_ = nullptr;
+	usingPixelShader_.reset();
+	selectSound_.reset();
+	onClickSound_.reset();
 }
 
 void AbstractUI::SetHighlighted(bool flag) {

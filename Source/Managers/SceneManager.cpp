@@ -78,6 +78,8 @@ void SceneManager::Release(void) {
 	ImGui_ImplDX11_Shutdown();
 	ImGui_ImplWin32_Shutdown();
 	ImGui::DestroyContext();
+
+	MessageList::GetInstance().Release();
 }
 
 SceneManager::SceneManager() : nextSceneType_(Scene::TYPE::NONE) {}

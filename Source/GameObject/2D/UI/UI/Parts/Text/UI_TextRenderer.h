@@ -7,7 +7,7 @@ class UI_Text;
 class UI_TextRenderer : public AbstractUIRenderer {
 public:
 	UI_TextRenderer(void) = default;
-	~UI_TextRenderer(void) = default;
+	virtual ~UI_TextRenderer(void) override = default;
 	
 	/// @brief コンストラクタ
 	/// @param uiText 描画するTextのUI

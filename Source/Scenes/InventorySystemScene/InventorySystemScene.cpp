@@ -7,20 +7,23 @@
 #include "../../GameObject/2D/UI/UI/Original/Inventory/UI_InventoryRenderer.h"
 #include "../../GameObject/2D/UI/UI/UI_Info.h"
 #include "Item/Item.h"
-//#include "Item/ItemRenderer.h"
 #include "../../Managers/ResourceManager.h"
 #include "../../Managers/RenderManager.h"
+#include "../../Managers/InputManager.h"
+#include "../../Managers/SceneManager.h"
 #include "../../GameObject/2D/UI/UILayer/UILayer.h"
 #include "../../GameObject/2D/UI/UILayer/UILayerInfo.h"
 #include "../../Library/imgui/imgui.h"
 #include "../../Library/imgui/backends/imgui_impl_dx11.h"
 #include "../../Library/imgui/backends/imgui_impl_win32.h"
 #include "../../Library/imgui/misc/cpp/imgui_stdlib.h"
+#include "../../DebugTools/DebugLog.h"
 #include "InventorySystemScene.h"
 
 InventorySystemScene::InventorySystemScene(void) {
 	// このシーンの種類をセット
 	type_ = Scene::TYPE::INVENTORY_SYSTEM;
+	DebugLog::GetInstance().AddLog({1.0f,"InventorySystemScene", 0xFF00FF});
 }
 
 void InventorySystemScene::Init(void) {
@@ -56,45 +59,51 @@ void InventorySystemScene::Init(void) {
 	auto& resourceManager = ResourceManager::GetInstance();
 
 	// インベントリのUIを生成
-	std::weak_ptr<Graphic> image_Inventory = std::dynamic_pointer_cast<Graphic>(resourceManager.GetResourceFile("IMAGE_UI_INVENTORY").lock());
-	std::weak_ptr<Graphic> image_Item = std::dynamic_pointer_cast<Graphic>(resourceManager.GetResourceFile("IMAGE_UI_ITEMS").lock());
-	uiInventory_ = std::make_shared<UI_Inventory>(
-		image_Inventory.lock()->GetSize().ToVector2f(),
-		UI::UI_ORIGIN_TYPE::CENTER_CENTER,
-		false,
-		nullptr,
-		std::weak_ptr<PixelShader>(),
-		-1,
-		inventory_,
-		std::make_shared<UI_Image>(
-			image_Inventory.lock()->GetSize().ToVector2f(),
-			UI::UI_ORIGIN_TYPE::CENTER_CENTER,
-			false,
-			nullptr,
-			std::weak_ptr<PixelShader>(),
-			-1,
-			image_Inventory
-		),
-		image_Item
-	);
-	uiInventory_->SetTransformData(
-		{ 310.0f, 400.0f },
-		0.0f,
-		8.0f
-	);
-	uiInventory_->Init();
+	//std::weak_ptr<Graphic> image_Inventory = std::dynamic_pointer_cast<Graphic>(resourceManager.GetResourceFile("IMAGE_UI_INVENTORY").lock());
+	//std::weak_ptr<Graphic> image_Item = std::dynamic_pointer_cast<Graphic>(resourceManager.GetResourceFile("IMAGE_UI_ITEMS").lock());
+	//uiInventory_ = std::make_shared<UI_Inventory>(
+	//	image_Inventory.lock()->GetSize().ToVector2f(),
+	//	UI::UI_ORIGIN_TYPE::CENTER_CENTER,
+	//	false,
+	//	nullptr,
+	//	std::weak_ptr<PixelShader>(),
+	//	-1,
+	//	inventory_,
+	//	std::make_shared<UI_Image>(
+	//		image_Inventory.lock()->GetSize().ToVector2f(),
+	//		UI::UI_ORIGIN_TYPE::CENTER_CENTER,
+	//		false,
+	//		nullptr,
+	//		std::weak_ptr<PixelShader>(),
+	//		-1,
+	//		image_Inventory
+	//	),
+	//	image_Item
+	//);
+	//uiInventory_->SetTransformData(
+	//	{ 310.0f, 400.0f },
+	//	0.0f,
+	//	8.0f
+	//);
+	//uiInventory_->Init();
 
-	// 生成したUIを描画できるようにする
-	RenderManager::GetInstance().AddRenderer2D(
-		std::make_shared<UI_InventoryRenderer>(
-			false,
-			uiInventory_
-		)
-	);
+	//// 生成したUIを描画できるようにする
+	//RenderManager::GetInstance().AddRenderer2D(
+	//	std::make_shared<UI_InventoryRenderer>(
+	//		false,
+	//		uiInventory_
+	//	)
+	//);
 	
+
+	//uiLayer_->AddUI(uiInventory_);
 }
 
 void InventorySystemScene::Update(void) {
+	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_SPACE)) {
+		SceneManager::GetInstance().SetNextScene(Scene::TYPE::UI_SYSTEM);
+	}
+
 	ImGui::Begin("InventoryMenu");
 	
 	// ImGuiのウィンドウの位置を初期化
@@ -130,7 +139,7 @@ void InventorySystemScene::Update(void) {
 
 	ImGui::End();
 
-	uiInventory_->Update();
+	//uiInventory_->Update();
 	uiLayer_->Update();
 }
 

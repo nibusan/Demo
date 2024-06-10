@@ -42,6 +42,8 @@ void GameObject::Release(void) {
 		childs_[i]->Release();
 	}
 
+	childs_.clear();
+
 	// íœ(‰ğ•ú)‚µ‚½‚±‚Æ‚É‚·‚é
 	isDeleted_ = true;
 }

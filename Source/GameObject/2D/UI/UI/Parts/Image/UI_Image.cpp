@@ -26,7 +26,7 @@ void UI_Image::Update_UI(void) {
 }
 
 void UI_Image::Release_UI(void) {
-
+	image_.reset();
 }
 
 std::weak_ptr<Graphic> UI_Image::GetImage(void) {

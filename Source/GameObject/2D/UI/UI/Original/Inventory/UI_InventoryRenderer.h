@@ -8,7 +8,7 @@ class UI_Inventory;
 class UI_InventoryRenderer : public AbstractUIRenderer {
 public:
 	UI_InventoryRenderer(void) = default;
-	~UI_InventoryRenderer(void) = default;
+	virtual ~UI_InventoryRenderer(void) override = default;
 
 	/// @brief コンストラクタ
 	/// @param uiInventory 描画するインベントリのUI

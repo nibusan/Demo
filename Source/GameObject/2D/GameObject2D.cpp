@@ -17,6 +17,7 @@ void GameObject2D::Update_GameObject(void) {
 
 void GameObject2D::Release_GameObject(void) {
 	Release_GameObject2D();
+	collider_ = nullptr;
 }
 
 void GameObject2D::CalculateTransform2D(void) {
