@@ -12,7 +12,7 @@ private:
 	int size_;
 
 public:
-	Font(void);
+	Font(void) = delete;
 	Font(const std::filesystem::path& path, std::string name, int fontSize);
 	Font(std::string name, int size);
 

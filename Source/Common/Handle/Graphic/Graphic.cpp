@@ -4,10 +4,6 @@
 #include "../PixelShader/PixelShader.h"
 #include "Graphic.h"
 
-Graphic::Graphic(void) {
-
-}
-
 Graphic::Graphic(const std::filesystem::path& path) {
 	handle_ = LoadGraph(path.string().c_str());
 	GetGraphSize(handle_, &size_.x, &size_.y);

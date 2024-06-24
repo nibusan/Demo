@@ -8,7 +8,7 @@
 
 class VertexShader : public HandleBase {
 public:
-	VertexShader(void) = default;
+	VertexShader(void) = delete;
 	VertexShader(const std::filesystem::path& path);
 	VertexShader(int handle);
 	~VertexShader(void);

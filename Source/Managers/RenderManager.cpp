@@ -51,6 +51,10 @@ void RenderManager::SetMainCamera(std::shared_ptr<Camera> mainCamera) {
 	mainCamera_ = mainCamera;
 }
 
+void RenderManager::SetUpCamera(void) {
+	mainCamera_->SetBeforeDraw();
+}
+
 void RenderManager::Render2D(void) {
 	for (const auto& renderer2D : renderer2D_) {
 		// •`‰æ‘ÎÛ‚ªíœ‚³‚ê‚Ä‚È‚©‚Á‚½‚ç•`‰æ‚·‚é
@@ -63,7 +67,7 @@ void RenderManager::Render2D(void) {
 
 void RenderManager::Render3D(void) {
 	// ƒƒCƒ“ƒJƒƒ‰‚Ìİ’è
-	mainCamera_->SetBeforeDraw();
+	SetUpCamera();
 
 	for (const auto& renderer3D : renderer3D_) {
 		// •`‰æ‘ÎÛ‚ªíœ‚³‚ê‚Ä‚È‚©‚Á‚½‚ç•`‰æ‚·‚é

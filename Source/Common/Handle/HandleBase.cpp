@@ -6,10 +6,6 @@ isAutoDeleteHandle_(false) {
 
 }
 
-HandleBase::~HandleBase() {
-
-}
-
 int HandleBase::GetHandle(void) const {
 	return handle_;
 }

@@ -1,11 +1,6 @@
 #include <DxLib.h>
 #include "Font.h"
 
-Font::Font(void) :
-size_(0) {
-
-}
-
 Font::Font(const std::filesystem::path& path, std::string name, int fontSize) :
 name_(name),
 size_(fontSize) {

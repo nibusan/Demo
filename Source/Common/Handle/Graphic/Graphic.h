@@ -12,7 +12,7 @@ class Graphic : public HandleBase
 {
 
 public:
-	Graphic(void);
+	Graphic(void) = delete;
 	Graphic(const std::filesystem::path& path);
 	Graphic(int handle);
 

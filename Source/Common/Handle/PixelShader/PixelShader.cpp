@@ -3,10 +3,6 @@
 #include "../../Vector2.h"
 #include "PixelShader.h"
 
-PixelShader::PixelShader(void) {
-
-}
-
 PixelShader::PixelShader(const std::filesystem::path& path) {
 	handle_ = LoadPixelShader(path.string().c_str());
 

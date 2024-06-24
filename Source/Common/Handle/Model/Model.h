@@ -9,7 +9,7 @@ class PixelShader;
 class Model : public HandleBase
 {
 public:
-	Model(void);
+	Model(void) = delete;
 	Model(const std::filesystem::path& path);
 	Model(int handle);
 

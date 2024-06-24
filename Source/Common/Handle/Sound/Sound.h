@@ -12,7 +12,7 @@ public:
 		_3D
 	};
 
-	Sound(void);
+	Sound(void) = delete;
 
 	/// @brief コンストラクタ
 	/// @param path ファイルへのパス

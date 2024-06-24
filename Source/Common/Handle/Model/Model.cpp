@@ -4,10 +4,6 @@
 #include "../VertexShader/VertexShader.h"
 #include "Model.h"
 
-Model::Model(void) {
-
-}
-
 Model::Model(const std::filesystem::path& path) {
 	handle_ = MV1LoadModel(path.string().c_str());
 }

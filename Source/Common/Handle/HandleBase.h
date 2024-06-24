@@ -4,7 +4,7 @@
 class HandleBase {
 public:
 	HandleBase(void);
-	virtual ~HandleBase(void);
+	virtual ~HandleBase(void) = default;
 
 	/// @brief ハンドルIDを返す
 	/// @return ハンドルID

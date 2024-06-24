@@ -25,6 +25,9 @@ public:
 	/// @brief メインカメラをセット
 	/// @param mainCamera メインカメラ
 	void SetMainCamera(std::shared_ptr<Camera> mainCamera);
+
+	/// @brief カメラの設定を更新する(3D描画時に描画スクリーンの変更などした際に呼ぶ)
+	void SetUpCamera(void);
 private:
 	// 2Dのレンダラーを格納
 	std::vector<std::shared_ptr<AbstractRenderer>> renderer2D_;

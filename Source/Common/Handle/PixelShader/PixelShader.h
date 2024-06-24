@@ -8,10 +8,10 @@
 
 class PixelShader : public HandleBase {
 public:
-	PixelShader(void);
+	PixelShader(void) = delete;
 	PixelShader(const std::filesystem::path& path);
 	PixelShader(int handle);
-	~PixelShader(void);
+	~PixelShader(void) override;
 
 	/// @brief 描画処理(Graphicクラスで使用してます) 
 	void Draw(void);

@@ -4,10 +4,6 @@
 #include <DxLib.h>
 #include "Sound.h"
 
-Sound::Sound(void) {
-
-}
-
 Sound::Sound(const std::filesystem::path& path, DIMENSION_TYPE dimensionType) :
 dimensionType_(dimensionType) {
 	if (dimensionType == DIMENSION_TYPE::_3D) {
